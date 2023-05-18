@@ -1,0 +1,8 @@
+.pagePayments {
+    display: flex;
+    justify-content: center;
+}
+
+.tablePayments {
+    width: 900px;
+}

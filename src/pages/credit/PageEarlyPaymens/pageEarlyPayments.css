@@ -1,0 +1,8 @@
+.pageEarlyPayments {
+    display: flex;
+    justify-content: center;
+}
+
+.tableEarlyPayments {
+    width: 900px;
+}
