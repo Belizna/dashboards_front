@@ -5,6 +5,7 @@ import MenuMain from './components/Menu/MenuMain';
 import PagePayments from './pages/credit/PagePayments/PagePayments';
 import PageEarlyPayments from './pages/credit/PageEarlyPaymens/PageEarlyPayments';
 import PageChartCredit from './pages/credit/PageChartCredit/PageChartCredit';
+import PageBooks from './pages/books/horus_heresy/books/PageBooks';
 import {useState } from 'react';
 import dayjs from 'dayjs';
 import axios from 'axios'
@@ -79,6 +80,7 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
               <Route path='/payments' element={<PagePayments/>} exact/>
               <Route path='/early_payments' element={<PageEarlyPayments/>} exact/>
               <Route path='/chart_credit' element={<PageChartCredit/>} exact/>
+              <Route path='/books_heresy' element={<PageBooks/>} exact/>
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}

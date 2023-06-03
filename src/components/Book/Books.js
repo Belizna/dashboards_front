@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from "react";
-import { Form, Input, Popconfirm, Table, Typography} from 'antd';
-import axios from 'axios'
-import './payments.css'
+import React, {useEffect, useState} from "react";
+import { Form, Input, Popconfirm, Table, Typography, Button} from 'antd';
+import axios from "axios";
+
+import './books.css'
 
 const EditableCell = ({
   editing,
@@ -37,32 +38,29 @@ const EditableCell = ({
   );
 };
 
-const Payments = () => {
+const Books = () => {
 
+
+  useEffect(()  => {
+    axios.get(`${process.env.REACT_APP_API_URL}books/heresy_horus/`)
+    .then((res) => setData(res.data.books))
+  }, [])
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
 
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}credit/payments`)
-    .then((res) => setData(res.data.payments))
-  }, [])
-
-
   const handleDelete = async (record) => {
-    console.log(record._id)
-    const deletePayments = await axios.delete(`h${process.env.REACT_APP_API_URL}credit/payments/${record._id}`)
-    console.log(deletePayments)
     const newData = data.filter((item) => item._id !== record._id);
+    const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}books/heresy_horus/delete/${record._id}`)
+    console.log(deleteBooks)
     setData(newData);
   };
 
   const edit = (record) => {
     form.setFieldsValue({
-      date_payment: '',
-      summ_payment: '',
-      status_payment: '',
+      date_earlyPayment: '',
+      summ_earlyPayment: '',
       ...record,
     });
     setEditingKey(record._id);
@@ -71,12 +69,11 @@ const Payments = () => {
   const cancel = () => {
     setEditingKey('');
   };
-
   const save = async (_id) => {
     try {
       const row = await form.validateFields();
       const newData = [...data];
-      const index = newData.findIndex((item) => _id === item._id);
+      const index = newData.findIndex((item) => _id === item._id );
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, {
@@ -85,8 +82,8 @@ const Payments = () => {
         });
         setData(newData);
         setEditingKey('');
-        const patch = await axios.patch(`${process.env.REACT_APP_API_URL}credit/payments/${data[index]._id}`, row)
-        console.log(patch)
+        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}books/heresy_horus/add/`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}books/heresy_horus/edit/${_id}`,row) 
       } else {
         newData.push(row);
         setData(newData);
@@ -96,24 +93,23 @@ const Payments = () => {
       console.log('Validate Failed:', errInfo);
     }
   };
-
   const columns = [
     {
-      title: 'Дата платежа',
-      dataIndex: 'date_payment',
-      width: '25%',
+      title: 'Наименование',
+      dataIndex: 'book_name',
+      width: '45%',
       editable: true,
     },
     {
-      title: 'Сумма платежа',
-      dataIndex: 'summ_payment',
-      width: '25%',
+      title: 'Сумма книги',
+      dataIndex: 'summ_book',
+      width: '15%',
       editable: true,
     },
     {
-      title: 'Статус платежа',
-      dataIndex: 'status_payment',
-      width: '30%',
+      title: 'Наличие',
+      dataIndex: 'presence',
+      width: '15%',
       editable: true,
     },
     {
@@ -165,16 +161,25 @@ const Payments = () => {
     };
   });
 
+  const handleAdd = async () => {
+    const newData = {
+      _id: Math.random(),
+      book_name: 'book_name',
+      summ_book: 1000,
+      presence: 'Нет'
+    };
+    setData([...data, newData])
+    edit(newData)
+  };
   return (
-      <>
-      <Form form={form} component={false}>
+    <>
+    <Form form={form} component={false}>
       <Table
         components={{
           body: {
             cell: EditableCell,
           },
         }}
-        rowClassName={(record, index) => record.status_payment === 'Оплачено'  ? 'table-row-light' : 'table-row-dark'}
         bordered
         dataSource={data}
         columns={mergedColumns}
@@ -182,10 +187,22 @@ const Payments = () => {
           onChange: cancel,
         }}
         style={{marginTop: 35}}
+        rowClassName={(record, index) => record.presence === 'Есть'  ? 'table-row-light' : 'table-row-dark'}
       />
     </Form>
+    <Button
+        onClick={handleAdd}
+        type="primary"
+        style={{
+          marginTop: 10,
+          backgroundColor:'#5270A7',
+        }}
+      >
+        Добавить книгу
+      </Button>
     </>
+      
   );
 }
 
-export default Payments;
+export default Books;

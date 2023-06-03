@@ -58,6 +58,7 @@ const EarlyPayments = () => {
 
   const edit = (record) => {
     form.setFieldsValue({
+      _id: '',
       date_earlyPayment: '',
       summ_earlyPayment: '',
       ...record,
