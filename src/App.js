@@ -8,6 +8,9 @@ import PageChartCredit from './pages/credit/PageChartCredit/PageChartCredit';
 import PageBooks from './pages/books/horus_heresy/books/PageBooks';
 import PageBooksSiege from './pages/books/siege_terra/books/PageBooksSiege';
 import PageBooksInquisition from './pages/books/inquisition/books/PageBooksInquisition';
+import PageWriteBooks from './pages/books/horus_heresy/write_books/PageWriteBooks';
+import PageWriteBooksInq from './pages/books/inquisition/write_books/PageWriteBooksInq';
+import PageWriteBooksSie from './pages/books/siege_terra/write_books/PageWriteBooksSie';
 import {useState } from 'react';
 import dayjs from 'dayjs';
 import axios from 'axios'
@@ -85,6 +88,9 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
               <Route path='/books_heresy' element={<PageBooks name_book='Ересь Хоруса'/>} exact/>
               <Route path='/books_siege' element={<PageBooksSiege name_book='Осада Терры'/>} exact/>
               <Route path='/books_inquisition' element={<PageBooksInquisition name_book='Инквизитор'/>} exact/>
+              <Route path='/write_heresy' element={<PageWriteBooks name_book='Ересь Хоруса'/>} exact/>
+              <Route path='/write_siege' element={<PageWriteBooksSie name_book='Осада Терры'/>} exact/>
+              <Route path='/write_inquisition' element={<PageWriteBooksInq name_book='Инквизитор'/>} exact/>
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}

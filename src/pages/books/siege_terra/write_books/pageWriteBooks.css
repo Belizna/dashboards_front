@@ -1,0 +1,8 @@
+.pageBooks {
+    display: flex;
+    justify-content: center;
+}
+
+.tableBooks {
+    width: 1050px;
+}

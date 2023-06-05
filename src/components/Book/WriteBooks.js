@@ -24,7 +24,7 @@ const EditableCell = ({
           }}
           rules={[
             {
-              required: true,
+              required: false,
               message: `Please Input ${title}!`,
             },
           ]}
@@ -38,10 +38,11 @@ const EditableCell = ({
   );
 };
 
-const Books = (name_book) => {
+const WriteBooks = (name_book) => {
+
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}books/heresy_horus/${name_book.name_book.name_book}`)
-    .then((res) => setData(res.data.books))
+    axios.get(`${process.env.REACT_APP_API_URL}books/write_books/${name_book.name_book.name_book}`)
+    .then((res) => setData(res.data.write_books))
   }, [])
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
@@ -50,7 +51,7 @@ const Books = (name_book) => {
 
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}books/heresy_horus/delete/${record._id}`)
+    const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}books/write_books/delete/${record._id}`)
     console.log(deleteBooks)
     setData(newData);
   };
@@ -80,8 +81,8 @@ const Books = (name_book) => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}books/heresy_horus/add/${name_book.name_book.name_book}`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}books/heresy_horus/edit/${_id}`,row) 
+        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}books/write_books/add/${name_book.name_book.name_book}`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}books/write_books/edit/${_id}`,row) 
       } else {
         newData.push(row);
         setData(newData);
@@ -95,17 +96,23 @@ const Books = (name_book) => {
     {
       title: 'Наименование',
       dataIndex: 'book_name',
-      width: '45%',
+      width: '32%',
       editable: true,
     },
     {
-      title: 'Сумма книги',
-      dataIndex: 'summ_book',
-      width: '15%',
+        title: 'Формат',
+        dataIndex: 'format',
+        width: '10%',
+        editable: true,
+      },
+    {
+      title: 'Сборник',
+      dataIndex: 'collection_book',
+      width: '30%',
       editable: true,
     },
     {
-      title: 'Наличие',
+      title: 'Статус',
       dataIndex: 'presence',
       width: '15%',
       editable: true,
@@ -163,8 +170,8 @@ const Books = (name_book) => {
     const newData = {
       _id: Math.random(),
       book_name: 'book_name',
-      summ_book: 1000,
-      presence: 'Нет'
+      format: 'роман',
+      presence: 'Не прочитано'
     };
     setData([...data, newData])
     edit(newData)
@@ -185,7 +192,7 @@ const Books = (name_book) => {
           onChange: cancel,
         }}
         style={{marginTop: 35}}
-        rowClassName={(record, index) => record.presence === 'Есть'  ? 'table-row-light' : 'table-row-dark'}
+        rowClassName={(record, index) => record.presence === 'Прочитано'  ? 'table-row-light' : 'table-row-dark'}
       />
     </Form>
     <Button
@@ -203,4 +210,4 @@ const Books = (name_book) => {
   );
 }
 
-export default Books;
+export default WriteBooks;
