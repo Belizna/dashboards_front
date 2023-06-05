@@ -6,6 +6,8 @@ import PagePayments from './pages/credit/PagePayments/PagePayments';
 import PageEarlyPayments from './pages/credit/PageEarlyPaymens/PageEarlyPayments';
 import PageChartCredit from './pages/credit/PageChartCredit/PageChartCredit';
 import PageBooks from './pages/books/horus_heresy/books/PageBooks';
+import PageBooksSiege from './pages/books/siege_terra/books/PageBooksSiege';
+import PageBooksInquisition from './pages/books/inquisition/books/PageBooksInquisition';
 import {useState } from 'react';
 import dayjs from 'dayjs';
 import axios from 'axios'
@@ -80,7 +82,9 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
               <Route path='/payments' element={<PagePayments/>} exact/>
               <Route path='/early_payments' element={<PageEarlyPayments/>} exact/>
               <Route path='/chart_credit' element={<PageChartCredit/>} exact/>
-              <Route path='/books_heresy' element={<PageBooks/>} exact/>
+              <Route path='/books_heresy' element={<PageBooks name_book='Ересь Хоруса'/>} exact/>
+              <Route path='/books_siege' element={<PageBooksSiege name_book='Осада Терры'/>} exact/>
+              <Route path='/books_inquisition' element={<PageBooksInquisition name_book='Инквизитор'/>} exact/>
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}

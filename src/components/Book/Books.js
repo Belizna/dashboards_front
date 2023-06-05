@@ -38,11 +38,10 @@ const EditableCell = ({
   );
 };
 
-const Books = () => {
-
+const Books = (name_book) => {
 
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}books/heresy_horus/`)
+    axios.get(`${process.env.REACT_APP_API_URL}books/heresy_horus/${name_book.name_book.name_book}`)
     .then((res) => setData(res.data.books))
   }, [])
   const [form] = Form.useForm();
@@ -82,7 +81,7 @@ const Books = () => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}books/heresy_horus/add/`,row) 
+        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}books/heresy_horus/add/${name_book.name_book.name_book}`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}books/heresy_horus/edit/${_id}`,row) 
       } else {
         newData.push(row);

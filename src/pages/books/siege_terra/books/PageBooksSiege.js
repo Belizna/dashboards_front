@@ -3,9 +3,9 @@ import React from "react";
 import Books from "../../../../components/Book/Books";
 
 
-import './pageBooks.css'
+import './pageBooksSiege.css'
 
-const PageBooks = (name_book) => {
+const PageBooksSiege = (name_book) => {
 
     return (
         <div className="pageBooks">
@@ -15,4 +15,4 @@ const PageBooks = (name_book) => {
             </div>
             )
 }
-export default PageBooks;
+export default PageBooksSiege;
