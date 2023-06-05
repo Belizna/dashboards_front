@@ -170,8 +170,8 @@ const WriteBooks = (name_book) => {
     const newData = {
       _id: Math.random(),
       book_name: 'book_name',
-      format: 'роман',
-      presence: 'Не прочитано'
+      format: 'рассказ',
+      presence: 'Не Прочитано'
     };
     setData([...data, newData])
     edit(newData)
