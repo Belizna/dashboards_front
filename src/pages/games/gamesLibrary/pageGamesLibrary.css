@@ -1,0 +1,8 @@
+.pageGamesLibrary {
+    display: flex;
+    justify-content: center;
+}
+
+.tableGamesLibrary {
+    width: 1100px;
+}
