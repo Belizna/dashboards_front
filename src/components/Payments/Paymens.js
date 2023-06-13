@@ -52,7 +52,7 @@ const Payments = () => {
 
   const handleDelete = async (record) => {
     console.log(record._id)
-    const deletePayments = await axios.delete(`h${process.env.REACT_APP_API_URL}credit/payments/${record._id}`)
+    const deletePayments = await axios.delete(`${process.env.REACT_APP_API_URL}credit/payments/${record._id}`)
     console.log(deletePayments)
     const newData = data.filter((item) => item._id !== record._id);
     setData(newData);
