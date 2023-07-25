@@ -35,8 +35,8 @@ const items = [
             getItem('Charts', '/chart_inquisition')])
       ]),
       getItem('Игры', 'sub3', <DesktopOutlined />, [
-          getItem('Все игры', '/all_games'), 
-          getItem('Список желаемого', '/list_games'),
+          getItem('Steam', '/steam_games'), 
+          getItem('Ubisoft Connect', '/ubi_games'),
           getItem('Charts', '/chart_games')]),
 ];
 const MenuMain = () => {

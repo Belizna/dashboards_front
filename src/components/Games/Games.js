@@ -38,9 +38,9 @@ const EditableCell = ({
   );
 };
 
-const Games = () => {
+const Games = (library_name) => {
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}games/library/`)
+    axios.get(`${process.env.REACT_APP_API_URL}games/library/${library_name.library_name.library_name}`)
     .then((res) => setData(res.data.libraryGames))
   }, [])
   const [form] = Form.useForm();
@@ -49,6 +49,7 @@ const Games = () => {
   const isEditing = (record) => record._id === editingKey;
 
   const handleDelete = async (record) => {
+    console.log(`${process.env.REACT_APP_API_URL}games/library/delete/${record._id}`)
     const newData = data.filter((item) => item._id !== record._id);
     const deleteGames = await axios.delete(`${process.env.REACT_APP_API_URL}games/library/delete/${record._id}`)
     console.log(deleteGames)

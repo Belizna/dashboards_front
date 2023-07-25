@@ -6,10 +6,9 @@ const DemoLine = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/credit/early_payment/`)
+    axios.get(`${process.env.REACT_APP_API_URL}credit/early_payment/`)
     .then((res) => setData(res.data.early_payment))
   }, []);
-
   const config = {
     data,
     xField: 'date_earlyPayment',
@@ -21,6 +20,9 @@ const DemoLine = () => {
         fill: '#000000',
         opacity: 0.9,
       },
+    },
+    columnStyle: {
+      radius: [20, 20, 0, 0],
     },
     xAxis: {
       label: {

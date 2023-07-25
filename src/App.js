@@ -12,6 +12,8 @@ import PageWriteBooks from './pages/books/horus_heresy/write_books/PageWriteBook
 import PageWriteBooksInq from './pages/books/inquisition/write_books/PageWriteBooksInq';
 import PageWriteBooksSie from './pages/books/siege_terra/write_books/PageWriteBooksSie';
 import PageGamesLibrary from './pages/games/gamesLibrary/PageGamesLibrary';
+import PageGamesLibrary_Ubi from './pages/games/gamesLibrary/PageGamesLibrary_Ubi';
+import PageGamesLibraryCharts from './pages/games/gamesLibrary/PageGamesLibraryCharts'
 import {useState } from 'react';
 import dayjs from 'dayjs';
 import axios from 'axios'
@@ -92,7 +94,9 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
               <Route path='/write_heresy' element={<PageWriteBooks name_book='Ересь Хоруса'/>} exact/>
               <Route path='/write_siege' element={<PageWriteBooksSie name_book='Осада Терры'/>} exact/>
               <Route path='/write_inquisition' element={<PageWriteBooksInq name_book='Инквизитор'/>} exact/>
-              <Route path='/all_games' element={<PageGamesLibrary/>} exact/>
+              <Route path='/steam_games' element={<PageGamesLibrary library_name='Steam'/>} exact/>
+              <Route path='/ubi_games' element={<PageGamesLibrary_Ubi library_name='Ubisoft Connect'/>} exact/>
+              <Route path='/chart_games' element={<PageGamesLibraryCharts/>} exact/>
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}
