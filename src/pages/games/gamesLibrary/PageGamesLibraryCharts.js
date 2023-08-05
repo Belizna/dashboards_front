@@ -3,11 +3,12 @@ import axios from "axios";
 import DemoLiquid from "../../../components/ChartsCredit/Liquid";
 import DemoPie from "../../../components/ChartsCredit/Pie";
 import DemoLineGames from "../../../components/ChartsCredit/LineGames"
-import { Typography} from 'antd';
+
+import { Typography, Card} from 'antd';
 
 import './pageGamesLibraryCharts.css'
 
-const {Title} = Typography;
+const {Title, Text} = Typography;
 
 const PageGamesLibraryCharts = () => {
 
@@ -17,8 +18,9 @@ const PageGamesLibraryCharts = () => {
       }, [])
 
       const [staticData, setStaticData] = useState(0)
+    
 
-    const data1 = [
+      const data1 = [
         {
           type: 'Пройдено',
           value: staticData.games_steam_passed,
@@ -122,6 +124,12 @@ const PageGamesLibraryCharts = () => {
             <div className="lineGames">
                 <DemoLineGames data={data4}/>
                 <Title level={5}>Общая сводка</Title> 
+            </div>
+            <div className="table">
+            <Card >
+                <Title style={{marginTop: -10}} level={4}>Потрачено на игры</Title>
+                <Text style={{marginLeft: 65}} strong type="danger">{staticData.summ_all_games}р.</Text>
+                </Card>
             </div>
         </div>
     </>

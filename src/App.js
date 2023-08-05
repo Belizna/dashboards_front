@@ -14,9 +14,12 @@ import PageWriteBooksSie from './pages/books/siege_terra/write_books/PageWriteBo
 import PageGamesLibrary from './pages/games/gamesLibrary/PageGamesLibrary';
 import PageGamesLibrary_Ubi from './pages/games/gamesLibrary/PageGamesLibrary_Ubi';
 import PageGamesLibraryCharts from './pages/games/gamesLibrary/PageGamesLibraryCharts'
+import PageChartsSiege from './pages/books/chartsBooks/PageChartsSiege';
+import PageChartsInquisition from './pages/books/chartsBooks/PageChartsInquisition';
 import {useState } from 'react';
 import dayjs from 'dayjs';
 import axios from 'axios'
+import PageChartsHorusHeresy from './pages/books/chartsBooks/PageChartsHorusHeresy';
 
 const { Sider, Content } = Layout;
 
@@ -97,6 +100,9 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
               <Route path='/steam_games' element={<PageGamesLibrary library_name='Steam'/>} exact/>
               <Route path='/ubi_games' element={<PageGamesLibrary_Ubi library_name='Ubisoft Connect'/>} exact/>
               <Route path='/chart_games' element={<PageGamesLibraryCharts/>} exact/>
+              <Route path='/chart_heresy' element={<PageChartsHorusHeresy/>} exact/>
+              <Route path='/chart_inquisition' element={<PageChartsInquisition/>} exact/>
+              <Route path='/chart_siege' element={<PageChartsSiege/>} exact/>
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}
