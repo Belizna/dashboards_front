@@ -1,5 +1,7 @@
-import React, {useEffect, useState} from "react";
-import { Form, Input, Popconfirm, Table, Typography, Button} from 'antd';
+import React, {useEffect, useState, useRef} from "react";
+import { SearchOutlined } from '@ant-design/icons';
+import Highlighter from 'react-highlight-words';
+import { Form, Input, Popconfirm, Table,Space, Typography, Button} from 'antd';
 import axios from "axios";
 
 import './books.css'
@@ -38,10 +40,9 @@ const EditableCell = ({
   );
 };
 
-const WriteBooks = (name_book) => {
-
+const WriteBooks = ({name_book, filter_json}) => {
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}books/write_books/${name_book.name_book.name_book}`)
+    axios.get(`${process.env.REACT_APP_API_URL}books/write_books/${name_book.name_book}`)
     .then((res) => setData(res.data.write_books))
   }, [])
   const [form] = Form.useForm();
@@ -49,6 +50,100 @@ const WriteBooks = (name_book) => {
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
 
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder={`Поиск книги`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: 'block',
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Поиск
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Сброс
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            Закрыть
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? '#1677ff' : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: '#ffc069',
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
     const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}books/write_books/delete/${record._id}`)
@@ -98,24 +193,54 @@ const WriteBooks = (name_book) => {
       dataIndex: 'book_name',
       width: '32%',
       editable: true,
+      ...getColumnSearchProps('book_name')
     },
     {
         title: 'Формат',
         dataIndex: 'format',
         width: '10%',
         editable: true,
+        filters:[
+          {
+            text: 'Роман',
+            value: 'роман'
+          },
+          {
+            text: 'Повесть',
+            value: 'повесть'
+          },
+          {
+            text: 'Рассказ',
+            value: 'рассказ'
+          }
+        ],
+        onFilter: (value, record) => record.format.startsWith(value)
       },
     {
       title: 'Сборник',
       dataIndex: 'collection_book',
       width: '30%',
       editable: true,
+      filters: filter_json,
+      onFilter: (value, record) => record.collection_book?.startsWith(value),
+      filterSearch: true,
     },
     {
       title: 'Статус',
       dataIndex: 'presence',
       width: '15%',
       editable: true,
+      filters:[
+        {
+          text: 'Прочитано',
+          value: 'Прочитано'
+        },
+        {
+          text: 'Не Прочитано',
+          value: 'Не Прочитано'
+        },
+      ],
+      onFilter: (value, record) => record.presence.startsWith(value)
     },
     {
       title: 'Действия',

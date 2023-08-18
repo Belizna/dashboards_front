@@ -1,5 +1,7 @@
-import React, {useEffect, useState} from "react";
-import { Form, Input, Popconfirm, Table, Typography, Button} from 'antd';
+import React, {useEffect, useState, useRef } from "react";
+import { SearchOutlined } from '@ant-design/icons';
+import Highlighter from 'react-highlight-words';
+import { Form, Input, Popconfirm, Table, Typography,Space, Button} from 'antd';
 import axios from "axios";
 
 import './games.css'
@@ -47,6 +49,101 @@ const Games = (library_name) => {
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
+
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
+  const searchInput = useRef(null);
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
+  };
+  const handleReset = (clearFilters) => {
+    clearFilters();
+    setSearchText('');
+  };
+
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+      <div
+        style={{
+          padding: 8,
+        }}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <Input
+          ref={searchInput}
+          placeholder={`Поиск игры`}
+          value={selectedKeys[0]}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{
+            marginBottom: 8,
+            display: 'block',
+          }}
+        />
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Поиск
+          </Button>
+          <Button
+            onClick={() => clearFilters && handleReset(clearFilters)}
+            size="small"
+            style={{
+              width: 90,
+            }}
+          >
+            Сброс
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              close();
+            }}
+          >
+            Закрыть
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined
+        style={{
+          color: filtered ? '#1677ff' : undefined,
+        }}
+      />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilterDropdownOpenChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.current?.select(), 100);
+      }
+    },
+    render: (text) =>
+      searchedColumn === dataIndex ? (
+        <Highlighter
+          highlightStyle={{
+            backgroundColor: '#ffc069',
+            padding: 0,
+          }}
+          searchWords={[searchText]}
+          autoEscape
+          textToHighlight={text ? text.toString() : ''}
+        />
+      ) : (
+        text
+      ),
+  });
 
   const handleDelete = async (record) => {
     console.log(`${process.env.REACT_APP_API_URL}games/library/delete/${record._id}`)
@@ -98,12 +195,17 @@ const Games = (library_name) => {
       dataIndex: 'game_name',
       width: '27%',
       editable: true,
+      ...getColumnSearchProps('game_name')
     },
     {
       title: 'Сумма игры',
       dataIndex: 'summ_game',
       width: '12%',
       editable: true,
+      sorter: {
+        compare: (a, b) => a.summ_game - b.summ_game,
+        multiple: 1,
+      },
     },
     {
       title: 'Площадка',
@@ -122,6 +224,17 @@ const Games = (library_name) => {
       dataIndex: 'presence',
       width: '15%',
       editable: true,
+      filters:[
+        {
+          text: 'Пройдено',
+          value: 'Пройдено'
+        },
+        {
+          text: 'Не Пройдено',
+          value: 'Не Пройдено'
+        },
+      ],
+      onFilter: (value, record) => record.presence.startsWith(value)
     },
     {
       title: 'Действия',
