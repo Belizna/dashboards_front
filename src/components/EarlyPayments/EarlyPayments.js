@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { Form, Input, Popconfirm, Table, Typography, Button} from 'antd';
+import { Form, Input, Popconfirm,DatePicker, Table, Typography, Button} from 'antd';
 import axios from "axios";
 
 
@@ -13,6 +13,8 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
+  const inputNode = inputType === 'date' ? 
+  <DatePicker format={"YYYY-MM-DD"} /> : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -28,7 +30,7 @@ const EditableCell = ({
             },
           ]}
         >
-          <Input />
+          {inputNode}
         </Form.Item>
       ) : (
         children
@@ -93,6 +95,7 @@ const EarlyPayments = () => {
       console.log('Validate Failed:', errInfo);
     }
   };
+
   const columns = [
     {
       title: 'Дата платежа',
@@ -148,6 +151,7 @@ const EarlyPayments = () => {
       ...col,
       onCell: (record) => ({
         record,
+        inputType: col.dataIndex === 'date_earlyPayment' ? 'date' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -199,3 +203,4 @@ const EarlyPayments = () => {
 }
 
 export default EarlyPayments;
+

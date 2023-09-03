@@ -16,6 +16,9 @@ import PageGamesLibrary_Ubi from './pages/games/gamesLibrary/PageGamesLibrary_Ub
 import PageGamesLibraryCharts from './pages/games/gamesLibrary/PageGamesLibraryCharts'
 import PageChartsSiege from './pages/books/chartsBooks/PageChartsSiege';
 import PageChartsInquisition from './pages/books/chartsBooks/PageChartsInquisition';
+import PageChartsComissar from './pages/books/chartsBooks/PageChartsComissar';
+import PageBooksComissar from './pages/books/comissar/books/PageBooksComissar';
+import PageWriteBooksComissar  from './pages/books/comissar/write_books/PageWriteComissar';
 import {useState } from 'react';
 import dayjs from 'dayjs';
 import axios from 'axios'
@@ -94,15 +97,19 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
               <Route path='/books_heresy' element={<PageBooks name_book='Ересь Хоруса'/>} exact/>
               <Route path='/books_siege' element={<PageBooksSiege name_book='Осада Терры'/>} exact/>
               <Route path='/books_inquisition' element={<PageBooksInquisition name_book='Инквизитор'/>} exact/>
+              <Route path='/books_comissar' element={<PageBooksComissar name_book='Комиссар Каин'/>} exact/>
               <Route path='/write_heresy' element={<PageWriteBooks name_book='Ересь Хоруса'/>} exact/>
               <Route path='/write_siege' element={<PageWriteBooksSie name_book='Осада Терры'/>} exact/>
               <Route path='/write_inquisition' element={<PageWriteBooksInq name_book='Инквизитор'/>} exact/>
+              <Route path='/write_comissar' element={<PageWriteBooksComissar name_book='Комиссар Каин'/>} exact/>
               <Route path='/steam_games' element={<PageGamesLibrary library_name='Steam'/>} exact/>
               <Route path='/ubi_games' element={<PageGamesLibrary_Ubi library_name='Ubisoft Connect'/>} exact/>
               <Route path='/chart_games' element={<PageGamesLibraryCharts/>} exact/>
               <Route path='/chart_heresy' element={<PageChartsHorusHeresy/>} exact/>
               <Route path='/chart_inquisition' element={<PageChartsInquisition/>} exact/>
+              <Route path='/chart_comissar' element={<PageChartsComissar/>} exact/>
               <Route path='/chart_siege' element={<PageChartsSiege/>} exact/>
+              
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}

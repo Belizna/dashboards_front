@@ -26,7 +26,7 @@ const EditableCell = ({
           }}
           rules={[
             {
-              required: false,
+              required: true,
               message: `Please Input ${title}!`,
             },
           ]}
@@ -40,10 +40,10 @@ const EditableCell = ({
   );
 };
 
-const WriteBooks = ({name_book, filter_json}) => {
+const Books = (name_book) => {
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}books/write_books/${name_book.name_book}`)
-    .then((res) => setData(res.data.write_books))
+    axios.get(`${process.env.REACT_APP_API_URL}books/heresy_horus/${name_book.name_book.name_book}`)
+    .then((res) => setData(res.data.books))
   }, [])
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
@@ -144,9 +144,10 @@ const WriteBooks = ({name_book, filter_json}) => {
         text
       ),
   });
+
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}books/write_books/delete/${record._id}`)
+    const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}books/heresy_horus/delete/${record._id}`)
     console.log(deleteBooks)
     setData(newData);
   };
@@ -176,8 +177,8 @@ const WriteBooks = ({name_book, filter_json}) => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}books/write_books/add/${name_book.name_book}`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}books/write_books/edit/${_id}`,row) 
+        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}books/heresy_horus/add/${name_book.name_book.name_book}`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}books/heresy_horus/edit/${_id}`,row) 
       } else {
         newData.push(row);
         setData(newData);
@@ -191,54 +192,34 @@ const WriteBooks = ({name_book, filter_json}) => {
     {
       title: 'Наименование',
       dataIndex: 'book_name',
-      width: '32%',
+      width: '45%',
       editable: true,
       ...getColumnSearchProps('book_name')
     },
     {
-        title: 'Формат',
-        dataIndex: 'format',
-        width: '10%',
-        editable: true,
-        filters:[
-          {
-            text: 'Роман',
-            value: 'роман'
-          },
-          {
-            text: 'Повесть',
-            value: 'повесть'
-          },
-          {
-            text: 'Рассказ',
-            value: 'рассказ'
-          }
-        ],
-        onFilter: (value, record) => record.format.startsWith(value)
-      },
-    {
-      title: 'Сборник',
-      dataIndex: 'collection_book',
-      width: '30%',
+      title: 'Сумма книги',
+      dataIndex: 'summ_book',
+      width: '15%',
       editable: true,
-      filters: filter_json,
-      onFilter: (value, record) => record.collection_book?.startsWith(value),
-      filterSearch: true,
+      sorter: {
+        compare: (a, b) => a.summ_book - b.summ_book,
+        multiple: 1,
+      },
     },
     {
-      title: 'Статус',
+      title: 'Наличие',
       dataIndex: 'presence',
       width: '15%',
       editable: true,
       filters:[
         {
-          text: 'Прочитано',
-          value: 'Прочитано'
+          text: 'Есть',
+          value: 'Есть'
         },
         {
-          text: 'Не Прочитано',
-          value: 'Не Прочитано'
-        },
+          text: 'Нет',
+          value: 'Нет'
+        }
       ],
       onFilter: (value, record) => record.presence.startsWith(value)
     },
@@ -295,8 +276,8 @@ const WriteBooks = ({name_book, filter_json}) => {
     const newData = {
       _id: Math.random(),
       book_name: 'book_name',
-      format: 'рассказ',
-      presence: 'Не Прочитано'
+      summ_book: 1000,
+      presence: 'Нет'
     };
     setData([...data, newData])
     edit(newData)
@@ -317,7 +298,7 @@ const WriteBooks = ({name_book, filter_json}) => {
           onChange: cancel,
         }}
         style={{marginTop: 35}}
-        rowClassName={(record, index) => record.presence === 'Прочитано'  ? 'table-row-light' : 'table-row-dark'}
+        rowClassName={(record, index) => record.presence === 'Есть'  ? 'table-row-light' : 'table-row-dark'}
       />
     </Form>
     <Button
@@ -335,4 +316,4 @@ const WriteBooks = ({name_book, filter_json}) => {
   );
 }
 
-export default WriteBooks;
+export default Books;

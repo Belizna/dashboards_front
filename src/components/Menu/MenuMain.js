@@ -32,12 +32,21 @@ const items = [
           getItem('Инквизиция', 'g4', null, [
             getItem('Все книги', '/books_inquisition'), 
             getItem('Порядок чтения', '/write_inquisition'),
-            getItem('Charts', '/chart_inquisition')])
+            getItem('Charts', '/chart_inquisition')]),
+            getItem('Комиссар Каин', 'g5', null, [
+              getItem('Все книги', '/books_comissar'), 
+              getItem('Порядок чтения', '/write_comissar'),
+              getItem('Charts', '/chart_comissar')])
       ]),
       getItem('Игры', 'sub3', <DesktopOutlined />, [
           getItem('Steam', '/steam_games'), 
           getItem('Ubisoft Connect', '/ubi_games'),
           getItem('Charts', '/chart_games')]),
+
+        getItem('Работа', 'sub4', <DesktopOutlined />, [
+            getItem('Зарплата', '/salary'), 
+            getItem('Переработка', '/processing'),
+            getItem('Charts', '/chart_work')]),
 ];
 const MenuMain = () => {
   const navigate = useNavigate();
