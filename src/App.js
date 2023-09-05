@@ -74,17 +74,29 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
          />
         </Routes>
         :
-      <Layout>
+        <Layout hasSider>
         <Sider width={250}
-            style={{background: '#FDD0AF'}}>
+          style={{
+            background: '#f5f5f5',
+            overflow: 'auto',
+            height: '100vh',
+            position: 'fixed',
+            left: 0,
+            top: 0,
+            bottom: 0,
+          }}
+        >
           <MenuMain/>
         </Sider>
-        <Layout>
+        <Layout
+          style={{
+            marginLeft: 200,
+          }}
+        >
           <Content
             style={{
-              margin: '47px 26px',
-              padding: 24,
-              background: '#8ECDC7',
+              margin: '24px 16px 0',
+              overflow: 'initial',
             }}
           >
             <Routes>
@@ -117,7 +129,7 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
             </Routes>
           </Content>
         </Layout>
-    </Layout>
+      </Layout>
     }
     </>
   );

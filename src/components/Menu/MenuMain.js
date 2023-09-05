@@ -63,7 +63,7 @@ const MenuMain = () => {
       items={items}
       style={{
         marginTop: 5,
-        backgroundColor: '#FDBF92'
+        backgroundColor: '#f8f2f2'
       }}
     />
   );
