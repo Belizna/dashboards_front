@@ -19,7 +19,7 @@ const DemoDualAxes = ({staticData, conf }) => {
               },
             },
             slider: {
-              start: 0.5,
+              start: 0,
               end: 1,
             },
           };
@@ -37,8 +37,8 @@ const DemoDualAxes = ({staticData, conf }) => {
               },
             },
             slider: {
-              start: 1,
-              end: 0.8,
+              start: 0.5,
+              end: 1,
             },
           };
     }
