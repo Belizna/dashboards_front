@@ -4,8 +4,7 @@ import Games from "../../../components/Games/Games";
 
 import './pageGamesLibrary.css'
 
-const PageGamesLibrary_Ubi = (library_name) => {
-
+const PageGamesLibraryUbi = (library_name) => {
     return (
       <div className="pageGamesLibrary">
             <div className="tableGamesLibrary">
@@ -14,4 +13,4 @@ const PageGamesLibrary_Ubi = (library_name) => {
         </div>
     )
 }
-export default PageGamesLibrary_Ubi;
+export default PageGamesLibraryUbi;

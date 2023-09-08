@@ -1,0 +1,12 @@
+.lineWorkGroup {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 200px;
+    width: 1400px;
+    height: 450px;
+}
+
+.lineWork
+{
+    width: 650px;
+}

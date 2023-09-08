@@ -12,13 +12,16 @@ import PageWriteBooks from './pages/books/horus_heresy/write_books/PageWriteBook
 import PageWriteBooksInq from './pages/books/inquisition/write_books/PageWriteBooksInq';
 import PageWriteBooksSie from './pages/books/siege_terra/write_books/PageWriteBooksSie';
 import PageGamesLibrary from './pages/games/gamesLibrary/PageGamesLibrary';
-import PageGamesLibrary_Ubi from './pages/games/gamesLibrary/PageGamesLibrary_Ubi';
+import PageGamesLibraryUbi from './pages/games/gamesLibrary/PageGamesLibrary_Ubi';
 import PageGamesLibraryCharts from './pages/games/gamesLibrary/PageGamesLibraryCharts'
 import PageChartsSiege from './pages/books/chartsBooks/PageChartsSiege';
 import PageChartsInquisition from './pages/books/chartsBooks/PageChartsInquisition';
 import PageChartsComissar from './pages/books/chartsBooks/PageChartsComissar';
 import PageBooksComissar from './pages/books/comissar/books/PageBooksComissar';
 import PageWriteBooksComissar  from './pages/books/comissar/write_books/PageWriteComissar';
+import PageSalary from './pages/work/PageSalary';
+import PageBonus from './pages/work/PageBonus';
+import PageChartsWork from './pages/work/PageCartsWork';
 import {useState } from 'react';
 import dayjs from 'dayjs';
 import axios from 'axios'
@@ -115,13 +118,15 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
               <Route path='/write_inquisition' element={<PageWriteBooksInq name_book='Инквизитор'/>} exact/>
               <Route path='/write_comissar' element={<PageWriteBooksComissar name_book='Комиссар Каин'/>} exact/>
               <Route path='/steam_games' element={<PageGamesLibrary library_name='Steam'/>} exact/>
-              <Route path='/ubi_games' element={<PageGamesLibrary_Ubi library_name='Ubisoft Connect'/>} exact/>
+              <Route path='/ubi_games' element={<PageGamesLibraryUbi library_name='Ubisoft Connect'/>} exact/>
               <Route path='/chart_games' element={<PageGamesLibraryCharts/>} exact/>
               <Route path='/chart_heresy' element={<PageChartsHorusHeresy/>} exact/>
               <Route path='/chart_inquisition' element={<PageChartsInquisition/>} exact/>
               <Route path='/chart_comissar' element={<PageChartsComissar/>} exact/>
               <Route path='/chart_siege' element={<PageChartsSiege/>} exact/>
-              
+              <Route path='/salary' element={<PageSalary/>} exact/>
+              <Route path='/bonus' element={<PageBonus/>} exact/>
+              <Route path='/chart_work' element={<PageChartsWork/>} exact/>
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}

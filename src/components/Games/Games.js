@@ -41,15 +41,17 @@ const EditableCell = ({
 };
 
 const Games = (library_name) => {
+  //react-hooks/exhaustive-deps
   useEffect(()  => {
     axios.get(`${process.env.REACT_APP_API_URL}games/library/${library_name.library_name.library_name}`)
     .then((res) => setData(res.data.libraryGames))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
-
+  const [countSave, setCountSave] = useState(0);
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
@@ -180,6 +182,7 @@ const Games = (library_name) => {
         setEditingKey('');
         typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}games/library/add/`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}games/library/edit/${_id}`,row) 
+        setCountSave(countSave+1)
       } else {
         newData.push(row);
         setData(newData);

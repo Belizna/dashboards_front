@@ -45,7 +45,7 @@ const items = [
 
         getItem('Работа', 'sub4', <DesktopOutlined />, [
             getItem('Зарплата', '/salary'), 
-            getItem('Переработка', '/processing'),
+            getItem('Переработка', '/bonus'),
             getItem('Charts', '/chart_work')]),
 ];
 const MenuMain = () => {

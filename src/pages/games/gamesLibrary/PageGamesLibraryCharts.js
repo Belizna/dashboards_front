@@ -98,7 +98,6 @@ const PageGamesLibraryCharts = () => {
             value: staticData.games_not_all_passed,
           },
         ]   
-
     return(
     
     <>

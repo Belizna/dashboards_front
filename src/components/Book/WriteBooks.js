@@ -44,6 +44,7 @@ const WriteBooks = ({name_book, filter_json}) => {
   useEffect(()  => {
     axios.get(`${process.env.REACT_APP_API_URL}books/write_books/${name_book.name_book}`)
     .then((res) => setData(res.data.write_books))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   const [form] = Form.useForm();
   const [data, setData] = useState([]);

@@ -50,7 +50,7 @@ const EarlyPayments = () => {
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
-
+  const [countSave, setCountSave] = useState(0);
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
     const deleteEarlyPay = await axios.delete(`${process.env.REACT_APP_API_URL}credit/early_payment/${record._id}`)
@@ -86,6 +86,7 @@ const EarlyPayments = () => {
         setEditingKey('');
         typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}credit/early_payment/`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}credit/early_payment/${_id}`,row) 
+        setCountSave(countSave+1)
       } else {
         newData.push(row);
         setData(newData);
