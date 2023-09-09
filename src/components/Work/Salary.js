@@ -282,8 +282,8 @@ const Salary = () => {
   const handleAdd = async () => {
     const newData = {
       _id: Math.random(),
-      date_salary: '05-0?-202?',
-      summ_salary: 10,
+      date_salary: '30-0?-202?',
+      summ_salary: 160000,
     };
     setData([newData, ...data])
     edit(newData)

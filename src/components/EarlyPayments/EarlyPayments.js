@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import { Form, Input, Popconfirm,DatePicker, Table, Typography, Button} from 'antd';
+import { Form, Input, Popconfirm, Table, Typography, Button} from 'antd';
 import axios from "axios";
-
+import moment from "moment"
 
 const EditableCell = ({
   editing,
@@ -13,8 +13,6 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
-  const inputNode = inputType === 'date' ? 
-  <DatePicker format={"YYYY-MM-DD"} /> : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -30,7 +28,7 @@ const EditableCell = ({
             },
           ]}
         >
-          {inputNode}
+          <Input/>
         </Form.Item>
       ) : (
         children
@@ -40,17 +38,15 @@ const EditableCell = ({
 };
 
 const EarlyPayments = () => {
-
-
+  const [countSave, setCountSave] = useState(0);
   useEffect(()  => {
     axios.get(`${process.env.REACT_APP_API_URL}credit/early_payment/`)
     .then((res) => setData(res.data.early_payment))
-  }, [])
+  }, [countSave])
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
-  const [countSave, setCountSave] = useState(0);
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
     const deleteEarlyPay = await axios.delete(`${process.env.REACT_APP_API_URL}credit/early_payment/${record._id}`)
@@ -163,7 +159,7 @@ const EarlyPayments = () => {
   const handleAdd = async () => {
     const newData = {
       _id: Math.random(),
-      date_earlyPayment: '10-05-2023',
+      date_earlyPayment: moment().format('DD-MM-YYYY'),
       summ_earlyPayment: 10,
     };
     setData([...data, newData])
