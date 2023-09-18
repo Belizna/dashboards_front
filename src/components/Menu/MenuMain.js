@@ -1,4 +1,4 @@
-import {BankOutlined, BookOutlined, DesktopOutlined} from '@ant-design/icons';
+import {BankOutlined, BookOutlined,StarOutlined, DesktopOutlined,WalletOutlined} from '@ant-design/icons';
 import { Menu } from 'antd';
 import {useNavigate} from 'react-router-dom'
 
@@ -43,10 +43,14 @@ const items = [
           getItem('Ubisoft Connect', '/ubi_games'),
           getItem('Charts', '/chart_games')]),
 
-        getItem('Работа', 'sub4', <DesktopOutlined />, [
+        getItem('Работа', 'sub4', <WalletOutlined />, [
             getItem('Зарплата', '/salary'), 
             getItem('Переработка', '/bonus'),
             getItem('Charts', '/chart_work')]),
+        getItem('Хобби', 'sub5', <StarOutlined />, [
+              getItem('Миниатюры', '/hobby/miniatures/'), 
+              getItem('Краска', '/hobby/color'),
+              getItem('Charts', '/chart_hobby')]),
 ];
 const MenuMain = () => {
   const navigate = useNavigate();

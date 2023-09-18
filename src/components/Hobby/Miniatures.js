@@ -1,8 +1,8 @@
+import React, {useEffect, useState, useRef} from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import React, {useState, useEffect, useRef} from "react";
-import { Form, Input, Popconfirm, Table, Button, Space, Typography} from 'antd';
-import axios from 'axios'
+import { Form, Input, Popconfirm, Table,Space, Typography, Button} from 'antd';
+import axios from "axios";
 import moment from 'moment'
 
 const EditableCell = ({
@@ -25,7 +25,7 @@ const EditableCell = ({
           }}
           rules={[
             {
-              required: true,
+              required: false,
               message: `Please Input ${title}!`,
             },
           ]}
@@ -39,11 +39,18 @@ const EditableCell = ({
   );
 };
 
-const Bonus = () => {
+const Miniatures = ({filter_json}) => {
+
+  const [countSave, setCountSave] = useState(0);
+  useEffect(()  => {
+    axios.get(`${process.env.REACT_APP_API_URL}hobby/miniatures/`)
+    .then((res) => setData(res.data.miniatures))
+  }, [countSave])
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
-  const [countSave, setCountSave] = useState(0);
   const [editingKey, setEditingKey] = useState('');
+  const isEditing = (record) => record._id === editingKey;
+
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
@@ -67,7 +74,7 @@ const Bonus = () => {
       >
         <Input
           ref={searchInput}
-          placeholder={`Поиск даты зарплаты`}
+          placeholder={`Поиск миниатюры`}
           value={selectedKeys[0]}
           onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
@@ -138,41 +145,30 @@ const Bonus = () => {
         text
       ),
   });
-  const isEditing = (record) => record._id === editingKey;
-
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}weekend/bonus/`)
-    .then((res) => setData(res.data.bonus))
-  }, [countSave])
-
-
   const handleDelete = async (record) => {
-    console.log(record._id)
-    const deleteBonus = await axios.delete(`${process.env.REACT_APP_API_URL}weekend/bonus/delete/${record._id}`)
-    console.log(deleteBonus)
     const newData = data.filter((item) => item._id !== record._id);
+    const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}hobby/miniatures/delete/${record._id}`)
+    console.log(deleteBooks)
     setData(newData);
   };
 
   const edit = (record) => {
     form.setFieldsValue({
-      date_bonus: '',
-      time_bonus: '',
-      summ_bonus: '',
+      date_earlyPayment: '',
+      summ_earlyPayment: '',
       ...record,
     });
-    setEditingKey(record._id); 
+    setEditingKey(record._id);
   };
 
   const cancel = () => {
     setEditingKey('');
   };
-
   const save = async (_id) => {
     try {
       const row = await form.validateFields();
       const newData = [...data];
-      const index = newData.findIndex((item) => _id === item._id);
+      const index = newData.findIndex((item) => _id === item._id );
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, {
@@ -181,8 +177,8 @@ const Bonus = () => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}weekend/bonus/add`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}weekend/bonus/edit/${data[index]._id}`, row)
+        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}hobby/miniatures/add`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}hobby/miniatures/edit/${_id}`,row) 
         setCountSave(countSave+1)
       } else {
         newData.push(row);
@@ -193,51 +189,73 @@ const Bonus = () => {
       console.log('Validate Failed:', errInfo);
     }
   };
-
   const columns = [
     {
-      title: 'Дата подработки',
-      dataIndex: 'date_bonus',
-      width: '20%',
+      title: 'Наименование',
+      dataIndex: 'miniature_name',
+      width: '28%',
       editable: true,
-      ...getColumnSearchProps('date_bonus')
+      ...getColumnSearchProps('miniature_name')
     },
     {
-      title: 'Отработанные часы',
-      dataIndex: 'time_bonus',
-      width: '25%',
+      title: 'Дата покупки',
+      dataIndex: 'date_buy_miniature',
+      width: '12%',
       editable: true,
     },
-  
     {
-      title: 'Сумма к выплате',
-      dataIndex: 'summ_bonus',
-      width: '20%',
-      editable: false,
+      title: 'Цена',
+      dataIndex: 'price_miniature',
+      width: '10%',
+      editable: true,
       sorter: {
-        compare: (a, b) => a.summ_bonus - b.summ_bonus,
+        compare: (a, b) => a.price_miniature - b.price_miniature,
         multiple: 1,
       },
     },
     {
-      title: 'Статус',
-      dataIndex: 'status_bonus',
-      width: '20%',
+      title: 'Легион',
+      dataIndex: 'collection_miniature',
+      width: '15%',
       editable: true,
-      filters: [
-        {
-          text: 'Выплачено',
-          value: 'Выплачено',
+      filters: filter_json,
+      onFilter: (value, record) => record.collection_miniature?.startsWith(value),
+      filterSearch: true,
+    },
+    {
+        title: 'В коробке',
+        dataIndex: 'count_miniatures',
+        width: '9%',
+        editable: true,
+        sorter: {
+          compare: (a, b) => a.count_miniatures - b.count_miniatures,
+          multiple: 1,
         },
-        {
-          text: 'Не Выплачено',
-          value: 'Не Выплачено',
+      },
+      {
+        title: 'Покрашено',
+        dataIndex: 'count_miniatures_color',
+        width: '6%',
+        editable: true,
+        sorter: {
+          compare: (a, b) => a.count_miniatures_color - b.count_miniatures_color,
+          multiple: 1,
         },
-      ],
+      },
+    {
+      title: 'Процент покрашенных',
+      dataIndex: 'procent_miniatures_color',
+      width: '9%',
+      editable: false,
+      sorter: {
+        compare: (a, b) => a.procent_miniatures_color - b.procent_miniatures_color,
+        multiple: 1,
+      },
     },
     {
       title: 'Действия',
       dataIndex: 'operation',
+      width: '10%',
       render: (_, record) => {
         const editable = isEditing(record);
         return editable ? (
@@ -283,21 +301,22 @@ const Bonus = () => {
       }),
     };
   });
+
   const handleAdd = async () => {
     const newData = {
       _id: Math.random(),
-      date_bonus: moment().format('DD-MM-YYYY'),
-      time_bonus: 0.0,
-      status_bonus: 'Не Выплачено'
+      miniature_name: 'miniature_name',
+      date_buy_miniature: moment().format('DD-MM-YYYY'),
+      collection_miniature: 'Black Legion',
+      count_miniatures: 1,
+      count_miniatures_color: 0
     };
-    setData([newData, ...data])
+    setData([...data, newData])
     edit(newData)
-    
   };
   return (
-      <>
-
-      <Form form={form} component={false}>
+    <>
+    <Form form={form} component={false}>
       <Table
         components={{
           body: {
@@ -311,7 +330,9 @@ const Bonus = () => {
           onChange: cancel,
         }}
         style={{marginTop: 35}}
-        rowClassName={(record, index) => record.status_bonus === 'Выплачено'  ? 'table-row-light' : 'table-row-dark'}
+        rowClassName={(record, index) => record.procent_miniatures_color === 100 ? 'table-row-light' :
+        record.procent_miniatures_color >= 1 ? 'table-row-light-to' :
+         'table-row-dark'}
       />
     </Form>
     <Button
@@ -322,10 +343,11 @@ const Bonus = () => {
           backgroundColor:'#5270A7',
         }}
       >
-        Добавить подработку
+        Добавить книгу
       </Button>
     </>
+      
   );
 }
 
-export default Bonus;
+export default Miniatures;

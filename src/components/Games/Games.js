@@ -4,7 +4,6 @@ import Highlighter from 'react-highlight-words';
 import { Form, Input, Popconfirm, Table, Typography,Space, Button} from 'antd';
 import axios from "axios";
 import moment from "moment"
-import './games.css'
 
 const EditableCell = ({
   editing,

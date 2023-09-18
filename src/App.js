@@ -22,6 +22,7 @@ import PageWriteBooksComissar  from './pages/books/comissar/write_books/PageWrit
 import PageSalary from './pages/work/PageSalary';
 import PageBonus from './pages/work/PageBonus';
 import PageChartsWork from './pages/work/PageCartsWork';
+import PageMinuiatures from './pages/hobby/pageMiniatures';
 import {useState } from 'react';
 import dayjs from 'dayjs';
 import axios from 'axios'
@@ -127,6 +128,7 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
               <Route path='/salary' element={<PageSalary/>} exact/>
               <Route path='/bonus' element={<PageBonus/>} exact/>
               <Route path='/chart_work' element={<PageChartsWork/>} exact/>
+              <Route path='/hobby/miniatures/' element={<PageMinuiatures/>} exact/>
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}

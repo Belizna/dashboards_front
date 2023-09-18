@@ -3,6 +3,11 @@
     text-align: center;
 }
 .table-row-light {
-    background-color: #84dd7c;
+    background-color: #61D9AA;
+    text-align: center;
+}
+
+.table-row-light-to {
+    background-color: #d7d961;
     text-align: center;
 }
