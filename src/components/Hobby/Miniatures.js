@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, Input, Popconfirm, Table,Space, Typography, Button} from 'antd';
+import { Form, Input, Popconfirm, Table,Space, Select, Typography, Button} from 'antd';
 import axios from "axios";
 import moment from 'moment'
 
@@ -15,6 +15,21 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
+  const inputNode = inputType === 'select' ? <Select
+  options={[
+    {
+      value: 'Black Legion',
+      label: 'Black Legion',
+    },
+    {
+      value: 'Death Guard',
+      label: 'Death Guard',
+    },
+    {
+      value: 'World Eaters',
+      label: 'World Eaters',
+    },
+  ]}/> : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -25,12 +40,12 @@ const EditableCell = ({
           }}
           rules={[
             {
-              required: false,
+              required: true,
               message: `Please Input ${title}!`,
             },
           ]}
         >
-          <Input />
+          {inputNode}
         </Form.Item>
       ) : (
         children
@@ -161,8 +176,19 @@ const Miniatures = ({filter_json}) => {
     setEditingKey(record._id);
   };
 
-  const cancel = () => {
-    setEditingKey('');
+  const cancel = (_id) => {
+    try{
+      if(typeof _id === 'number')
+      {
+        const newData = data.filter((item) => item._id !== _id);
+        setData(newData);
+        setEditingKey('');
+      }
+      else setEditingKey('');
+  }
+  catch(errInfo) {
+    console.log('Cancel error:', errInfo);
+  }
   };
   const save = async (_id) => {
     try {
@@ -269,7 +295,7 @@ const Miniatures = ({filter_json}) => {
             >
               Save
             </Typography.Link>
-            <Popconfirm title="Отменить редактирование?" onConfirm={cancel}>
+            <Popconfirm title="Отменить редактирование?" onConfirm={() => cancel(record._id)}>
               <a>Cancel</a>
             </Popconfirm>
           </span>
@@ -295,10 +321,12 @@ const Miniatures = ({filter_json}) => {
       ...col,
       onCell: (record) => ({
         record,
+        inputType: col.dataIndex === 'collection_miniature' ? 'select' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
       }),
+
     };
   });
 
@@ -343,7 +371,7 @@ const Miniatures = ({filter_json}) => {
           backgroundColor:'#5270A7',
         }}
       >
-        Добавить книгу
+        Добавить миниатюру
       </Button>
     </>
       

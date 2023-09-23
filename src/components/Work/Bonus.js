@@ -1,7 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import React, {useState, useEffect, useRef} from "react";
-import { Form, Input, Popconfirm, Table, Button, Space, Typography} from 'antd';
+import { Form, Input, Popconfirm, Table, Button, Space,Select, Typography} from 'antd';
 import axios from 'axios'
 import moment from 'moment'
 
@@ -15,6 +15,17 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
+  const inputNode = inputType === 'select' ? <Select defaultValue="Не Выплачено"
+  options={[
+    {
+      value: 'Не Выплачено',
+      label: 'Не Выплачено',
+    },
+    {
+      value: 'Выплачено',
+      label: 'Выплачено',
+    },
+  ]}/> : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -30,7 +41,7 @@ const EditableCell = ({
             },
           ]}
         >
-          <Input />
+          {inputNode}
         </Form.Item>
       ) : (
         children
@@ -164,8 +175,20 @@ const Bonus = () => {
     setEditingKey(record._id); 
   };
 
-  const cancel = () => {
-    setEditingKey('');
+  const cancel = (_id) => {
+    try{
+        if(typeof _id === 'number')
+        {
+          const newData = data.filter((item) => item._id !== _id);
+          setData(newData);
+          setEditingKey('');
+        }
+        else setEditingKey('');
+    }
+    catch(errInfo) {
+      console.log('Cancel error:', errInfo);
+    }
+
   };
 
   const save = async (_id) => {
@@ -251,7 +274,7 @@ const Bonus = () => {
             >
               Save
             </Typography.Link>
-            <Popconfirm title="Отменить редактирование?" onConfirm={cancel}>
+            <Popconfirm title="Отменить редактирование?" onConfirm={() => cancel(record._id)}>
               <a>Cancel</a>
             </Popconfirm>
           </span>
@@ -277,6 +300,7 @@ const Bonus = () => {
       ...col,
       onCell: (record) => ({
         record,
+        inputType: col.dataIndex === 'status_bonus' ? 'select' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),

@@ -16,6 +16,10 @@ const filter_json = [
         text:'Death Guard',
         value: 'Death Guard'
     },
+    {
+        text:'World Eaters',
+        value: 'World Eaters'
+    },
 ]
 
 const PageMinuiatures = () => {

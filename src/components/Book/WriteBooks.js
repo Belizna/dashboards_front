@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, Input, Popconfirm, Table,Space, Typography, Button} from 'antd';
+import { Form, Input, Popconfirm, Table,Space, Select, Typography, Button} from 'antd';
 import axios from "axios";
 
 import './books.css'
@@ -16,6 +16,17 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
+  const inputNode = inputType === 'select' ? <Select
+  options={[
+    {
+      value: 'Не Прочитано',
+      label: 'Не Прочитано',
+    },
+    {
+      value: 'Прочитано',
+      label: 'Прочитано',
+    },
+  ]}/> : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -26,12 +37,12 @@ const EditableCell = ({
           }}
           rules={[
             {
-              required: false,
+              required: true,
               message: `Please Input ${title}!`,
             },
           ]}
         >
-          <Input />
+          {inputNode}
         </Form.Item>
       ) : (
         children
@@ -161,8 +172,19 @@ const WriteBooks = ({name_book, filter_json}) => {
     setEditingKey(record._id);
   };
 
-  const cancel = () => {
-    setEditingKey('');
+  const cancel = (_id) => {
+    try{
+      if(typeof _id === 'number')
+      {
+        const newData = data.filter((item) => item._id !== _id);
+        setData(newData);
+        setEditingKey('');
+      }
+      else setEditingKey('');
+  }
+  catch(errInfo) {
+    console.log('Cancel error:', errInfo);
+  }
   };
   const save = async (_id) => {
     try {
@@ -259,7 +281,7 @@ const WriteBooks = ({name_book, filter_json}) => {
             >
               Save
             </Typography.Link>
-            <Popconfirm title="Отменить редактирование?" onConfirm={cancel}>
+            <Popconfirm title="Отменить редактирование?" onConfirm={() => cancel(record._id)}>
               <a>Cancel</a>
             </Popconfirm>
           </span>
@@ -285,6 +307,7 @@ const WriteBooks = ({name_book, filter_json}) => {
       ...col,
       onCell: (record) => ({
         record,
+        inputType: col.dataIndex === 'presence' ? 'select' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),

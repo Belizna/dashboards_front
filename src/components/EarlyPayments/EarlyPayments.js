@@ -64,8 +64,19 @@ const EarlyPayments = () => {
     setEditingKey(record._id);
   };
 
-  const cancel = () => {
-    setEditingKey('');
+  const cancel = (_id) => {
+    try{
+      if(typeof _id === 'number')
+      {
+        const newData = data.filter((item) => item._id !== _id);
+        setData(newData);
+        setEditingKey('');
+      }
+      else setEditingKey('');
+  }
+  catch(errInfo) {
+    console.log('Cancel error:', errInfo);
+  }
   };
   const save = async (_id) => {
     try {
@@ -122,7 +133,7 @@ const EarlyPayments = () => {
             >
               Save
             </Typography.Link>
-            <Popconfirm title="Отменить редактирование?" onConfirm={cancel}>
+            <Popconfirm title="Отменить редактирование?" onConfirm={() => cancel(record._id)}>
               <a>Cancel</a>
             </Popconfirm>
           </span>

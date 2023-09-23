@@ -1,7 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import React, {useState, useEffect, useRef} from "react";
-import { Form, Input, Popconfirm, Table, Button, Space, Typography} from 'antd';
+import { Form, Input, Popconfirm, Table, Select, Button, Space, Typography} from 'antd';
 import axios from 'axios'
 
 const EditableCell = ({
@@ -14,6 +14,21 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
+  const inputNode = inputType === 'select' ? <Select defaultValue="Иннотех"
+  options={[
+    {
+      value: 'Иннотех',
+      label: 'Иннотех',
+    },
+    {
+      value: 'Сервионика',
+      label: 'Сервионика',
+    },
+    {
+      value: 'Сбер',
+      label: 'Сбер',
+    },
+  ]}/> : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -29,7 +44,7 @@ const EditableCell = ({
             },
           ]}
         >
-          <Input />
+          {inputNode}
         </Form.Item>
       ) : (
         children
@@ -163,9 +178,21 @@ const Salary = () => {
     setEditingKey(record._id);
   };
 
-  const cancel = () => {
-    setEditingKey('');
-  };
+ 
+const cancel = (_id) => {
+  try{
+    if(typeof _id === 'number')
+    {
+      const newData = data.filter((item) => item._id !== _id);
+      setData(newData);
+      setEditingKey('');
+    }
+    else setEditingKey('');
+}
+catch(errInfo) {
+  console.log('Cancel error:', errInfo);
+}
+};
 
   const save = async (_id) => {
     try {
@@ -247,7 +274,7 @@ const Salary = () => {
             >
               Save
             </Typography.Link>
-            <Popconfirm title="Отменить редактирование?" onConfirm={cancel}>
+            <Popconfirm title="Отменить редактирование?" onConfirm={() => cancel(record._id)}>
               <a>Cancel</a>
             </Popconfirm>
           </span>
@@ -273,6 +300,7 @@ const Salary = () => {
       ...col,
       onCell: (record) => ({
         record,
+        inputType: col.dataIndex === 'company' ? 'select' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -304,6 +332,7 @@ const Salary = () => {
           onChange: cancel,
         }}
         style={{marginTop: 35}}
+        rowClassName={'table-row-dark'}
       />
     </Form>
     <Button
