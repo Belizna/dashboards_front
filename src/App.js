@@ -104,7 +104,7 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
             }}
           >
             <Routes>
-            <Route path='/' element={<Calendar 
+            <Route path='/' element={<Calendar
             style={{paddingRight: 45, paddingLeft: 45, paddingTop:45, paddingBlock: 45}} value={value} 
             onSelect={onSelect} onPanelChange={onPanelChange}/>} exact/>
               <Route path='/payments' element={<PagePayments/>} exact/>
