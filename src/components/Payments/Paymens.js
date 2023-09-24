@@ -158,7 +158,6 @@ const Payments = () => {
 
 
   const handleDelete = async (record) => {
-    console.log(record._id)
     const deletePayments = await axios.delete(`${process.env.REACT_APP_API_URL}credit/payments/${record._id}`)
     console.log(deletePayments)
     const newData = data.filter((item) => item._id !== record._id);
@@ -167,9 +166,6 @@ const Payments = () => {
 
   const edit = (record) => {
     form.setFieldsValue({
-      date_payment: '',
-      summ_payment: '',
-      status_payment: '',
       ...record,
     });
     setEditingKey(record._id);
@@ -220,7 +216,7 @@ const Payments = () => {
       title: 'Дата платежа',
       dataIndex: 'date_payment',
       width: '25%',
-      editable: true,
+      editable: false,
       ...getColumnSearchProps('date_payment')
     },
     {

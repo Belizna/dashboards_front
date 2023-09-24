@@ -1,8 +1,13 @@
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import React, {useState, useEffect, useRef} from "react";
-import { Form, Input, Popconfirm, Table, Select, Button, Space, Typography} from 'antd';
+import { Form, Input, Popconfirm, DatePicker, Table, Select, Button, Space, Typography} from 'antd';
 import axios from 'axios'
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc);
+
+const dateFormat = 'DD-MM-YYYY'
 
 const EditableCell = ({
   editing,
@@ -28,7 +33,8 @@ const EditableCell = ({
       value: 'Сбер',
       label: 'Сбер',
     },
-  ]}/> : <Input />;
+  ]}/> : inputType === 'date' ? 
+  <DatePicker  format={dateFormat}/>: <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -55,6 +61,7 @@ const EditableCell = ({
 
 const Salary = () => {
 
+  const [countSave, setCountSave] = useState(0);
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
@@ -157,7 +164,7 @@ const Salary = () => {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}weekend/salary`)
     .then((res) => setData(res.data.salary))
-  }, [])
+  }, [countSave])
 
 
   const handleDelete = async (record) => {
@@ -168,9 +175,8 @@ const Salary = () => {
     setData(newData);
   };
 
-  const edit = (record) => {
+  const add = (record) => {
     form.setFieldsValue({
-      date_salary: '',
       summ_salary: '',
       company: '',
       ...record,
@@ -178,6 +184,14 @@ const Salary = () => {
     setEditingKey(record._id);
   };
 
+  const edit = (record) => {
+    form.setFieldsValue({
+      date_salary: dayjs.utc(record.date_salary, dateFormat),
+      summ_salary: record.summ_salary,
+      company: record.company,
+    });
+    setEditingKey(record._id);
+  };
  
 const cancel = (_id) => {
   try{
@@ -209,6 +223,7 @@ catch(errInfo) {
         setEditingKey('');
         typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}weekend/salary/add`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}weekend/salary/edit/${data[index]._id}`, row)
+        setCountSave(countSave+1)
       } else {
         newData.push(row);
         setData(newData);
@@ -300,7 +315,8 @@ catch(errInfo) {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'company' ? 'select' : 'text',
+        inputType: col.dataIndex === 'company' ? 'select' :
+        col.dataIndex === 'date_salary' ? 'date': 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -310,11 +326,11 @@ catch(errInfo) {
   const handleAdd = async () => {
     const newData = {
       _id: Math.random(),
-      date_salary: '30-0?-202?',
       summ_salary: 160000,
+      company: 'Иннотех'
     };
     setData([newData, ...data])
-    edit(newData)
+    add(newData)
   };
   return (
       <>

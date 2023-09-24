@@ -1,9 +1,13 @@
 import React, {useEffect, useState, useRef} from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, Input, Popconfirm, Table,Space, Select, Typography, Button} from 'antd';
+import { Form, Input, Popconfirm, Table,Space, DatePicker, Select, Typography, Button} from 'antd';
 import axios from "axios";
-import moment from 'moment'
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc);
+
+const dateFormat = 'DD-MM-YYYY'
 
 const EditableCell = ({
   editing,
@@ -29,7 +33,13 @@ const EditableCell = ({
       value: 'World Eaters',
       label: 'World Eaters',
     },
-  ]}/> : <Input />;
+    {
+      value: 'Ultramarine',
+      label: 'Ultramarine',
+    },
+  ]}/> : inputType === 'date' ? 
+  <DatePicker  format={dateFormat}/>
+  : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -167,11 +177,21 @@ const Miniatures = ({filter_json}) => {
     setData(newData);
   };
 
+  const add = (record) => {
+    form.setFieldsValue({
+      ...record,
+    });
+    setEditingKey(record._id);
+  };
+
   const edit = (record) => {
     form.setFieldsValue({
-      date_earlyPayment: '',
-      summ_earlyPayment: '',
-      ...record,
+      date_buy_miniature: dayjs.utc(record.date_buy_miniature, dateFormat),
+      collection_miniature: record.collection_miniature,
+      count_miniatures: record.count_miniatures,
+      count_miniatures_color: record.count_miniatures_color,
+      miniature_name: record.miniature_name,
+      price_miniature: record.price_miniature,
     });
     setEditingKey(record._id);
   };
@@ -205,6 +225,7 @@ const Miniatures = ({filter_json}) => {
         setEditingKey('');
         typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}hobby/miniatures/add`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}hobby/miniatures/edit/${_id}`,row) 
+        console.log(row)
         setCountSave(countSave+1)
       } else {
         newData.push(row);
@@ -226,7 +247,7 @@ const Miniatures = ({filter_json}) => {
     {
       title: 'Дата покупки',
       dataIndex: 'date_buy_miniature',
-      width: '12%',
+      width: '15%',
       editable: true,
     },
     {
@@ -242,7 +263,7 @@ const Miniatures = ({filter_json}) => {
     {
       title: 'Легион',
       dataIndex: 'collection_miniature',
-      width: '15%',
+      width: '13%',
       editable: true,
       filters: filter_json,
       onFilter: (value, record) => record.collection_miniature?.startsWith(value),
@@ -321,7 +342,8 @@ const Miniatures = ({filter_json}) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'collection_miniature' ? 'select' : 'text',
+        inputType: col.dataIndex === 'collection_miniature' ? 'select' : 
+        col.dataIndex === 'date_buy_miniature' ? 'date' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -334,13 +356,12 @@ const Miniatures = ({filter_json}) => {
     const newData = {
       _id: Math.random(),
       miniature_name: 'miniature_name',
-      date_buy_miniature: moment().format('DD-MM-YYYY'),
       collection_miniature: 'Black Legion',
       count_miniatures: 1,
       count_miniatures_color: 0
     };
     setData([...data, newData])
-    edit(newData)
+    add(newData)
   };
   return (
     <>

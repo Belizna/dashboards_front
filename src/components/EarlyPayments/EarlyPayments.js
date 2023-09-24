@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from "react";
-import { Form, Input, Popconfirm, Table, Typography, Button} from 'antd';
+import { Form, Input, Popconfirm, DatePicker, Table, Typography, Button} from 'antd';
 import axios from "axios";
-import moment from "moment"
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc);
+
+const dateFormat = 'DD-MM-YYYY'
 
 const EditableCell = ({
   editing,
@@ -13,6 +17,9 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
+  const inputNode =  inputType === 'date' ? 
+  <DatePicker  format={dateFormat}/>
+  : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -28,7 +35,7 @@ const EditableCell = ({
             },
           ]}
         >
-          <Input/>
+          {inputNode}
         </Form.Item>
       ) : (
         children
@@ -56,9 +63,14 @@ const EarlyPayments = () => {
 
   const edit = (record) => {
     form.setFieldsValue({
-      _id: '',
-      date_earlyPayment: '',
-      summ_earlyPayment: '',
+      date_earlyPayment: dayjs.utc(record.date_earlyPayment, dateFormat),
+      summ_earlyPayment: record.summ_earlyPayment,
+    });
+    setEditingKey(record._id);
+  };
+
+  const add = (record) => {
+    form.setFieldsValue({
       ...record,
     });
     setEditingKey(record._id);
@@ -170,11 +182,10 @@ const EarlyPayments = () => {
   const handleAdd = async () => {
     const newData = {
       _id: Math.random(),
-      date_earlyPayment: moment().format('DD-MM-YYYY'),
       summ_earlyPayment: 10,
     };
     setData([...data, newData])
-    edit(newData)
+    add(newData)
   };
   return (
     <>

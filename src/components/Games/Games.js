@@ -1,9 +1,13 @@
 import React, {useEffect, useState, useRef } from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, Input, Popconfirm, Table, Select, Typography,Space, Button} from 'antd';
+import { Form, Input, Popconfirm, DatePicker, Table, Select, Typography,Space, Button} from 'antd';
 import axios from "axios";
-import moment from "moment"
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc);
+
+const dateFormat = 'DD-MM-YYYY'
 
 const EditableCell = ({
   editing,
@@ -25,7 +29,8 @@ const EditableCell = ({
       value: 'Пройдено',
       label: 'Пройдено',
     },
-  ]}/> : <Input />;
+  ]}/> : inputType === 'date' ? 
+  <DatePicker  format={dateFormat}/>: <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -164,11 +169,20 @@ const Games = ({library_name}) => {
     setData(newData);
   };
 
+  const add = (record) => {
+    form.setFieldsValue({
+      ...record,
+    });
+    setEditingKey(record._id);
+  };
+
   const edit = (record) => {
     form.setFieldsValue({
-      date_earlyPayment: '',
-      summ_earlyPayment: '',
-      ...record,
+      date_game: dayjs.utc(record.date_game, dateFormat),
+      game_name: record.game_name,
+      summ_game: record.summ_game,
+      compilation: record.compilation,
+      presence: record.presence,
     });
     setEditingKey(record._id);
   };
@@ -301,7 +315,8 @@ const Games = ({library_name}) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'presence' ? 'select' : 'text',
+        inputType: col.dataIndex === 'presence' ? 'select' :
+        col.dataIndex === 'date_game' ? 'date' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -314,12 +329,11 @@ const Games = ({library_name}) => {
       _id: Math.random(),
       game_name: 'game_name',
       summ_game: 0,
-      date_game: moment().format('DD.MM.YYYY'),
       compilation: library_name.library_name,
       presence: 'Не Пройдено'
     };
     setData([...data, newData])
-    edit(newData)
+    add(newData)
   };
   return (
     <>

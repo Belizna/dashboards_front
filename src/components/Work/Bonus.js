@@ -1,9 +1,14 @@
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import React, {useState, useEffect, useRef} from "react";
-import { Form, Input, Popconfirm, Table, Button, Space,Select, Typography} from 'antd';
+import { Form, Input, Popconfirm, DatePicker, Table, Button, Space,Select, Typography} from 'antd';
 import axios from 'axios'
-import moment from 'moment'
+import dayjs from 'dayjs';
+
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc);
+
+const dateFormat = 'DD-MM-YYYY'
 
 const EditableCell = ({
   editing,
@@ -25,7 +30,9 @@ const EditableCell = ({
       value: 'Выплачено',
       label: 'Выплачено',
     },
-  ]}/> : <Input />;
+  ]}/> : inputType === 'date' ? 
+  <DatePicker  format={dateFormat}/>
+  : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -165,14 +172,22 @@ const Bonus = () => {
     setData(newData);
   };
 
-  const edit = (record) => {
+  const add = (record) => {
     form.setFieldsValue({
-      date_bonus: '',
       time_bonus: '',
       summ_bonus: '',
       ...record,
     });
     setEditingKey(record._id); 
+  };
+
+  const edit = (record) => {
+    form.setFieldsValue({
+      date_bonus: dayjs.utc(record.date_bonus, dateFormat),
+      time_bonus: record.time_bonus,
+      status_bonus: record.status_bonus,
+    });
+    setEditingKey(record._id);
   };
 
   const cancel = (_id) => {
@@ -207,6 +222,7 @@ const Bonus = () => {
         typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}weekend/bonus/add`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}weekend/bonus/edit/${data[index]._id}`, row)
         setCountSave(countSave+1)
+        console.log(row)
       } else {
         newData.push(row);
         setData(newData);
@@ -300,7 +316,7 @@ const Bonus = () => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'status_bonus' ? 'select' : 'text',
+        inputType: col.dataIndex === 'status_bonus' ? 'select' : col.dataIndex === 'date_bonus' ? 'date' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -310,12 +326,11 @@ const Bonus = () => {
   const handleAdd = async () => {
     const newData = {
       _id: Math.random(),
-      date_bonus: moment().format('DD-MM-YYYY'),
       time_bonus: 0.0,
       status_bonus: 'Не Выплачено'
     };
     setData([newData, ...data])
-    edit(newData)
+    add(newData)
     
   };
   return (
