@@ -102,7 +102,7 @@ const PageChartsInquisition = () => {
                 </div>
                 <div className="pie">
                 <DemoPie data={data3}/>
-                <Title style={{marginTop: -30}} level={5}>Общий прочитанных рассказов</Title>
+                <Title style={{marginTop: -30}} level={5}>Процент прочитанных рассказов</Title>
                 </div>
             </div>
             <div className="lineGames">

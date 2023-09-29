@@ -49,7 +49,7 @@ const items = [
             getItem('Charts', '/chart_work')]),
         getItem('Хобби', 'sub5', <StarOutlined />, [
               getItem('Миниатюры', '/hobby/miniatures/'), 
-              getItem('Краска', '/hobby/color'),
+              getItem('Краска', '/hobby/colors'),
               getItem('Charts', '/chart_hobby')]),
 ];
 const MenuMain = () => {

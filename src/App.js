@@ -19,6 +19,7 @@ import PageChartsInquisition from './pages/books/chartsBooks/PageChartsInquisiti
 import PageChartsComissar from './pages/books/chartsBooks/PageChartsComissar';
 import PageBooksComissar from './pages/books/comissar/books/PageBooksComissar';
 import PageWriteBooksComissar  from './pages/books/comissar/write_books/PageWriteComissar';
+import PageChartsHobby from './pages/hobby/PageChartsHobby';
 import PageSalary from './pages/work/PageSalary';
 import PageBonus from './pages/work/PageBonus';
 import PageChartsWork from './pages/work/PageCartsWork';
@@ -27,6 +28,7 @@ import {useState } from 'react';
 import dayjs from 'dayjs';
 import axios from 'axios'
 import PageChartsHorusHeresy from './pages/books/chartsBooks/PageChartsHorusHeresy';
+import PageColor from './pages/hobby/pageColor';
 
 const { Sider, Content } = Layout;
 
@@ -129,6 +131,8 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
               <Route path='/bonus' element={<PageBonus/>} exact/>
               <Route path='/chart_work' element={<PageChartsWork/>} exact/>
               <Route path='/hobby/miniatures/' element={<PageMinuiatures/>} exact/>
+              <Route path='/hobby/colors/' element={<PageColor/>} exact/>
+              <Route path='/chart_hobby' element={<PageChartsHobby/>} exact/>
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}

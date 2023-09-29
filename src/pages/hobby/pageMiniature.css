@@ -1,3 +1,26 @@
 .tableMiniature {
     width: 1200px;
 }
+
+.tableColor {
+    width: 900px;
+}
+
+.pieGroupHobby {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 25px;
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+.pieHobby {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 350px;
+    margin-left: 15px;
+    width: 400px;
+}
