@@ -2,10 +2,10 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import PieWork from "../../components/Work/PieWork";
 import DemoDualAxes from "../../components/Work/DualAxesWork"
-import { Typography} from 'antd';
+import { Typography, Card} from 'antd';
 
 import './pageChartsWork.css'
-const {Title} = Typography;
+const {Title, Text} = Typography;
 
 
 
@@ -21,6 +21,7 @@ const PageChartsWork = () => {
       const bonus_year = staticData.bonus_year
       const bonus_month = staticData.bonus_month
       const salary_month = staticData.salary_month
+      console.log(staticData.summ_bonus)
     return(
     <>
         <div className="pageChartGames">
@@ -48,6 +49,11 @@ const PageChartsWork = () => {
                 <Title style={{marginTop: 10}} level={5}>Зарплата по месяцам</Title>
                 </div>
         
+            </div>
+            <div className="table"><Card>
+                <Title style={{marginTop: -10}} level={4}>Не выплачено</Title>
+                <Text style={{marginLeft: 40}} strong type="danger">{staticData.summ_bonus}р.</Text>
+                </Card>
             </div>
         </div>
     </>
