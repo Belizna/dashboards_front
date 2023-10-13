@@ -177,7 +177,6 @@ const Color = ({filter_json}) => {
   };
 
   const edit = (record) => {
-    console.log(record)
     form.setFieldsValue({
       collection_color: record.collection_color,
       date_color: dayjs.utc(record.date_color, dateFormat),
@@ -216,7 +215,6 @@ const Color = ({filter_json}) => {
         setEditingKey('');
         typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}hobby/colors/add`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}hobby/colors/edit/${_id}`,row) 
-        console.log(row)
         setCountSave(countSave+1)
       } else {
         newData.push(row);

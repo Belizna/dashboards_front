@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, Input, Popconfirm, Table,Space, DatePicker, Select, Typography, Button} from 'antd';
+import { Form, Input, Popconfirm, Table,Space, InputNumber, DatePicker, Select, Typography, Button} from 'antd';
 import axios from "axios";
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc'
@@ -39,6 +39,8 @@ const EditableCell = ({
     },
   ]}/> : inputType === 'date' ? 
   <DatePicker  format={dateFormat}/>
+  : inputType === 'number' ? <InputNumber min={0} max={record.count_miniatures}/> 
+  : inputType === 'number1' ? <InputNumber min={1}/> 
   : <Input />;
   return (
     <td {...restProps}>
@@ -46,12 +48,13 @@ const EditableCell = ({
         <Form.Item
           name={dataIndex}
           style={{
+            
             margin: 0,
           }}
           rules={[
             {
               required: true,
-              message: `Please Input ${title}!`,
+              message: `Требуется ввод ${title}!`,
             },
           ]}
         >
@@ -225,7 +228,6 @@ const Miniatures = ({filter_json}) => {
         setEditingKey('');
         typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}hobby/miniatures/add`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}hobby/miniatures/edit/${_id}`,row) 
-        console.log(row)
         setCountSave(countSave+1)
       } else {
         newData.push(row);
@@ -343,7 +345,10 @@ const Miniatures = ({filter_json}) => {
       onCell: (record) => ({
         record,
         inputType: col.dataIndex === 'collection_miniature' ? 'select' : 
-        col.dataIndex === 'date_buy_miniature' ? 'date' : 'text',
+        col.dataIndex === 'date_buy_miniature' ? 'date' : 
+        col.dataIndex === 'count_miniatures_color' ? 'number' :
+        col.dataIndex === 'count_miniatures' ? 'number1' :
+         'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),

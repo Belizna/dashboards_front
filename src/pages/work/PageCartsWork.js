@@ -21,7 +21,6 @@ const PageChartsWork = () => {
       const bonus_year = staticData.bonus_year
       const bonus_month = staticData.bonus_month
       const salary_month = staticData.salary_month
-      console.log(staticData.summ_bonus)
     return(
     <>
         <div className="pageChartGames">

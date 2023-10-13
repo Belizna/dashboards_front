@@ -162,7 +162,6 @@ const Games = ({library_name}) => {
   });
 
   const handleDelete = async (record) => {
-    console.log(`${process.env.REACT_APP_API_URL}games/library/delete/${record._id}`)
     const newData = data.filter((item) => item._id !== record._id);
     const deleteGames = await axios.delete(`${process.env.REACT_APP_API_URL}games/library/delete/${record._id}`)
     console.log(deleteGames)

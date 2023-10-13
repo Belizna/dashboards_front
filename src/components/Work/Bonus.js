@@ -1,7 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import React, {useState, useEffect, useRef} from "react";
-import { Form, Input, Popconfirm, DatePicker, Table, Button, Space,Select, Typography} from 'antd';
+import { Form, Input, Popconfirm, DatePicker, Table, InputNumber, Button, Space,Select, Typography} from 'antd';
 import axios from 'axios'
 import dayjs from 'dayjs';
 
@@ -31,7 +31,9 @@ const EditableCell = ({
       label: 'Выплачено',
     },
   ]}/> : inputType === 'date' ? 
-  <DatePicker  format={dateFormat}/>
+  <DatePicker  format={dateFormat}/> :
+  inputType === 'number' ? 
+  <InputNumber min={0} step={0.5}/>
   : <Input />;
   return (
     <td {...restProps}>
@@ -165,7 +167,6 @@ const Bonus = () => {
 
 
   const handleDelete = async (record) => {
-    console.log(record._id)
     const deleteBonus = await axios.delete(`${process.env.REACT_APP_API_URL}weekend/bonus/delete/${record._id}`)
     console.log(deleteBonus)
     const newData = data.filter((item) => item._id !== record._id);
@@ -222,7 +223,6 @@ const Bonus = () => {
         typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}weekend/bonus/add`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}weekend/bonus/edit/${data[index]._id}`, row)
         setCountSave(countSave+1)
-        console.log(row)
       } else {
         newData.push(row);
         setData(newData);
@@ -316,7 +316,10 @@ const Bonus = () => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'status_bonus' ? 'select' : col.dataIndex === 'date_bonus' ? 'date' : 'text',
+        inputType: col.dataIndex === 'status_bonus' ? 'select' : 
+        col.dataIndex === 'date_bonus' ? 'date' : 
+        col.dataIndex === 'time_bonus' ? 'number' : 
+        'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),

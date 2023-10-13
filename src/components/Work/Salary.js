@@ -168,7 +168,6 @@ const Salary = () => {
 
 
   const handleDelete = async (record) => {
-    console.log(record._id)
     const deleteSalary = await axios.delete(`${process.env.REACT_APP_API_URL}weekend/salary/delete/${record._id}`)
     console.log(deleteSalary)
     const newData = data.filter((item) => item._id !== record._id);

@@ -33,9 +33,6 @@ import PageColor from './pages/hobby/pageColor';
 const { Sider, Content } = Layout;
 
 const App = () => {
-
-  console.log(process.env.REACT_APP_API_URL)
-
   const onFinish = (values) => {
     axios.post(`${process.env.REACT_APP_API_URL}auth/login/`,values)
     .then(res => setAuth(res.data))
