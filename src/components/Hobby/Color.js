@@ -231,7 +231,7 @@ const Color = ({filter_json}) => {
       dataIndex: 'name_color',
       width: '28%',
       editable: true,
-      ...getColumnSearchProps('miniature_name')
+      ...getColumnSearchProps('name_color')
     },
     {
       title: 'Дата покупки',
@@ -245,7 +245,7 @@ const Color = ({filter_json}) => {
       width: '10%',
       editable: true,
       sorter: {
-        compare: (a, b) => a.price_miniature - b.price_miniature,
+        compare: (a, b) => a.summ_color - b.summ_color,
         multiple: 1,
       },
     },
