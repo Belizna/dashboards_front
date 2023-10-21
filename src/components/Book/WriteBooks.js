@@ -26,7 +26,22 @@ const EditableCell = ({
       value: 'Прочитано',
       label: 'Прочитано',
     },
-  ]}/> : <Input />;
+  ]}/> : inputType === 'select_format' ? <Select
+  options={[
+    {
+      value: 'роман',
+      label: 'роман',
+    },
+    {
+      value: 'повесть',
+      label: 'повесть',
+    },
+    {
+      value: 'рассказ',
+      label: 'рассказ',
+    },
+  ]}/>
+  : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -37,7 +52,7 @@ const EditableCell = ({
           }}
           rules={[
             {
-              required: true,
+              required: false,
               message: `Please Input ${title}!`,
             },
           ]}
@@ -244,6 +259,7 @@ const WriteBooks = ({name_book, filter_json}) => {
       dataIndex: 'collection_book',
       width: '30%',
       editable: true,
+      require: false,
       filters: filter_json,
       onFilter: (value, record) => record.collection_book?.startsWith(value),
       filterSearch: true,
@@ -307,7 +323,9 @@ const WriteBooks = ({name_book, filter_json}) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'presence' ? 'select' : 'text',
+        inputType: col.dataIndex === 'presence' ? 'select' :
+        col.dataIndex === 'format' ? 'select_format' :
+        'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
