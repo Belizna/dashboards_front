@@ -1,4 +1,4 @@
-import { Layout, Form, Input , Button, Calendar} from 'antd';
+import { Layout, Form, Input , Button} from 'antd';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import "./App.css"
 import MenuMain from './components/Menu/MenuMain';
@@ -20,12 +20,15 @@ import PageChartsComissar from './pages/books/chartsBooks/PageChartsComissar';
 import PageBooksComissar from './pages/books/comissar/books/PageBooksComissar';
 import PageWriteBooksComissar  from './pages/books/comissar/write_books/PageWriteComissar';
 import PageChartsHobby from './pages/hobby/PageChartsHobby';
+import PageChartsPrimarch from './pages/books/chartsBooks/PageChartsPrimarch';
 import PageSalary from './pages/work/PageSalary';
 import PageBonus from './pages/work/PageBonus';
 import PageChartsWork from './pages/work/PageCartsWork';
+import PageMain from './pages/main/PageMain';
 import PageMinuiatures from './pages/hobby/pageMiniatures';
+import PageBooksPrimarch from './pages/books/primarch/books/PageBooksPrimarch';
+import PageWriteBooksPrimarch from './pages/books/primarch/write_books/PageWriteBooksPrimarch';
 import {useState } from 'react';
-import dayjs from 'dayjs';
 import axios from 'axios'
 import PageChartsHorusHeresy from './pages/books/chartsBooks/PageChartsHorusHeresy';
 import PageColor from './pages/hobby/pageColor';
@@ -37,15 +40,6 @@ const App = () => {
     axios.post(`${process.env.REACT_APP_API_URL}auth/login/`,values)
     .then(res => setAuth(res.data))
 }
-
-const onSelect = (newValue) => {
-  setValue(newValue);
-};
-const onPanelChange = (newValue) => {
-  setValue(newValue);
-};
-
-const [value, setValue] = useState(() => dayjs(Date.now()));
   const [auth, setAuth] = useState(null)
   return (
     <>
@@ -93,7 +87,7 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
         </Sider>
         <Layout
           style={{
-            marginLeft: 200,
+            marginLeft: 250,
           }}
         >
           <Content
@@ -103,9 +97,7 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
             }}
           >
             <Routes>
-            <Route path='/' element={<Calendar
-            style={{paddingRight: 45, paddingLeft: 45, paddingTop:45, paddingBlock: 45}} value={value} 
-            onSelect={onSelect} onPanelChange={onPanelChange}/>} exact/>
+            <Route path='/' element={<PageMain/>} exact/>
               <Route path='/payments' element={<PagePayments/>} exact/>
               <Route path='/early_payments' element={<PageEarlyPayments/>} exact/>
               <Route path='/chart_credit' element={<PageChartCredit/>} exact/>
@@ -113,15 +105,18 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
               <Route path='/books_siege' element={<PageBooksSiege name_book='Осада Терры'/>} exact/>
               <Route path='/books_inquisition' element={<PageBooksInquisition name_book='Инквизитор'/>} exact/>
               <Route path='/books_comissar' element={<PageBooksComissar name_book='Комиссар Каин'/>} exact/>
+              <Route path='/books_primarch' element={<PageBooksPrimarch name_book='Примархи'/>} exact/>
               <Route path='/write_heresy' element={<PageWriteBooks name_book='Ересь Хоруса'/>} exact/>
               <Route path='/write_siege' element={<PageWriteBooksSie name_book='Осада Терры'/>} exact/>
               <Route path='/write_inquisition' element={<PageWriteBooksInq name_book='Инквизитор'/>} exact/>
+              <Route path='/write_primarch' element={<PageWriteBooksPrimarch name_book='Примархи'/>} exact/>
               <Route path='/write_comissar' element={<PageWriteBooksComissar name_book='Комиссар Каин'/>} exact/>
               <Route path='/steam_games' element={<PageGamesLibrary library_name='Steam'/>} exact/>
               <Route path='/ubi_games' element={<PageGamesLibraryUbi library_name='Ubisoft Connect'/>} exact/>
               <Route path='/chart_games' element={<PageGamesLibraryCharts/>} exact/>
               <Route path='/chart_heresy' element={<PageChartsHorusHeresy/>} exact/>
               <Route path='/chart_inquisition' element={<PageChartsInquisition/>} exact/>
+              <Route path='/chart_primarch' element={<PageChartsPrimarch/>} exact/>
               <Route path='/chart_comissar' element={<PageChartsComissar/>} exact/>
               <Route path='/chart_siege' element={<PageChartsSiege/>} exact/>
               <Route path='/salary' element={<PageSalary/>} exact/>
@@ -130,6 +125,7 @@ const [value, setValue] = useState(() => dayjs(Date.now()));
               <Route path='/hobby/miniatures/' element={<PageMinuiatures/>} exact/>
               <Route path='/hobby/colors/' element={<PageColor/>} exact/>
               <Route path='/chart_hobby' element={<PageChartsHobby/>} exact/>
+              
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}

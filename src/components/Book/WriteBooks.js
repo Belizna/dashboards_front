@@ -257,7 +257,7 @@ const WriteBooks = ({name_book, filter_json}) => {
     {
       title: 'Сборник',
       dataIndex: 'collection_book',
-      width: '30%',
+      width: '29%',
       editable: true,
       require: false,
       filters: filter_json,
@@ -267,7 +267,7 @@ const WriteBooks = ({name_book, filter_json}) => {
     {
       title: 'Статус',
       dataIndex: 'presence',
-      width: '15%',
+      width: '13%',
       editable: true,
       filters:[
         {

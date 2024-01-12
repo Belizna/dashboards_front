@@ -182,6 +182,7 @@ const Games = ({library_name}) => {
       summ_game: record.summ_game,
       compilation: record.compilation,
       presence: record.presence,
+      time_game: record.time_game
     });
     setEditingKey(record._id);
   };
@@ -236,7 +237,7 @@ const Games = ({library_name}) => {
     {
       title: 'Сумма игры',
       dataIndex: 'summ_game',
-      width: '12%',
+      width: '10%',
       editable: true,
       sorter: {
         compare: (a, b) => a.summ_game - b.summ_game,
@@ -246,19 +247,19 @@ const Games = ({library_name}) => {
     {
       title: 'Площадка',
       dataIndex: 'compilation',
-      width: '15%',
+      width: '14%',
       editable: true,
     },
     {
       title: 'Дата покупки',
       dataIndex: 'date_game',
-      width: '15%',
+      width: '14%',
       editable: true,
     },
     {
       title: 'Статус',
       dataIndex: 'presence',
-      width: '15%',
+      width: '12%',
       editable: true,
       filters:[
         {
@@ -271,6 +272,12 @@ const Games = ({library_name}) => {
         },
       ],
       onFilter: (value, record) => record.presence.startsWith(value)
+    },
+    {
+      title: 'Время в игре',
+      dataIndex: 'time_game',
+      width: '10%',
+      editable: true,
     },
     {
       title: 'Действия',
@@ -329,7 +336,8 @@ const Games = ({library_name}) => {
       game_name: 'game_name',
       summ_game: 0,
       compilation: library_name.library_name,
-      presence: 'Не Пройдено'
+      presence: 'Не Пройдено',
+      time_game: 0
     };
     setData([...data, newData])
     add(newData)

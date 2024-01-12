@@ -129,6 +129,10 @@ const PageGamesLibraryCharts = () => {
                 <Title style={{marginTop: -10}} level={4}>Потрачено на игры</Title>
                 <Text style={{marginLeft: 65}} strong type="danger">{staticData.summ_all_games}р.</Text>
                 </Card>
+                <Card >
+                <Title style={{marginTop: -10}} level={4}>Затрачено времени</Title>
+                <Text style={{marginLeft: 65}} strong type="danger">{staticData.summ_time_games} ч.</Text>
+                </Card>
             </div>
         </div>
     </>
