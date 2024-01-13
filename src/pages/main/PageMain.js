@@ -50,6 +50,7 @@ const PageMain = () => {
                       <Text style={{marginTop: -10, marginBottom: 15}}>Прочитано книг: <Text type="success">{staticData.summBooks}</Text> </Text>
                       <LineMain data = {staticData.sortedBooks}/> 
                       <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Потрачено на книги: <Text type="success">{staticData.sum_books_nowyear} р.</Text> </Text>
+                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Приобретено книг: <Text type="success">{staticData.count_books_price}</Text> </Text>
                       </div>
                     </Card>
 
