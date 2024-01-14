@@ -1,14 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Column } from '@ant-design/plots';
-import axios from 'axios';
 
-const DemoLine = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}credit/early_payment/`)
-    .then((res) => setData(res.data.early_payment))
-  }, []);
+const DemoLine = ({data}) => {
   const config = {
     data,
     xField: 'date_earlyPayment',

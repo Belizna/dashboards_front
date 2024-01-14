@@ -11,45 +11,48 @@ const {Title, Text} = Typography;
 
 const PageChartCredit = () => 
 {
+
+  const [staticData, setStaticData] = useState(0)
+
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}carts/static`)
         .then(res => setStaticData(res.data))
       }, [])
 
-    const [staticData, setStaticData] = useState(0)
     const data3 = [
-        {
-          type: 'Выплачено',
-          value: staticData.count_month_paid,
-        },
-        {
-          type: 'Осталось',
-          value: staticData.count_month_remainder,
-        }
-      ];
-      const data1 = [
-        {
-          type: 'Переплата',
-          value: staticData.overpayment,
-        },
-        {
-          type: 'Экономия',
-          value: staticData.saving,
-        }
-      ];
-      const data2 = [
-        {
-          type: 'Выплачено',
-          value: staticData.paid,
-        },
-        {
-          type: 'Осталось',
-          value: staticData.remainder,
-        }
-      ];
+      {
+        type: 'Выплачено',
+        value: staticData.count_month_paid,
+      },
+      {
+        type: 'Осталось',
+        value: staticData.count_month_remainder,
+      }
+    ];
+    const data1 = [
+      {
+        type: 'Переплата',
+        value: staticData.overpayment,
+      },
+      {
+        type: 'Экономия',
+        value: staticData.saving,
+      }
+    ];
+    const data2 = [
+      {
+        type: 'Выплачено',
+        value: staticData.paid,
+      },
+      {
+        type: 'Осталось',
+        value: staticData.remainder,
+      }
+    ];
+
     return(
         <>
-        
+        {staticData &&
         <div className="pageChartCredit">
             <div className="liquid">
                 <DemoLiquid percentPay={staticData.procentStatic}/>
@@ -70,7 +73,7 @@ const PageChartCredit = () =>
                 </div>
             </div>
             <div className="line">
-                <DemoLine />
+                <DemoLine data ={staticData.earlyPay} />
                 <Title level={5}>Досрочные погашения</Title>
             </div>
             <div className="table">
@@ -100,6 +103,7 @@ const PageChartCredit = () =>
                 </Card>
             </div>
         </div>
+}
         </>
     )
 }

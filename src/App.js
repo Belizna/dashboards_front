@@ -17,6 +17,7 @@ import PageGamesLibraryCharts from './pages/games/gamesLibrary/PageGamesLibraryC
 import PageChartsSiege from './pages/books/chartsBooks/PageChartsSiege';
 import PageChartsInquisition from './pages/books/chartsBooks/PageChartsInquisition';
 import PageChartsComissar from './pages/books/chartsBooks/PageChartsComissar';
+import PageChartsAhriman from './pages/books/chartsBooks/PageChartsAhriman';
 import PageBooksComissar from './pages/books/comissar/books/PageBooksComissar';
 import PageWriteBooksComissar  from './pages/books/comissar/write_books/PageWriteComissar';
 import PageChartsHobby from './pages/hobby/PageChartsHobby';
@@ -28,6 +29,8 @@ import PageMain from './pages/main/PageMain';
 import PageMinuiatures from './pages/hobby/pageMiniatures';
 import PageBooksPrimarch from './pages/books/primarch/books/PageBooksPrimarch';
 import PageWriteBooksPrimarch from './pages/books/primarch/write_books/PageWriteBooksPrimarch';
+import PageBooksAhriman from './pages/books/ahriman/books/PageBooksPrimarch';
+import PageWriteBooksAhriman from './pages/books/ahriman/write_books/PageWriteBooksAhriman';
 import {useState } from 'react';
 import axios from 'axios'
 import PageChartsHorusHeresy from './pages/books/chartsBooks/PageChartsHorusHeresy';
@@ -106,9 +109,11 @@ const App = () => {
               <Route path='/books_inquisition' element={<PageBooksInquisition name_book='Инквизитор'/>} exact/>
               <Route path='/books_comissar' element={<PageBooksComissar name_book='Комиссар Каин'/>} exact/>
               <Route path='/books_primarch' element={<PageBooksPrimarch name_book='Примархи'/>} exact/>
+              <Route path='/books_ahriman' element={<PageBooksAhriman name_book='Ариман'/>} exact/>
               <Route path='/write_heresy' element={<PageWriteBooks name_book='Ересь Хоруса'/>} exact/>
               <Route path='/write_siege' element={<PageWriteBooksSie name_book='Осада Терры'/>} exact/>
               <Route path='/write_inquisition' element={<PageWriteBooksInq name_book='Инквизитор'/>} exact/>
+              <Route path='/write_ahriman' element={<PageWriteBooksAhriman name_book='Ариман'/>} exact/>
               <Route path='/write_primarch' element={<PageWriteBooksPrimarch name_book='Примархи'/>} exact/>
               <Route path='/write_comissar' element={<PageWriteBooksComissar name_book='Комиссар Каин'/>} exact/>
               <Route path='/steam_games' element={<PageGamesLibrary library_name='Steam'/>} exact/>
@@ -118,6 +123,7 @@ const App = () => {
               <Route path='/chart_inquisition' element={<PageChartsInquisition/>} exact/>
               <Route path='/chart_primarch' element={<PageChartsPrimarch/>} exact/>
               <Route path='/chart_comissar' element={<PageChartsComissar/>} exact/>
+              <Route path='/chart_ahriman' element={<PageChartsAhriman/>} exact/>
               <Route path='/chart_siege' element={<PageChartsSiege/>} exact/>
               <Route path='/salary' element={<PageSalary/>} exact/>
               <Route path='/bonus' element={<PageBonus/>} exact/>

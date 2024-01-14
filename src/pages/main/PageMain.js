@@ -29,13 +29,14 @@ const PageMain = () => {
                   <Title level={4}>Сводка за 2024 г.</Title>
                   </div>
                   <div className="tab1_2">
-                  <Card style={{height: 262, marginTop:10}}>
+                  <Card style={{height: 230, marginTop:10}}>
                    <div className="card">
-                      <Text style={{marginTop: -10, marginBottom: 15}}>Пройдено игр: <Text type="success">{staticData.summGames}</Text> </Text>
+                      <Text style={{marginTop: -15, marginBottom: 25}}>Пройдено игр: <Text type="success">{staticData.summGames}</Text> </Text>
                       <LineMain data = {staticData.sortedGames}/> 
-                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Приобретено игр: <Text type="success">{staticData.count_games_price}</Text> </Text>
-                      <Text level={5} style={{marginTop: -5,marginBottom: 15}}>Потрачено на игры: <Text type="success">{staticData.sum_games_nowyear} р.</Text> </Text>
+                      
+                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Потрачено на игры: <Text type="success">{staticData.sum_games_nowyear} р.</Text> </Text>
                       <Text level={5} style={{marginTop: -5, marginBottom: 15}}>Затрачено времени: <Text type="success">{staticData.time_games_nowyear} ч.</Text> </Text>
+                      <Text level={5} style={{marginTop: -5,marginBottom: 15}}>Приобретено игр: <Text type="success">{staticData.count_games_price}</Text> </Text>
                       </div>
                     </Card>
                     <Card style={{height: 230, marginTop:10}}>
