@@ -167,8 +167,7 @@ const Bonus = () => {
 
 
   const handleDelete = async (record) => {
-    const deleteBonus = await axios.delete(`${process.env.REACT_APP_API_URL}weekend/bonus/delete/${record._id}`)
-    console.log(deleteBonus)
+    await axios.delete(`${process.env.REACT_APP_API_URL}weekend/bonus/delete/${record._id}`)
     const newData = data.filter((item) => item._id !== record._id);
     setData(newData);
   };
