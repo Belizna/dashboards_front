@@ -25,38 +25,77 @@ const items = [
   ]),
 
     getItem('Книги', 'sub2', <BookOutlined />, [
-      getItem('Ересь Хоруса', 'g2', null, [
-        getItem('Все книги', '/books_heresy'), 
-        getItem('Порядок чтения', '/write_heresy'),
-        getItem('Charts', '/chart_heresy')]),
-      
-      getItem('Осада Терры', 'g3', null, [
-        getItem('Все книги', '/books_siege'), 
-        getItem('Порядок чтения', '/write_siege'),
-        getItem('Charts', '/chart_siege')]),
+      getItem('Warhammer', 'sub2-2', null , [
+        getItem('Ересь Хоруса', 'g2', null, [
+          getItem('Все книги', '/books_heresy'), 
+          getItem('Порядок чтения', '/write_heresy'),
+          getItem('Charts', '/chart_heresy')]),
+        
+        getItem('Осада Терры', 'g3', null, [
+          getItem('Все книги', '/books_siege'), 
+          getItem('Порядок чтения', '/write_siege'),
+          getItem('Charts', '/chart_siege')]),
+  
+        getItem('Инквизиция', 'g4', null, [
+          getItem('Все книги', '/books_inquisition'), 
+          getItem('Порядок чтения', '/write_inquisition'),
+          getItem('Charts', '/chart_inquisition')]),
+  
+        getItem('Комиссар Каин', 'g5', null, [
+          getItem('Все книги', '/books_comissar'), 
+          getItem('Порядок чтения', '/write_comissar'),
+          getItem('Charts', '/chart_comissar')]),
+  
+          getItem('Примархи', 'g6', null, [
+            getItem('Все книги', '/books_primarch'), 
+            getItem('Порядок чтения', '/write_primarch'),
+            getItem('Charts', '/chart_primarch')]),
+  
+            getItem('Ариман', 'g7', null, [
+              getItem('Все книги', '/books_ahriman'), 
+              getItem('Порядок чтения', '/write_ahriman'),
+              getItem('Charts', '/chart_ahriman')]),
 
-      getItem('Инквизиция', 'g4', null, [
-        getItem('Все книги', '/books_inquisition'), 
-        getItem('Порядок чтения', '/write_inquisition'),
-        getItem('Charts', '/chart_inquisition')]),
+        getItem('Фабий Байл', 'g8', null, [
+          getItem('Все книги', '/books_fabius'), 
+          getItem('Порядок чтения', '/write_fabius'),
+          getItem('Charts', '/chart_fabius')]),
 
-      getItem('Комиссар Каин', 'g5', null, [
-        getItem('Все книги', '/books_comissar'), 
-        getItem('Порядок чтения', '/write_comissar'),
-        getItem('Charts', '/chart_comissar')]),
+          getItem('Темный Империум', 'g9', null, [
+            getItem('Все книги', '/books_dark_imperium'), 
+            getItem('Порядок чтения', '/write_dark_imperium'),
+            getItem('Charts', '/chart_dark_imperium')]),
+            
+            getItem('Черный Легион', 'g10', null, [
+              getItem('Все книги', '/books_black_legion'), 
+              getItem('Порядок чтения', '/write_black_legion'),
+              getItem('Charts', '/chart_black_legion')]),
 
-        getItem('Примархи', 'g6', null, [
-          getItem('Все книги', '/books_primarch'), 
-          getItem('Порядок чтения', '/write_primarch'),
-          getItem('Charts', '/chart_primarch')]),
+        getItem('Пришествие зверя', 'g11', null, [
+          getItem('Все книги', '/books_coming'), 
+          getItem('Порядок чтения', '/write_coming'),
+          getItem('Charts', '/chart_coming')]),
 
-          getItem('Ариман', 'g7', null, [
-            getItem('Все книги', '/books_ahriman'), 
-            getItem('Порядок чтения', '/write_ahriman'),
-            getItem('Charts', '/chart_ahriman')]),
+          getItem('Повелители Ночи', 'g12', null, [
+            getItem('Все книги', '/books_night_lords'), 
+            getItem('Порядок чтения', '/write_night_lords'),
+            getItem('Charts', '/chart_night_lords')]),
+        
+        getItem('Мефистон', 'g13', null, [
+          getItem('Все книги', '/books_mephiston'), 
+          getItem('Порядок чтения', '/write_mephiston'),
+          getItem('Charts', '/chart_mephiston')]),
+        
+          getItem('Кузницы Марса', 'g14', null, [
+            getItem('Все книги', '/books_mars'), 
+            getItem('Порядок чтения', '/write_mars'),
+            getItem('Charts', '/chart_mars')]),
 
-        getItem('Прочее', '8', null, [
-          ]),
+          getItem('Отдельные романы', 'g15', null, [
+            getItem('Все книги', '/books_ohter'), 
+            getItem('Порядок чтения', '/write_ohter'),
+            getItem('Charts', '/chart_ohter')])
+      ]),
       ]),
 
     getItem('Игры', 'sub3', <DesktopOutlined />, [

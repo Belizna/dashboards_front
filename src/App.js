@@ -19,10 +19,25 @@ import PageChartsInquisition from './pages/books/chartsBooks/PageChartsInquisiti
 import PageChartsComissar from './pages/books/chartsBooks/PageChartsComissar';
 import PageChartsAhriman from './pages/books/chartsBooks/PageChartsAhriman';
 import PageBooksComissar from './pages/books/comissar/books/PageBooksComissar';
+import PageBooksFabius from './pages/books/fabius/books/PageBooksfabius';
+import PageChartsFabius from './pages/books/chartsBooks/PageChartsFabius';
+import PageWriteBooksFabius from './pages/books/fabius/write_books/PageWriteBooksFabius';
+import PageBooksDarkImperium from './pages/books/dark_imperium/books/PageBooksDarkImperium';
+import PageWriteBooksDarkImperium from './pages/books/dark_imperium/write_books/PageWriteBooksDarkImperium';
+import PageChartsDarkImperium from './pages/books/chartsBooks/PageChartsDarkImperium';
+import PageBooksBlackLegion from './pages/books/black_legion/books/PageBooksBlackLegion';
+import PageWriteBooksBlackLegion from './pages/books/black_legion/write_books/PageWriteBooksBlackLegion';
+import PageChartsBlackLegion from './pages/books/chartsBooks/PageChartsBlackLegion';
 import PageWriteBooksComissar  from './pages/books/comissar/write_books/PageWriteComissar';
 import PageChartsHobby from './pages/hobby/PageChartsHobby';
 import PageChartsPrimarch from './pages/books/chartsBooks/PageChartsPrimarch';
+import PageWriteBooksComing from './pages/books/coming/write_books/PageWriteBooksComing';
+import PageBooksComing from './pages/books/coming/books/PageBooksComing';
+import PageChartsComing from './pages/books/chartsBooks/PageChartsComing';
 import PageSalary from './pages/work/PageSalary';
+import PageWriteBooksMars from './pages/books/mars/write_books/PageWriteBooksMars';
+import PageBooksMars from './pages/books/mars/books/PageBooksMars';
+import PageChartsMars from './pages/books/chartsBooks/PageChartsMars';
 import PageBonus from './pages/work/PageBonus';
 import PageChartsWork from './pages/work/PageCartsWork';
 import PageMain from './pages/main/PageMain';
@@ -31,6 +46,15 @@ import PageBooksPrimarch from './pages/books/primarch/books/PageBooksPrimarch';
 import PageWriteBooksPrimarch from './pages/books/primarch/write_books/PageWriteBooksPrimarch';
 import PageBooksAhriman from './pages/books/ahriman/books/PageBooksPrimarch';
 import PageWriteBooksAhriman from './pages/books/ahriman/write_books/PageWriteBooksAhriman';
+import PageChartsNightLords from './pages/books/chartsBooks/PageChartsNightLords';
+import PageBooksNightLords from './pages/books/night_lords/books/PageBooksNightLords';
+import PageWriteBooksNightLords from './pages/books/night_lords/write_books/PageWriteBooksNightLords';
+import PageBooksMephiston from './pages/books/mephiston/books/PageBooksMephiston';
+import PageChartsMephiston from './pages/books/chartsBooks/PageChartsMephiston';
+import PageBooksOther from './pages/books/otherbooks/books/PageBooksOther';
+import PageChartsOther from './pages/books/chartsBooks/PageChartsOther';
+import PageWriteBooksOther from './pages/books/otherbooks/write_books/PageWriteBooksOther';
+import PageWriteBooksMephiston from './pages/books/mephiston/write_books/PageWriteBooksMephiston';
 import {useState } from 'react';
 import axios from 'axios'
 import PageChartsHorusHeresy from './pages/books/chartsBooks/PageChartsHorusHeresy';
@@ -125,6 +149,37 @@ const App = () => {
               <Route path='/chart_comissar' element={<PageChartsComissar/>} exact/>
               <Route path='/chart_ahriman' element={<PageChartsAhriman/>} exact/>
               <Route path='/chart_siege' element={<PageChartsSiege/>} exact/>
+              <Route path='/chart_fabius' element={<PageChartsFabius/>} exact/>
+              <Route path='/write_fabius' element={<PageWriteBooksFabius name_book='Фабий Байл'/>} exact/>
+              <Route path='/books_fabius' element={<PageBooksFabius name_book='Фабий Байл'/>} exact/>
+              <Route path='/chart_dark_imperium' element={<PageChartsDarkImperium/>} exact/>
+              <Route path='/write_dark_imperium' element={<PageWriteBooksDarkImperium name_book='Темный Империум'/>} exact/>
+              <Route path='/books_dark_imperium' element={<PageBooksDarkImperium name_book='Темный Империум'/>} exact/>
+              <Route path='/books_black_legion' element={<PageBooksBlackLegion name_book='Черный Легион'/>} exact/>
+              <Route path='/write_black_legion' element={<PageWriteBooksBlackLegion name_book='Черный Легион'/>} exact/>
+              <Route path='/chart_black_legion' element={<PageChartsBlackLegion/>} exact/>
+              <Route path='/books_coming' element={<PageBooksComing name_book='Пришествие зверя'/>} exact/>
+              <Route path='/write_coming' element={<PageWriteBooksComing name_book='Пришествие зверя'/>} exact/>
+              <Route path='/chart_coming' element={<PageChartsComing/>} exact/>
+
+              <Route path='/books_night_lords' element={<PageBooksNightLords name_book='Повелители Ночи'/>} exact/>
+              <Route path='/write_night_lords' element={<PageWriteBooksNightLords name_book='Повелители Ночи'/>} exact/>
+              <Route path='/chart_night_lords' element={<PageChartsNightLords/>} exact/>
+
+
+              <Route path='/books_mephiston' element={<PageBooksMephiston name_book='Мефистон'/>} exact/>
+              <Route path='/write_mephiston' element={<PageWriteBooksMephiston name_book='Мефистон'/>} exact/>
+              <Route path='/chart_mephiston' element={<PageChartsMephiston/>} exact/>
+
+              <Route path='/books_mars' element={<PageBooksMars name_book='Кузницы Марса'/>} exact/>
+              <Route path='/write_mars' element={<PageWriteBooksMars name_book='Кузницы Марса'/>} exact/>
+              <Route path='/chart_mars' element={<PageChartsMars/>} exact/>
+
+              <Route path='/books_ohter' element={<PageBooksOther name_book='Отдельные романы'/>} exact/>
+              <Route path='/write_ohter' element={<PageWriteBooksOther name_book='Отдельные романы'/>} exact/>
+              <Route path='/chart_ohter' element={<PageChartsOther/>} exact/>
+
+
               <Route path='/salary' element={<PageSalary/>} exact/>
               <Route path='/bonus' element={<PageBonus/>} exact/>
               <Route path='/chart_work' element={<PageChartsWork/>} exact/>
