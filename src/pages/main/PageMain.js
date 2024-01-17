@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Typography, Card } from 'antd';
+import { Typography, Card , Select} from 'antd';
 import LineMain from "../../components/ChartsCredit/LinePulse";
+import PieMain from "../../components/ChartsCredit/PieMain";
 
 import "./pageMain.css"
 
@@ -26,10 +27,17 @@ const PageMain = () => {
               <div className="tabMain">
                 <div className="tab">
                   <div className="tab1_1">
-                  <Title level={4}>Сводка за 2024 г.</Title>
+                  <Title level={5}>Сводка за <Select
+                      defaultValue="2024 г."
+                      style={{ width: 85}}
+                      options={[
+                        { value: '2024', label: '2024 г.' },
+                        { value: '2025', label: '2025 г.' },
+                  ]}
+                        /> </Title>
                   </div>
                   <div className="tab1_2">
-                  <Card style={{height: 230, marginTop:10}}>
+                  <Card style={{height: 230, marginTop:10, marginRight: 10}}>
                    <div className="card">
                       <Text style={{marginTop: -15, marginBottom: 25}}>Пройдено игр: <Text type="success">{staticData.summGames}</Text> </Text>
                       <LineMain data = {staticData.sortedGames}/> 
@@ -47,7 +55,7 @@ const PageMain = () => {
                       <Text level={5} style={{marginTop: -5, marginBottom: 15}}>Потрачено на краску: <Text type="success">{staticData.sum_color_nowyear} р.</Text> </Text>
                       </div>
                     </Card>
-                    <Card style={{height: 230, marginTop:10}}>
+                    <Card style={{height: 230, marginTop:10, marginRight: 10}}>
                    <div className="card">
                       <Text style={{marginTop: -10, marginBottom: 15}}>Прочитано книг: <Text type="success">{staticData.summBooks}</Text> </Text>
                       <LineMain data = {staticData.sortedBooks}/> 
@@ -74,14 +82,9 @@ const PageMain = () => {
                       </div>
                     </Card>
                   </div>
-                  
-                </div>
-                <div className="tab">
-                <div className="tab1_1">
-                <Title level={4}>Сводка за все время (с 2024 г.)</Title>
-                  </div>
-                  <div className="tab1_2">
-                  
+                  <div className="tab2_2">
+                  <PieMain data={staticData.dataPieCount} />
+                  <PieMain data={staticData.dataPiePrice} />
                   </div>
                 </div>
               </div>

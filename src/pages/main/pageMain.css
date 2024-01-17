@@ -25,29 +25,39 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .tab {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 600px;
     margin-right: 45px;
 }
 .tab1_1 {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: inherit;
+    width: 1200px;
     box-shadow: 0 1px 0 0;
 }
 
 .tab1_2 {
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: inherit;
     margin-top: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 1050px;
+}
+
+.tab2_2 {
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+    width: 1250px;
+    height: 400px;
 }
 
 .card {
