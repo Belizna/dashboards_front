@@ -113,6 +113,12 @@ const PageChartsNightLords = () => {
                 <Title style={{marginTop: -10}} level={4}>Потрачено на книги</Title>
                 <Text style={{marginLeft: 65}} strong type="danger">{staticData.books_summ}р.</Text>
                 </Card>
+
+                <Card style={{width: 245}}>
+                <Title style={{marginTop: -10}} level={4}>Приобретено книг</Title>
+                <Text style={{marginLeft: 71}} strong type="danger">
+                  {staticData.books_there_is_count} / {staticData.books_all_there_is_count}</Text>
+                </Card>
             </div>
         </div>
     </>

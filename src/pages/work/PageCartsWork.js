@@ -51,7 +51,7 @@ const PageChartsWork = () => {
             </div>
             <div className="table"><Card>
                 <Title style={{marginTop: -10}} level={4}>Не выплачено</Title>
-                <Text style={{marginLeft: 40}} strong type="danger">{staticData.summ_bonus}р.</Text>
+                <Text style={{marginLeft: 40}} strong type="danger">{(staticData.summ_bonus).toFixed(2)}р.</Text>
                 </Card>
             </div>
         </div>

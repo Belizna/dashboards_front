@@ -1,6 +1,7 @@
 .list {
     display: flex;
     margin-top: 15px;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
     width: 100%;

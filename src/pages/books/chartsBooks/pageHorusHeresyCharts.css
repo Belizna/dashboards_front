@@ -38,3 +38,7 @@
     width: 900px;
     height: 250px;
 }
+.card_chart {
+    display: flex;
+    justify-content: center;
+}

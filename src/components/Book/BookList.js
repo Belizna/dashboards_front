@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { DownOutlined } from '@ant-design/icons';
-import { Tree } from 'antd';
+import { Tree, Typography } from 'antd';
 import axios from "axios";
+
+const { Text } = Typography;
 
 const BookList =() => {
 
@@ -20,7 +22,8 @@ const BookList =() => {
         {
             staticData && 
             <div className="list">
-                <Tree style={{width: 450, fontSize: 15}}
+            <Text level={5}>Оставшиеся книги</Text>            
+                <Tree style={{width: 450}}
             showLine
             switcherIcon={<DownOutlined />}
             treeData={staticData.books}/>
