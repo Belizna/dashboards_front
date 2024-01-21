@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Typography, Card , Select, Tabs, Tree} from 'antd';
+import { Typography, Card , Select, Tabs, Tree, message} from 'antd';
 import LineMain from "../../components/ChartsCredit/LinePulse";
 import PieMain from "../../components/ChartsCredit/PieMain";
 
@@ -13,6 +13,7 @@ const {TabPane} = Tabs
 const PageMain = () => {
 
   const [staticData, setStaticData] = useState(null)
+  const [messageApi, contextHolder] = message.useMessage();
 
  const fetchStatic = async () => {
       await axios.get(`${process.env.REACT_APP_API_URL}main/static`)
@@ -22,9 +23,18 @@ const PageMain = () => {
     fetchStatic()
   }, [])
 
+  const onSelect = (selectedKeys, info) => {
+    console.log(info.node.title);
+    navigator.clipboard.writeText(info.node.title)
+    messageApi.open({
+      type: 'success',
+      content: `"${info.node.title}" copy`
+    })
+  };
+
     return(
       <>
-
+        {contextHolder}
         <Tabs defaultActiveKey="1">
         <TabPane tab="Статистика" key="1">
         {
@@ -97,6 +107,7 @@ const PageMain = () => {
         </TabPane>
         <TabPane tab="Движения" key="2">
           {staticData &&
+          
         <div className="tabMain">
                 <div className="tab">
         <div className="tab1_1">
@@ -114,6 +125,7 @@ const PageMain = () => {
       
                   <Text style={{marginTop: -10, marginBottom: 15}}>Пройдено игр: <Text type="success">{staticData.summGames}</Text> </Text>
                 <Tree style={{width: 380}}
+                 onSelect={onSelect}
                       showLine
                       defaultExpandAll={true}
                       treeData={staticData.games_pulse}
@@ -122,6 +134,7 @@ const PageMain = () => {
              <div className="tree">
              <Text style={{marginTop: -10, marginBottom: 15}}>Прочитано книг: <Text type="success">{staticData.summBooks}</Text> </Text>
                 <Tree style={{width: 380}}
+                 onSelect={onSelect}
                       showLine
                       defaultExpandAll={true}
                       treeData={staticData.books_pulse}
@@ -130,6 +143,7 @@ const PageMain = () => {
                 <div className="tree">
                 <Text style={{marginTop: -10, marginBottom: 15}}>Покрашено миниатюр: <Text type="success">{staticData.summMiniatures}</Text> </Text>
                 <Tree style={{width: 380}}
+                 onSelect={onSelect}
                       showLine
                       defaultExpandAll={true}
                       treeData={staticData.miniature_pulse}
@@ -138,6 +152,7 @@ const PageMain = () => {
                 <div className="tree">
                 <Text level={5} style={{marginTop: -5,marginBottom: 15}}>Приобретено игр: <Text type="success">{staticData.count_games_price}</Text> </Text>
                 <Tree style={{width: 380}}
+                 onSelect={onSelect}
                       showLine
                       defaultExpandAll={true}
                       treeData={staticData.games_price_pulse}
@@ -146,6 +161,7 @@ const PageMain = () => {
                 <div className="tree">
                 <Text level={5} style={{marginTop: -5,marginBottom: 15}}>Приобретено книг: <Text type="success">{staticData.count_books_price}</Text> </Text>
                 <Tree style={{width: 380}}
+                 onSelect={onSelect}
                       showLine
                       defaultExpandAll={true}
                       treeData={staticData.books_price_pulse}
@@ -154,6 +170,7 @@ const PageMain = () => {
                 <div className="tree">
                 <Text level={5} style={{marginTop: -5,marginBottom: 15}}>Приобретено миниатюр: <Text type="success">{staticData.count_miniatures_price}</Text> </Text>
                 <Tree style={{width: 380}}
+                onSelect={onSelect}
                       showLine
                       defaultExpandAll={true}
                       treeData={staticData.miniatures_price_pulse}

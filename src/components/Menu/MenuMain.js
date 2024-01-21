@@ -114,7 +114,7 @@ const items = [
         getItem('Краска', '/hobby/colors'),
         getItem('Charts', '/chart_hobby')]),
 
-        getItem('Техника', 'sub6', <DatabaseOutlined />, [
+        getItem('Техника', 'sub7', <DatabaseOutlined />, [
           getItem('Комплектующие ПК', '/tech/computer/'), 
           getItem('Разное', '/tech/varia'),
           getItem('Charts', '/chart_tech')]),
