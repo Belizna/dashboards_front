@@ -3,8 +3,8 @@ import axios from "axios";
 import DemoLiquid from "../../components/ChartsCredit/Liquid";
 import DemoPie from "../../components/ChartsCredit/Pie";
 import DemoLineGames from "../../components/ChartsCredit/LineGames";
-
-import { Typography, Card} from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Typography, Card, Spin} from 'antd';
 
 import './pageMiniature.css'
 const {Title, Text} = Typography;
@@ -21,6 +21,18 @@ const PageChartsHobby = () => {
 
     return(
         <>
+        {staticData === 0 ? <><div className="loader">
+          <Spin
+    indicator={
+      <LoadingOutlined
+        style={{
+          fontSize: 80,
+        }}
+        spin
+      />
+    }
+  />
+          </div></> : <>
         <div className="pageChartGames">
             <div className="liquid">
                 <DemoLiquid percentPay={staticData.procent_miniatures_colors}/>
@@ -57,6 +69,7 @@ const PageChartsHobby = () => {
                 </Card>
             </div>
         </div>
+        </>}
     </>
     )
 }

@@ -3,8 +3,8 @@ import axios from "axios";
 import DemoLiquid from "../../../components/ChartsCredit/Liquid";
 import DemoPie from "../../../components/ChartsCredit/Pie";
 import DemoLineGames from "../../../components/ChartsCredit/LineGames"
-
-import { Typography, Card} from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Typography, Card, Spin} from 'antd';
 
 import './pageGamesLibraryCharts.css'
 
@@ -101,6 +101,18 @@ const PageGamesLibraryCharts = () => {
     return(
     
     <>
+     {staticData === 0 ? <><div className="loader">
+          <Spin
+    indicator={
+      <LoadingOutlined
+        style={{
+          fontSize: 80,
+        }}
+        spin
+      />
+    }
+  />
+          </div></> : <>
         <div className="pageChartGames">
             <div className="liquid">
                 <DemoLiquid percentPay={staticData.procentStaticGames}/>
@@ -131,10 +143,11 @@ const PageGamesLibraryCharts = () => {
                 </Card>
                 <Card >
                 <Title style={{marginTop: -10}} level={4}>Затрачено времени</Title>
-                <Text style={{marginLeft: 65}} strong type="danger">{staticData.summ_time_games} ч.</Text>
+                <Text style={{marginLeft: 65}} strong type="danger">{(staticData.summ_time_games).toFixed(2)} ч.</Text>
                 </Card>
             </div>
         </div>
+        </>}
     </>
     
     )

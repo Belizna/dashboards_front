@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Card } from 'antd';
+import { Typography, Card, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import DemoLiquid from "../../../components/ChartsCredit/Liquid";
 import DemoPie from "../../../components/ChartsCredit/Pie";
 import DemoLine from "../../../components/ChartsCredit/Line";
@@ -52,6 +53,18 @@ const PageChartCredit = () =>
 
     return(
         <>
+        {staticData === 0 ? <><div className="loader">
+          <Spin
+    indicator={
+      <LoadingOutlined
+        style={{
+          fontSize: 80,
+        }}
+        spin
+      />
+    }
+  />
+          </div></> : <>
         {staticData &&
         <div className="pageChartCredit">
             <div className="liquid">
@@ -103,7 +116,7 @@ const PageChartCredit = () =>
                 </Card>
             </div>
         </div>
-}
+}</>}
         </>
     )
 }

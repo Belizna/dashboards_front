@@ -84,3 +84,9 @@
     margin-bottom: 45px;
 }
 
+.loader {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+

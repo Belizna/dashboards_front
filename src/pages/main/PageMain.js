@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Typography, Card , Select, Tabs, Tree, message} from 'antd';
+import { Typography, Card ,Spin, Select, Tabs, Tree, message} from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import LineMain from "../../components/ChartsCredit/LinePulse";
 import PieMain from "../../components/ChartsCredit/PieMain";
 
@@ -35,6 +36,20 @@ const PageMain = () => {
     return(
       <>
         {contextHolder}
+
+        {staticData === null ? <><div className="loader">
+          <Spin
+    indicator={
+      <LoadingOutlined
+        style={{
+          fontSize: 80,
+        }}
+        spin
+      />
+    }
+  />
+          </div></> : <>
+  
         <Tabs defaultActiveKey="1">
         <TabPane tab="Статистика" key="1">
         {
@@ -184,7 +199,9 @@ const PageMain = () => {
         <TabPane tab="Задачи" key="3">
         </TabPane>
         </Tabs>
+        </>}
       </>
+      
     )
 }
 export default PageMain

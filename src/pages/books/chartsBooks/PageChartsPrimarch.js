@@ -3,8 +3,8 @@ import axios from "axios";
 import DemoLiquid from "../../../components/ChartsCredit/Liquid";
 import DemoPie from "../../../components/ChartsCredit/Pie";
 import DemoLineGames from "../../../components/ChartsCredit/LineGames"
-
-import { Typography, Card} from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Typography, Card,Spin} from 'antd';
 import './pageHorusHeresyCharts.css'
 
 const {Title, Text} = Typography;
@@ -89,7 +89,18 @@ const PageChartsPrimarch = () => {
         ]   
 
     return(
-        <>
+        <>{staticData === 0 ? <><div className="loader">
+        <Spin
+  indicator={
+    <LoadingOutlined
+      style={{
+        fontSize: 80,
+      }}
+      spin
+    />
+  }
+/>
+        </div></> : <>
         <div className="pageChartGames">
             <div className="liquid">
                 <DemoLiquid percentPay={staticData.procentStaticBooks}/>
@@ -120,7 +131,7 @@ const PageChartsPrimarch = () => {
                   {staticData.books_there_is_count} / {staticData.books_all_there_is_count}</Text>
                 </Card>
             </div>
-        </div>
+        </div></>}
     </>
     )
 }
