@@ -197,6 +197,54 @@ const PageMain = () => {
 }
         </TabPane>
         <TabPane tab="Задачи" key="3">
+        {staticData &&
+          
+          <div className="tabMain">
+                  <div className="tab">
+          <div className="tab1_1">
+                    <Title level={5}>Сводка за <Select
+                        defaultValue="2024 г."
+                        style={{ width: 85}}
+                        options={[
+                          { value: '2024', label: '2024 г.' },
+                          { value: '2025', label: '2025 г.' },
+                    ]}
+                          /> </Title>
+                    </div>
+                    <div className="mainTree">
+                    <div className="tree">
+      
+      <Text style={{marginTop: -10, marginBottom: 15}}>Книги к покупке: <Text type="success">{staticData.books_list_count}</Text> </Text>
+    <Tree style={{width: 380}}
+     onSelect={onSelect}
+          showLine
+          defaultExpandAll={true}
+          treeData={staticData.books_price}
+        />
+    </div>
+ <div className="tree">
+ <Text style={{marginTop: -10, marginBottom: 15}}>Игры к прохождению: <Text type="success">{staticData.game_over_count}</Text> </Text>
+    <Tree style={{width: 380}}
+     onSelect={onSelect}
+          showLine
+          defaultExpandAll={true}
+          treeData={staticData.game_over}
+        />
+    </div>
+
+    <div className="tree">
+ <Text style={{marginTop: -10, marginBottom: 15}}>Книги к прочтению: <Text type="success">{staticData.books_write_count}</Text> </Text>
+    <Tree style={{width: 380}}
+     onSelect={onSelect}
+          showLine
+          defaultExpandAll={true}
+          treeData={staticData.books_write}
+        />
+    </div>
+
+                      </div>
+                      </div>
+                      </div>}
         </TabPane>
         </Tabs>
         </>}

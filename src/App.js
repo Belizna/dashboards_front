@@ -41,7 +41,6 @@ import PageChartsMars from './pages/books/chartsBooks/PageChartsMars';
 import PageBonus from './pages/work/PageBonus';
 import PageChartsWork from './pages/work/PageCartsWork';
 import PageMain from './pages/main/PageMain';
-import BookList from './components/Book/BookList';
 import PageMinuiatures from './pages/hobby/pageMiniatures';
 import PageBooksPrimarch from './pages/books/primarch/books/PageBooksPrimarch';
 import PageWriteBooksPrimarch from './pages/books/primarch/write_books/PageWriteBooksPrimarch';
@@ -162,8 +161,6 @@ const App = () => {
               <Route path='/books_coming' element={<PageBooksComing name_book='Пришествие зверя'/>} exact/>
               <Route path='/write_coming' element={<PageWriteBooksComing name_book='Пришествие зверя'/>} exact/>
               <Route path='/chart_coming' element={<PageChartsComing/>} exact/>
-
-              <Route path='/books_list' element={<BookList/>} exact/>
 
               <Route path='/books_night_lords' element={<PageBooksNightLords name_book='Повелители Ночи'/>} exact/>
               <Route path='/write_night_lords' element={<PageWriteBooksNightLords name_book='Повелители Ночи'/>} exact/>

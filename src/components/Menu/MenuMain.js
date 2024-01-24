@@ -94,8 +94,7 @@ const items = [
           getItem('Отдельные романы', 'g15', null, [
             getItem('Все книги', '/books_ohter'), 
             getItem('Порядок чтения', '/write_ohter'),
-            getItem('Charts', '/chart_ohter')]),
-            getItem('Лист покупки', '/books_list')
+            getItem('Charts', '/chart_ohter')])
       ]),
       ]),
 
