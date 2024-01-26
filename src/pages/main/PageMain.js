@@ -218,7 +218,6 @@ const PageMain = () => {
     <Tree style={{width: 380}}
      onSelect={onSelect}
           showLine
-          defaultExpandAll={true}
           treeData={staticData.books_price}
         />
     </div>
@@ -227,7 +226,6 @@ const PageMain = () => {
     <Tree style={{width: 380}}
      onSelect={onSelect}
           showLine
-          defaultExpandAll={true}
           treeData={staticData.game_over}
         />
     </div>
@@ -237,7 +235,6 @@ const PageMain = () => {
     <Tree style={{width: 380}}
      onSelect={onSelect}
           showLine
-          defaultExpandAll={true}
           treeData={staticData.books_write}
         />
     </div>

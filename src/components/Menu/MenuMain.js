@@ -1,4 +1,4 @@
-import {BankOutlined, BookOutlined,AreaChartOutlined,DatabaseOutlined,
+import {BankOutlined, BookOutlined,AreaChartOutlined,
    StarOutlined, DesktopOutlined,WalletOutlined} from '@ant-design/icons';
 import { Menu } from 'antd';
 import {useNavigate } from 'react-router-dom'
@@ -115,11 +115,6 @@ const items = [
         getItem('Миниатюры', '/hobby/miniatures/'), 
         getItem('Краска', '/hobby/colors'),
         getItem('Charts', '/chart_hobby')]),
-
-        getItem('Техника', 'sub7', <DatabaseOutlined />, [
-          getItem('Комплектующие ПК', '/tech/computer/'), 
-          getItem('Разное', '/tech/varia'),
-          getItem('Charts', '/chart_tech')]),
 ];
 const MenuMain = () => {
   const navigate = useNavigate();

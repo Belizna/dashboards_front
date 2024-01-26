@@ -33,21 +33,6 @@ const PageChartsMephiston = () => {
               name: 'Осталось',
               value: staticData.not_read_novel,
             },
-            {
-              key: 'Рассказов',
-              name: 'Всего',
-              value: staticData.read_story + staticData.not_read_story,
-            },
-            {
-              key: 'Рассказов',
-              name: 'Прочитано',
-              value: staticData.read_story,
-            },
-            {
-              key: 'Рассказов',
-              name: 'Осталось',
-              value: staticData.not_read_story,
-            },
           {
             key: 'Общее количество',
             name: 'Всего',
