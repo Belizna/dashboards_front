@@ -26,6 +26,7 @@ const PageMain = ({year}) => {
   }, [year])
 
   const handleChange = async (value) => {
+    setStaticData(null)
     await axios.get(`${process.env.REACT_APP_API_URL}main/static/${value}`)
     .then(res => setStaticData(res.data))
   }
