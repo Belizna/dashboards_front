@@ -38,7 +38,7 @@ const PageChartsWork = () => {
                         <Title style={{marginTop: -10}} level={5}>Процент заработка по годам</Title>
                 </div>
                 <div className="pie">
-                        <PieWork staticData={staticData.salary_companyy} />
+                        <PieWork staticData={staticData.salary_company} />
                         <Title style={{marginTop: -10}} level={5}>Процент заработка по компаниям</Title>
                 </div>
                 <div className="pie">

@@ -124,7 +124,7 @@ const App = () => {
             }}
           >
             <Routes>
-            <Route path='/' element={<PageMain/>} exact/>
+            <Route path='/' element={<PageMain year={'2024'}/>} exact/>
               <Route path='/payments' element={<PagePayments/>} exact/>
               <Route path='/early_payments' element={<PageEarlyPayments/>} exact/>
               <Route path='/chart_credit' element={<PageChartCredit/>} exact/>

@@ -35,7 +35,7 @@ const LineMain = ({data}) => {
         ],
       };
 
-  return <Line {...config} style={{height: 100, width: 400, marginBottom: 5}}/>;
+  return <Line style={{height: 100, width: 400, marginBottom: 5}} {...config}/>;
 };
 
 export default LineMain;
