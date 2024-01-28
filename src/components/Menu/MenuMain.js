@@ -87,12 +87,15 @@ const items = [
                 getItem('Все книги', '/books_night_lords'), 
                 getItem('Порядок чтения', '/write_night_lords'),
                 getItem('Charts', '/chart_night_lords')]),
-            
+                getItem('Повелители Ночи', 'g12', null, [
+                  getItem('Все книги', '/books_night_lords'), 
+                  getItem('Порядок чтения', '/write_night_lords'),
+                  getItem('Charts', '/chart_night_lords')]),    
 
-          getItem('Темный Империум', 'g9', null, [
-            getItem('Все книги', '/books_dark_imperium'), 
-            getItem('Порядок чтения', '/write_dark_imperium'),
-            getItem('Charts', '/chart_dark_imperium')]),
+          getItem('Огненная Заря', 'g16', null, [
+            getItem('Все книги', '/books_dawn_of_fire'), 
+            getItem('Порядок чтения', '/write_dawn_of_fire'),
+            getItem('Charts', '/chart_dawn_of_fire')]),
 
           getItem('Отдельные романы', 'g15', null, [
             getItem('Все книги', '/books_ohter'), 

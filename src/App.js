@@ -55,6 +55,9 @@ import PageBooksOther from './pages/books/otherbooks/books/PageBooksOther';
 import PageChartsOther from './pages/books/chartsBooks/PageChartsOther';
 import PageWriteBooksOther from './pages/books/otherbooks/write_books/PageWriteBooksOther';
 import PageWriteBooksMephiston from './pages/books/mephiston/write_books/PageWriteBooksMephiston';
+import PageDawnOfFire from './pages/books/dawn_of_fire/books/PageDawnOfFire';
+import PageWriteDawnOfFire from './pages/books/dawn_of_fire/write_books/PageWriteBooksOther';
+import PageChartsDawnOfFire from './pages/books/chartsBooks/PageChartsDawnOfFire';
 import {useState } from 'react';
 import axios from 'axios'
 import PageChartsHorusHeresy from './pages/books/chartsBooks/PageChartsHorusHeresy';
@@ -179,6 +182,9 @@ const App = () => {
               <Route path='/write_ohter' element={<PageWriteBooksOther name_book='Отдельные романы'/>} exact/>
               <Route path='/chart_ohter' element={<PageChartsOther/>} exact/>
 
+              <Route path='/books_dawn_of_fire' element={<PageDawnOfFire name_book='Огненная Заря'/>} exact/>
+              <Route path='/write_dawn_of_fire' element={<PageWriteDawnOfFire name_book='Огненная Заря'/>} exact/>
+              <Route path='/chart_dawn_of_fire' element={<PageChartsDawnOfFire/>} exact/>
 
               <Route path='/salary' element={<PageSalary/>} exact/>
               <Route path='/bonus' element={<PageBonus/>} exact/>
