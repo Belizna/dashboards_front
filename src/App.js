@@ -58,6 +58,15 @@ import PageWriteBooksMephiston from './pages/books/mephiston/write_books/PageWri
 import PageDawnOfFire from './pages/books/dawn_of_fire/books/PageDawnOfFire';
 import PageWriteDawnOfFire from './pages/books/dawn_of_fire/write_books/PageWriteBooksOther';
 import PageChartsDawnOfFire from './pages/books/chartsBooks/PageChartsDawnOfFire';
+import PageWriteBooksDarkHeresy from './pages/books/dark_heresy/write_books/PageWriteBooksDarkHeresy';
+import PageBooksDarkHeresy from './pages/books/dark_heresy/books/PageBooksDarkHeresy';
+import PageChartsDarkHeresy from './pages/books/chartsBooks/PageChartsDarkHeresy';
+import PageBooksWordBearers from './pages/books/word_bearers/books/PageBooksWordBearers';
+import PageWriteBooksWordBearers from './pages/books/word_bearers/write_books/PageWriteBooksWordBearers';
+import PageChartsWordBearers from './pages/books/chartsBooks/PageChartsWordBearers';
+import PageBooksSoulDrinkers from './pages/books/soul_drinkers/books/PageBooksSoulDrinkers';
+import PageWriteBooksSoulDrinkers from './pages/books/soul_drinkers/write_books/PageWriteBooksSoulDrinkers';
+import PageChartsSoulDrinkers from './pages/books/chartsBooks/PageChartsSoulDrinkers';
 import {useState } from 'react';
 import axios from 'axios'
 import PageChartsHorusHeresy from './pages/books/chartsBooks/PageChartsHorusHeresy';
@@ -185,6 +194,18 @@ const App = () => {
               <Route path='/books_dawn_of_fire' element={<PageDawnOfFire name_book='Огненная Заря'/>} exact/>
               <Route path='/write_dawn_of_fire' element={<PageWriteDawnOfFire name_book='Огненная Заря'/>} exact/>
               <Route path='/chart_dawn_of_fire' element={<PageChartsDawnOfFire/>} exact/>
+
+              <Route path='/books_dark_heresy' element={<PageBooksDarkHeresy name_book='Тёмная Ересь'/>} exact/>
+              <Route path='/write_dark_heresy' element={<PageWriteBooksDarkHeresy name_book='Тёмная Ересь'/>} exact/>
+              <Route path='/chart_dark_heresy' element={<PageChartsDarkHeresy/>} exact/>
+
+              <Route path='/books_word_bearers' element={<PageBooksWordBearers name_book='Несущие Слово'/>} exact/>
+              <Route path='/write_word_bearers' element={<PageWriteBooksWordBearers name_book='Несущие Слово'/>} exact/>
+              <Route path='/chart_word_bearers' element={<PageChartsWordBearers/>} exact/>
+
+              <Route path='/books_soul_drinkers' element={<PageBooksSoulDrinkers name_book='Испивающие Души'/>} exact/>
+              <Route path='/write_soul_drinkers' element={<PageWriteBooksSoulDrinkers name_book='Испивающие Души'/>} exact/>
+              <Route path='/chart_soul_drinkers' element={<PageChartsSoulDrinkers/>} exact/>
 
               <Route path='/salary' element={<PageSalary/>} exact/>
               <Route path='/bonus' element={<PageBonus/>} exact/>

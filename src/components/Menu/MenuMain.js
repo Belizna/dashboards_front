@@ -57,7 +57,7 @@ const items = [
                   getItem('Charts', '/chart_fabius')]),
 
                   
-        getItem('Пришествие зверя', 'g11', null, [
+        getItem('Пришествие Зверя', 'g11', null, [
           getItem('Все книги', '/books_coming'), 
           getItem('Порядок чтения', '/write_coming'),
           getItem('Charts', '/chart_coming')]),
@@ -77,8 +77,22 @@ const items = [
             getItem('Порядок чтения', '/write_mars'),
             getItem('Charts', '/chart_mars')]),
 
+            getItem('Испивающие Души', 'g17', null, [
+              getItem('Все книги', '/books_soul_drinkers'), 
+              getItem('Порядок чтения', '/write_soul_drinkers'),
+              getItem('Charts', '/chart_soul_drinkers')]),
 
-            getItem('Кровавые ангелы', 'g13', null, [
+              getItem('Тёмная Ересь', 'g18', null, [
+                getItem('Все книги', '/books_dark_heresy'), 
+                getItem('Порядок чтения', '/write_dark_heresy'),
+                getItem('Charts', '/chart_dark_heresy')]),
+
+                getItem('Несущие Слово', 'g19', null, [
+                  getItem('Все книги', '/books_word_bearers'), 
+                  getItem('Порядок чтения', '/write_word_bearers'),
+                  getItem('Charts', '/chart_word_bearers')]),
+
+            getItem('Кровавые Ангелы', 'g13', null, [
               getItem('Все книги', '/books_mephiston'), 
               getItem('Порядок чтения', '/write_mephiston'),
               getItem('Charts', '/chart_mephiston')]),
@@ -86,11 +100,7 @@ const items = [
               getItem('Повелители Ночи', 'g12', null, [
                 getItem('Все книги', '/books_night_lords'), 
                 getItem('Порядок чтения', '/write_night_lords'),
-                getItem('Charts', '/chart_night_lords')]),
-                getItem('Повелители Ночи', 'g12', null, [
-                  getItem('Все книги', '/books_night_lords'), 
-                  getItem('Порядок чтения', '/write_night_lords'),
-                  getItem('Charts', '/chart_night_lords')]),    
+                getItem('Charts', '/chart_night_lords')]),   
 
           getItem('Огненная Заря', 'g16', null, [
             getItem('Все книги', '/books_dawn_of_fire'), 
