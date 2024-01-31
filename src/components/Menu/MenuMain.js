@@ -107,6 +107,16 @@ const items = [
             getItem('Порядок чтения', '/write_dawn_of_fire'),
             getItem('Charts', '/chart_dawn_of_fire')]),
 
+            getItem('Хорусианские Войны', 'g20', null, [
+              getItem('Все книги', '/books_war_horus'), 
+              getItem('Порядок чтения', '/write_war_horus'),
+              getItem('Charts', '/chart_war_horus')]),
+
+            getItem('Темный Империум', 'g9', null, [
+              getItem('Все книги', '/books_dark_imperium'), 
+              getItem('Порядок чтения', '/write_dark_imperium'),
+              getItem('Charts', '/chart_dark_imperium')]),
+
           getItem('Отдельные романы', 'g15', null, [
             getItem('Все книги', '/books_ohter'), 
             getItem('Порядок чтения', '/write_ohter'),

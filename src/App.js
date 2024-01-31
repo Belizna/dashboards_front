@@ -6,70 +6,19 @@ import PagePayments from './pages/credit/PagePayments/PagePayments';
 import PageEarlyPayments from './pages/credit/PageEarlyPaymens/PageEarlyPayments';
 import PageChartCredit from './pages/credit/PageChartCredit/PageChartCredit';
 import PageBooks from './pages/books/horus_heresy/books/PageBooks';
-import PageBooksSiege from './pages/books/siege_terra/books/PageBooksSiege';
-import PageBooksInquisition from './pages/books/inquisition/books/PageBooksInquisition';
 import PageWriteBooks from './pages/books/horus_heresy/write_books/PageWriteBooks';
-import PageWriteBooksInq from './pages/books/inquisition/write_books/PageWriteBooksInq';
-import PageWriteBooksSie from './pages/books/siege_terra/write_books/PageWriteBooksSie';
 import PageGamesLibrary from './pages/games/gamesLibrary/PageGamesLibrary';
 import PageGamesLibraryUbi from './pages/games/gamesLibrary/PageGamesLibrary_Ubi';
 import PageGamesLibraryCharts from './pages/games/gamesLibrary/PageGamesLibraryCharts'
-import PageChartsSiege from './pages/books/chartsBooks/PageChartsSiege';
-import PageChartsInquisition from './pages/books/chartsBooks/PageChartsInquisition';
-import PageChartsComissar from './pages/books/chartsBooks/PageChartsComissar';
-import PageChartsAhriman from './pages/books/chartsBooks/PageChartsAhriman';
-import PageBooksComissar from './pages/books/comissar/books/PageBooksComissar';
-import PageBooksFabius from './pages/books/fabius/books/PageBooksfabius';
-import PageChartsFabius from './pages/books/chartsBooks/PageChartsFabius';
-import PageWriteBooksFabius from './pages/books/fabius/write_books/PageWriteBooksFabius';
-import PageBooksDarkImperium from './pages/books/dark_imperium/books/PageBooksDarkImperium';
-import PageWriteBooksDarkImperium from './pages/books/dark_imperium/write_books/PageWriteBooksDarkImperium';
-import PageChartsDarkImperium from './pages/books/chartsBooks/PageChartsDarkImperium';
-import PageBooksBlackLegion from './pages/books/black_legion/books/PageBooksBlackLegion';
-import PageWriteBooksBlackLegion from './pages/books/black_legion/write_books/PageWriteBooksBlackLegion';
-import PageChartsBlackLegion from './pages/books/chartsBooks/PageChartsBlackLegion';
-import PageWriteBooksComissar  from './pages/books/comissar/write_books/PageWriteComissar';
 import PageChartsHobby from './pages/hobby/PageChartsHobby';
-import PageChartsPrimarch from './pages/books/chartsBooks/PageChartsPrimarch';
-import PageWriteBooksComing from './pages/books/coming/write_books/PageWriteBooksComing';
-import PageBooksComing from './pages/books/coming/books/PageBooksComing';
-import PageChartsComing from './pages/books/chartsBooks/PageChartsComing';
 import PageSalary from './pages/work/PageSalary';
-import PageWriteBooksMars from './pages/books/mars/write_books/PageWriteBooksMars';
-import PageBooksMars from './pages/books/mars/books/PageBooksMars';
-import PageChartsMars from './pages/books/chartsBooks/PageChartsMars';
 import PageBonus from './pages/work/PageBonus';
 import PageChartsWork from './pages/work/PageCartsWork';
 import PageMain from './pages/main/PageMain';
 import PageMinuiatures from './pages/hobby/pageMiniatures';
-import PageBooksPrimarch from './pages/books/primarch/books/PageBooksPrimarch';
-import PageWriteBooksPrimarch from './pages/books/primarch/write_books/PageWriteBooksPrimarch';
-import PageBooksAhriman from './pages/books/ahriman/books/PageBooksPrimarch';
-import PageWriteBooksAhriman from './pages/books/ahriman/write_books/PageWriteBooksAhriman';
-import PageChartsNightLords from './pages/books/chartsBooks/PageChartsNightLords';
-import PageBooksNightLords from './pages/books/night_lords/books/PageBooksNightLords';
-import PageWriteBooksNightLords from './pages/books/night_lords/write_books/PageWriteBooksNightLords';
-import PageBooksMephiston from './pages/books/mephiston/books/PageBooksMephiston';
-import PageChartsMephiston from './pages/books/chartsBooks/PageChartsMephiston';
-import PageBooksOther from './pages/books/otherbooks/books/PageBooksOther';
-import PageChartsOther from './pages/books/chartsBooks/PageChartsOther';
-import PageWriteBooksOther from './pages/books/otherbooks/write_books/PageWriteBooksOther';
-import PageWriteBooksMephiston from './pages/books/mephiston/write_books/PageWriteBooksMephiston';
-import PageDawnOfFire from './pages/books/dawn_of_fire/books/PageDawnOfFire';
-import PageWriteDawnOfFire from './pages/books/dawn_of_fire/write_books/PageWriteBooksOther';
-import PageChartsDawnOfFire from './pages/books/chartsBooks/PageChartsDawnOfFire';
-import PageWriteBooksDarkHeresy from './pages/books/dark_heresy/write_books/PageWriteBooksDarkHeresy';
-import PageBooksDarkHeresy from './pages/books/dark_heresy/books/PageBooksDarkHeresy';
-import PageChartsDarkHeresy from './pages/books/chartsBooks/PageChartsDarkHeresy';
-import PageBooksWordBearers from './pages/books/word_bearers/books/PageBooksWordBearers';
-import PageWriteBooksWordBearers from './pages/books/word_bearers/write_books/PageWriteBooksWordBearers';
-import PageChartsWordBearers from './pages/books/chartsBooks/PageChartsWordBearers';
-import PageBooksSoulDrinkers from './pages/books/soul_drinkers/books/PageBooksSoulDrinkers';
-import PageWriteBooksSoulDrinkers from './pages/books/soul_drinkers/write_books/PageWriteBooksSoulDrinkers';
-import PageChartsSoulDrinkers from './pages/books/chartsBooks/PageChartsSoulDrinkers';
 import {useState } from 'react';
 import axios from 'axios'
-import PageChartsHorusHeresy from './pages/books/chartsBooks/PageChartsHorusHeresy';
+import PageChartsBooks from './pages/books/chartsBooks/PageChartsBooks';
 import PageColor from './pages/hobby/pageColor';
 
 const { Sider, Content } = Layout;
@@ -140,72 +89,86 @@ const App = () => {
               <Route path='/payments' element={<PagePayments/>} exact/>
               <Route path='/early_payments' element={<PageEarlyPayments/>} exact/>
               <Route path='/chart_credit' element={<PageChartCredit/>} exact/>
+
               <Route path='/books_heresy' element={<PageBooks name_book='Ересь Хоруса'/>} exact/>
-              <Route path='/books_siege' element={<PageBooksSiege name_book='Осада Терры'/>} exact/>
-              <Route path='/books_inquisition' element={<PageBooksInquisition name_book='Инквизитор'/>} exact/>
-              <Route path='/books_comissar' element={<PageBooksComissar name_book='Комиссар Каин'/>} exact/>
-              <Route path='/books_primarch' element={<PageBooksPrimarch name_book='Примархи'/>} exact/>
-              <Route path='/books_ahriman' element={<PageBooksAhriman name_book='Ариман'/>} exact/>
               <Route path='/write_heresy' element={<PageWriteBooks name_book='Ересь Хоруса'/>} exact/>
-              <Route path='/write_siege' element={<PageWriteBooksSie name_book='Осада Терры'/>} exact/>
-              <Route path='/write_inquisition' element={<PageWriteBooksInq name_book='Инквизитор'/>} exact/>
-              <Route path='/write_ahriman' element={<PageWriteBooksAhriman name_book='Ариман'/>} exact/>
-              <Route path='/write_primarch' element={<PageWriteBooksPrimarch name_book='Примархи'/>} exact/>
-              <Route path='/write_comissar' element={<PageWriteBooksComissar name_book='Комиссар Каин'/>} exact/>
+              <Route path='/chart_heresy' element={<PageChartsBooks name_book='Ересь Хоруса'/>} exact/>
+
+              <Route path='/books_siege' element={<PageBooks name_book='Осада Терры'/>} exact/>
+              <Route path='/write_siege' element={<PageWriteBooks name_book='Осада Терры'/>} exact/>
+              <Route path='/chart_siege' element={<PageChartsBooks name_book='Осада Терры'/>} exact/>
+
+              <Route path='/books_inquisition' element={<PageBooks name_book='Инквизитор'/>} exact/>
+              <Route path='/write_inquisition' element={<PageWriteBooks name_book='Инквизитор'/>} exact/>
+              <Route path='/chart_inquisition' element={<PageChartsBooks name_book='Инквизитор'/>} exact/>
+
+              <Route path='/books_comissar' element={<PageBooks name_book='Комиссар Каин'/>} exact/>
+              <Route path='/write_comissar' element={<PageWriteBooks name_book='Комиссар Каин'/>} exact/>
+              <Route path='/chart_comissar' element={<PageChartsBooks name_book='Комиссар Каин'/>} exact/>
+
+              <Route path='/books_primarch' element={<PageBooks name_book='Примархи'/>} exact/>
+              <Route path='/write_primarch' element={<PageWriteBooks name_book='Примархи'/>} exact/>
+              <Route path='/chart_primarch' element={<PageChartsBooks name_book='Примархи'/>} exact/>
+
+              <Route path='/books_ahriman' element={<PageBooks name_book='Ариман'/>} exact/>
+              <Route path='/write_ahriman' element={<PageWriteBooks name_book='Ариман'/>} exact/>
+              <Route path='/chart_ahriman' element={<PageChartsBooks name_book='Ариман'/>} exact/>
+
+              <Route path='/books_fabius' element={<PageBooks name_book='Фабий Байл'/>} exact/>
+              <Route path='/write_fabius' element={<PageWriteBooks name_book='Фабий Байл'/>} exact/>
+              <Route path='/chart_fabius' element={<PageChartsBooks name_book='Фабий Байл'/>} exact/>
+
+              <Route path='/books_dark_imperium' element={<PageBooks name_book='Темный Империум'/>} exact/>
+              <Route path='/write_dark_imperium' element={<PageWriteBooks name_book='Темный Империум'/>} exact/>
+              <Route path='/chart_dark_imperium' element={<PageChartsBooks name_book='Темный Империум'/>} exact/>
+
+              <Route path='/books_black_legion' element={<PageBooks name_book='Черный Легион'/>} exact/>
+              <Route path='/write_black_legion' element={<PageWriteBooks name_book='Черный Легион'/>} exact/>
+              <Route path='/chart_black_legion' element={<PageChartsBooks name_book='Темный Империум'/>} exact/>
+
+              <Route path='/books_coming' element={<PageBooks name_book='Пришествие зверя'/>} exact/>
+              <Route path='/write_coming' element={<PageWriteBooks name_book='Пришествие зверя'/>} exact/>
+              <Route path='/chart_coming' element={<PageChartsBooks name_book='Пришествие зверя'/>} exact/>
+
+              <Route path='/books_night_lords' element={<PageBooks name_book='Повелители Ночи'/>} exact/>
+              <Route path='/write_night_lords' element={<PageWriteBooks name_book='Повелители Ночи'/>} exact/>
+              <Route path='/chart_night_lords' element={<PageChartsBooks name_book='Повелители Ночи'/>} exact/>
+
+              <Route path='/books_dark_heresy' element={<PageBooks name_book='Тёмная Ересь'/>} exact/>
+              <Route path='/write_dark_heresy' element={<PageWriteBooks name_book='Тёмная Ересь'/>} exact/>
+              <Route path='/chart_dark_heresy' element={<PageChartsBooks name_book='Тёмная Ересь'/>} exact/>
+
+              <Route path='/books_mephiston' element={<PageBooks name_book='Мефистон'/>} exact/>
+              <Route path='/write_mephiston' element={<PageWriteBooks name_book='Мефистон'/>} exact/>
+              <Route path='/chart_mephiston' element={<PageChartsBooks name_book='Тёмная Ересь'/>} exact/>
+
+              <Route path='/books_mars' element={<PageBooks name_book='Кузницы Марса'/>} exact/>
+              <Route path='/write_mars' element={<PageWriteBooks name_book='Кузницы Марса'/>} exact/>
+              <Route path='/chart_mars' element={<PageChartsBooks name_book='Кузницы Марса'/>} exact/>
+
+              <Route path='/books_ohter' element={<PageBooks name_book='Отдельные романы'/>} exact/>
+              <Route path='/write_ohter' element={<PageWriteBooks name_book='Отдельные романы'/>} exact/>
+              <Route path='/chart_ohter' element={<PageChartsBooks name_book='Отдельные романы'/>} exact/>
+
+              <Route path='/books_dawn_of_fire' element={<PageBooks name_book='Огненная Заря'/>} exact/>
+              <Route path='/write_dawn_of_fire' element={<PageWriteBooks name_book='Огненная Заря'/>} exact/>
+              <Route path='/chart_dawn_of_fire' element={<PageChartsBooks name_book='Огненная Заря'/>} exact/>
+
+              <Route path='/books_word_bearers' element={<PageBooks name_book='Несущие Слово'/>} exact/>
+              <Route path='/write_word_bearers' element={<PageWriteBooks name_book='Несущие Слово'/>} exact/>
+              <Route path='/chart_word_bearers' element={<PageChartsBooks name_book='Несущие Слово'/>} exact/>
+
+              <Route path='/books_soul_drinkers' element={<PageBooks name_book='Испивающие Души'/>} exact/>
+              <Route path='/write_soul_drinkers' element={<PageWriteBooks name_book='Испивающие Души'/>} exact/>
+              <Route path='/chart_soul_drinkers' element={<PageChartsBooks name_book='Испивающие Души'/>} exact/>
+
+              <Route path='/books_war_horus' element={<PageBooks name_book='Хорусианские Войны'/>} exact/>
+              <Route path='/write_war_horus' element={<PageWriteBooks name_book='Хорусианские Войны'/>} exact/>
+              <Route path='/chart_war_horus' element={<PageChartsBooks name_book='Хорусианские Войны'/>} exact/>
+
               <Route path='/steam_games' element={<PageGamesLibrary library_name='Steam'/>} exact/>
               <Route path='/ubi_games' element={<PageGamesLibraryUbi library_name='Ubisoft Connect'/>} exact/>
               <Route path='/chart_games' element={<PageGamesLibraryCharts/>} exact/>
-              <Route path='/chart_heresy' element={<PageChartsHorusHeresy/>} exact/>
-              <Route path='/chart_inquisition' element={<PageChartsInquisition/>} exact/>
-              <Route path='/chart_primarch' element={<PageChartsPrimarch/>} exact/>
-              <Route path='/chart_comissar' element={<PageChartsComissar/>} exact/>
-              <Route path='/chart_ahriman' element={<PageChartsAhriman/>} exact/>
-              <Route path='/chart_siege' element={<PageChartsSiege/>} exact/>
-              <Route path='/chart_fabius' element={<PageChartsFabius/>} exact/>
-              <Route path='/write_fabius' element={<PageWriteBooksFabius name_book='Фабий Байл'/>} exact/>
-              <Route path='/books_fabius' element={<PageBooksFabius name_book='Фабий Байл'/>} exact/>
-              <Route path='/chart_dark_imperium' element={<PageChartsDarkImperium/>} exact/>
-              <Route path='/write_dark_imperium' element={<PageWriteBooksDarkImperium name_book='Темный Империум'/>} exact/>
-              <Route path='/books_dark_imperium' element={<PageBooksDarkImperium name_book='Темный Империум'/>} exact/>
-              <Route path='/books_black_legion' element={<PageBooksBlackLegion name_book='Черный Легион'/>} exact/>
-              <Route path='/write_black_legion' element={<PageWriteBooksBlackLegion name_book='Черный Легион'/>} exact/>
-              <Route path='/chart_black_legion' element={<PageChartsBlackLegion/>} exact/>
-              <Route path='/books_coming' element={<PageBooksComing name_book='Пришествие зверя'/>} exact/>
-              <Route path='/write_coming' element={<PageWriteBooksComing name_book='Пришествие зверя'/>} exact/>
-              <Route path='/chart_coming' element={<PageChartsComing/>} exact/>
-
-              <Route path='/books_night_lords' element={<PageBooksNightLords name_book='Повелители Ночи'/>} exact/>
-              <Route path='/write_night_lords' element={<PageWriteBooksNightLords name_book='Повелители Ночи'/>} exact/>
-              <Route path='/chart_night_lords' element={<PageChartsNightLords/>} exact/>
-
-
-              <Route path='/books_mephiston' element={<PageBooksMephiston name_book='Мефистон'/>} exact/>
-              <Route path='/write_mephiston' element={<PageWriteBooksMephiston name_book='Мефистон'/>} exact/>
-              <Route path='/chart_mephiston' element={<PageChartsMephiston/>} exact/>
-
-              <Route path='/books_mars' element={<PageBooksMars name_book='Кузницы Марса'/>} exact/>
-              <Route path='/write_mars' element={<PageWriteBooksMars name_book='Кузницы Марса'/>} exact/>
-              <Route path='/chart_mars' element={<PageChartsMars/>} exact/>
-
-              <Route path='/books_ohter' element={<PageBooksOther name_book='Отдельные романы'/>} exact/>
-              <Route path='/write_ohter' element={<PageWriteBooksOther name_book='Отдельные романы'/>} exact/>
-              <Route path='/chart_ohter' element={<PageChartsOther/>} exact/>
-
-              <Route path='/books_dawn_of_fire' element={<PageDawnOfFire name_book='Огненная Заря'/>} exact/>
-              <Route path='/write_dawn_of_fire' element={<PageWriteDawnOfFire name_book='Огненная Заря'/>} exact/>
-              <Route path='/chart_dawn_of_fire' element={<PageChartsDawnOfFire/>} exact/>
-
-              <Route path='/books_dark_heresy' element={<PageBooksDarkHeresy name_book='Тёмная Ересь'/>} exact/>
-              <Route path='/write_dark_heresy' element={<PageWriteBooksDarkHeresy name_book='Тёмная Ересь'/>} exact/>
-              <Route path='/chart_dark_heresy' element={<PageChartsDarkHeresy/>} exact/>
-
-              <Route path='/books_word_bearers' element={<PageBooksWordBearers name_book='Несущие Слово'/>} exact/>
-              <Route path='/write_word_bearers' element={<PageWriteBooksWordBearers name_book='Несущие Слово'/>} exact/>
-              <Route path='/chart_word_bearers' element={<PageChartsWordBearers/>} exact/>
-
-              <Route path='/books_soul_drinkers' element={<PageBooksSoulDrinkers name_book='Испивающие Души'/>} exact/>
-              <Route path='/write_soul_drinkers' element={<PageWriteBooksSoulDrinkers name_book='Испивающие Души'/>} exact/>
-              <Route path='/chart_soul_drinkers' element={<PageChartsSoulDrinkers/>} exact/>
 
               <Route path='/salary' element={<PageSalary/>} exact/>
               <Route path='/bonus' element={<PageBonus/>} exact/>

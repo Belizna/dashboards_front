@@ -51,14 +51,14 @@ const EditableCell = ({
   );
 };
 
-const Books = (name_book) => {
+const Books = ({name_book}) => {
   const [countSave, setCountSave] = useState(0);
 
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}books/heresy_horus/${name_book.name_book.name_book}`)
+    axios.get(`${process.env.REACT_APP_API_URL}books/heresy_horus/${name_book}`)
     .then((res) => setData(res.data.books))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countSave])
+  }, [countSave, name_book])
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
@@ -203,7 +203,7 @@ const Books = (name_book) => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}books/heresy_horus/add/${name_book.name_book.name_book}`,row) 
+        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}books/heresy_horus/add/${name_book}`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}books/heresy_horus/edit/${_id}`,row) 
         setCountSave(countSave+1)
       } else {

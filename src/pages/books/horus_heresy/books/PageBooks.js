@@ -1,12 +1,9 @@
 import React from "react";
-
 import Books from "../../../../components/Book/Books";
-
 
 import './pageBooks.css'
 
-const PageBooks = (name_book) => {
-
+const PageBooks = ({name_book}) => {
     return (
         <div className="pageBooks">
             <div className="tableBooks">
