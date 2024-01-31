@@ -94,7 +94,7 @@ const PageMain = ({year}) => {
                    <div className="card">
                       <Text style={{marginTop: -10, marginBottom: 15}}>Заработок: <Text type="success">{(staticData.summ_salary_year).toFixed(2)} р.</Text></Text>
                       <LineMain data = {staticData.sortedBooks}/> 
-                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Оклад: <Text type="success">{staticData.summ_delta} р.</Text></Text>
+                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Оклад: <Text type="success">{(staticData.summ_delta).toFixed(2)} р.</Text></Text>
                       <Text level={5} style={{marginTop: -5, marginBottom: 15}}>Подработки: <Text type="success">{(staticData.summ_bonus_year).toFixed(2)} р.</Text></Text>
                       </div>
                     </Card>
@@ -107,13 +107,13 @@ const PageMain = ({year}) => {
                       </div>
                     </Card>
                     <Card style={{height: 260, marginTop:10}}>
-                   <div className="card">
+                   <div className="card_game">
                       <Text style={{marginTop: -10, marginBottom: 15}}>Пройдено игр: <Text type="success">{staticData.summGames}</Text> </Text>
                       <LineMain style={{height: 100}} data = {staticData.sortedGames}/> 
                       
-                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Потрачено на игры: <Text type="success">{staticData.sum_games_nowyear} р.</Text> </Text>
-                      <Text level={5} style={{marginTop: -5, marginBottom: 15}}>Затрачено времени: <Text type="success">{staticData.time_games_nowyear} ч.</Text> </Text>
-                      <Text level={5} style={{marginTop: -5,marginBottom: 15}}>Приобретено игр: <Text type="success">{staticData.count_games_price}</Text> </Text>
+                      <Text level={5} style={{marginTop: 2}}>Потрачено на игры: <Text type="success">{staticData.sum_games_nowyear} р.</Text> </Text>
+                      <Text level={5} style={{marginTop: 10}}>Затрачено времени: <Text type="success">{staticData.time_games_nowyear} ч.</Text> </Text>
+                      <Text level={5} style={{marginTop: 10}}>Приобретено игр: <Text type="success">{staticData.count_games_price}</Text> </Text>
                       </div>
                     </Card>
                   </div>
