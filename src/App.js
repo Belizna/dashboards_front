@@ -140,7 +140,7 @@ const App = () => {
 
               <Route path='/books_mephiston' element={<PageBooks name_book='Мефистон'/>} exact/>
               <Route path='/write_mephiston' element={<PageWriteBooks name_book='Мефистон'/>} exact/>
-              <Route path='/chart_mephiston' element={<PageChartsBooks name_book='Тёмная Ересь'/>} exact/>
+              <Route path='/chart_mephiston' element={<PageChartsBooks name_book='Мефистон'/>} exact/>
 
               <Route path='/books_mars' element={<PageBooks name_book='Кузницы Марса'/>} exact/>
               <Route path='/write_mars' element={<PageWriteBooks name_book='Кузницы Марса'/>} exact/>
