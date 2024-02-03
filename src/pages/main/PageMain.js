@@ -93,7 +93,7 @@ const PageMain = ({year}) => {
                     <Card style={{height: 230, marginTop:10, marginRight: 10}}>
                    <div className="card">
                       <Text style={{marginTop: -10, marginBottom: 15}}>Заработок: <Text type="success">{(staticData.summ_salary_year).toFixed(2)} р.</Text></Text>
-                      <LineMain data = {staticData.sortedBooks}/> 
+                      <LineMain data = {staticData.sortedSalary}/> 
                       <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Оклад: <Text type="success">{(staticData.summ_delta).toFixed(2)} р.</Text></Text>
                       <Text level={5} style={{marginTop: -5, marginBottom: 15}}>Подработки: <Text type="success">{(staticData.summ_bonus_year).toFixed(2)} р.</Text></Text>
                       </div>
