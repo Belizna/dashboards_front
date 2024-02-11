@@ -1,7 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import React, {useState, useEffect, useRef} from "react";
-import { Form, Input, Popconfirm, DatePicker, Table, Select, Button, Space, Typography} from 'antd';
+import { Form, Input,FloatButton, Popconfirm, DatePicker, Table, Select, Button, Space, Typography} from 'antd';
 import axios from 'axios'
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc'
@@ -360,6 +360,7 @@ catch(errInfo) {
       >
         Добавить зарплату
       </Button>
+      <FloatButton.BackTop />
     </>
   );
 }

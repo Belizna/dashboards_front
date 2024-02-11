@@ -249,13 +249,13 @@ const Miniatures = ({filter_json}) => {
     {
       title: 'Дата покупки',
       dataIndex: 'date_buy_miniature',
-      width: '15%',
+      width: '10%',
       editable: true,
     },
     {
       title: 'Цена',
       dataIndex: 'price_miniature',
-      width: '10%',
+      width: '8%',
       editable: true,
       sorter: {
         compare: (a, b) => a.price_miniature - b.price_miniature,
@@ -292,7 +292,7 @@ const Miniatures = ({filter_json}) => {
         },
       },
     {
-      title: 'Процент покрашенных',
+      title: 'Процент покраски',
       dataIndex: 'procent_miniatures_color',
       width: '9%',
       editable: false,
@@ -383,7 +383,7 @@ const Miniatures = ({filter_json}) => {
         pagination={{
           onChange: cancel,
         }}
-        style={{marginTop: 35}}
+        style={{marginTop: 35, width: 1100}}
         rowClassName={(record, index) => record.procent_miniatures_color === 100 ? 'table-row-light' :
         record.procent_miniatures_color >= 1 ? 'table-row-light-to' :
          'table-row-dark'}

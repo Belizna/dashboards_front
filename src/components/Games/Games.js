@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef } from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, Input, Popconfirm, DatePicker, Table, Select, Typography,Space, Button} from 'antd';
+import { Form, Input,FloatButton, Popconfirm, DatePicker, Table, Select, Typography,Space, Button} from 'antd';
 import axios from "axios";
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc'
@@ -371,6 +371,7 @@ const Games = ({library_name}) => {
       >
         Добавить игру
       </Button>
+      <FloatButton.BackTop />
     </>
       
   );

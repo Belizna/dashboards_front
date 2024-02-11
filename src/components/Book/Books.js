@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, Input, Popconfirm, Table,Space, Select, Typography, Button} from 'antd';
+import { Form, FloatButton, Input, Popconfirm, Table,Space, Select, Typography, Button} from 'antd';
 import axios from "axios";
 
 import './books.css'
@@ -339,6 +339,7 @@ const Books = ({name_book}) => {
       >
         Добавить книгу
       </Button>
+      <FloatButton.BackTop />
     </>
       
   );

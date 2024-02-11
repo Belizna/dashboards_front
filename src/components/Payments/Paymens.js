@@ -1,7 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import React, {useState, useEffect, useRef} from "react";
-import { Form, Input, Popconfirm, Table, Select, Button, Space, Typography} from 'antd';
+import { Form, Input,FloatButton, Popconfirm, Table, Select, Button, Space, Typography} from 'antd';
 import axios from 'axios'
 import './payments.css'
 
@@ -311,6 +311,7 @@ const Payments = () => {
         style={{marginTop: 35}}
       />
     </Form>
+    <FloatButton.BackTop />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import React, {useState, useEffect, useRef} from "react";
-import { Form, Input, Popconfirm, DatePicker, Table, InputNumber, Button, Space,Select, Typography} from 'antd';
+import { Form,FloatButton, Input, Popconfirm, DatePicker, Table, InputNumber, Button, Space,Select, Typography} from 'antd';
 import axios from 'axios'
 import dayjs from 'dayjs';
 
@@ -365,6 +365,7 @@ const Bonus = () => {
       >
         Добавить подработку
       </Button>
+      <FloatButton.BackTop />
     </>
   );
 }
