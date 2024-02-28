@@ -1,5 +1,5 @@
 import {BankOutlined, BookOutlined,AreaChartOutlined,
-   StarOutlined, DesktopOutlined,WalletOutlined} from '@ant-design/icons';
+   StarOutlined, DesktopOutlined,WalletOutlined, HomeOutlined} from '@ant-design/icons';
 import { Menu } from 'antd';
 import {useNavigate } from 'react-router-dom'
 
@@ -209,7 +209,7 @@ const items = [
                 getItem('Порядок чтения', '/write_Space_Marine'),
                 getItem('Charts', '/chart_Space_Marine')]),
 
-                getItem('Легенды Космодесанта', 'g31', null, [
+                getItem('Легенды Космодесанта', 'g45', null, [
                   getItem('Все книги', '/books_Space_Marine_Legends'), 
                   getItem('Порядок чтения', '/write_Space_Marine_Legends'),
                   getItem('Charts', '/chart_Space_Marine_Legends')]),
@@ -240,6 +240,10 @@ const items = [
         getItem('Миниатюры', '/hobby/miniatures/'), 
         getItem('Краска', '/hobby/colors'),
         getItem('Charts', '/chart_hobby')]),
+
+        getItem('Ремонт', 'sub7', <HomeOutlined />, [
+          getItem('Смета', '/repair/outlay/'), 
+          getItem('Charts', '/repair/chart_repair')]),
 ];
 const MenuMain = () => {
   const navigate = useNavigate();

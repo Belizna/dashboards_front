@@ -10,6 +10,7 @@ import PageWriteBooks from './pages/books/horus_heresy/write_books/PageWriteBook
 import PageGamesLibrary from './pages/games/gamesLibrary/PageGamesLibrary';
 import PageGamesLibraryUbi from './pages/games/gamesLibrary/PageGamesLibrary_Ubi';
 import PageGamesLibraryCharts from './pages/games/gamesLibrary/PageGamesLibraryCharts'
+import PageRepair from './pages/repair/pageRepair';
 import PageChartsHobby from './pages/hobby/PageChartsHobby';
 import PageSalary from './pages/work/PageSalary';
 import PageBonus from './pages/work/PageBonus';
@@ -257,6 +258,7 @@ const App = () => {
               <Route path='/hobby/colors/' element={<PageColor/>} exact/>
               <Route path='/chart_hobby' element={<PageChartsHobby/>} exact/>
               
+              <Route path='/repair/outlay/' element={<PageRepair/>} exact/>
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}
