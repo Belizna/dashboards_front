@@ -243,7 +243,7 @@ const items = [
 
         getItem('Ремонт', 'sub7', <HomeOutlined />, [
           getItem('Смета', '/repair/outlay/'), 
-          getItem('Charts', '/repair/chart_repair')]),
+          getItem('Charts', '/repair/chart/')]),
 ];
 const MenuMain = () => {
   const navigate = useNavigate();

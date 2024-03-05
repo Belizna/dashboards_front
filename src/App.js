@@ -21,6 +21,7 @@ import {useState } from 'react';
 import axios from 'axios'
 import PageChartsBooks from './pages/books/chartsBooks/PageChartsBooks';
 import PageColor from './pages/hobby/pageColor';
+import PageChartsRepair from './pages/repair/PageChartsRepair';
 
 const { Sider, Content } = Layout;
 
@@ -259,6 +260,8 @@ const App = () => {
               <Route path='/chart_hobby' element={<PageChartsHobby/>} exact/>
               
               <Route path='/repair/outlay/' element={<PageRepair/>} exact/>
+              <Route path='/repair/chart/' element={<PageChartsRepair/>} exact/>
+              
               <Route
                   path="*"
                   element={<Navigate to="/" replace />}

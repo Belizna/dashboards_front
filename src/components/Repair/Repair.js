@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, Input, Select, Popconfirm, Table,Space, DatePicker, Typography, Button} from 'antd';
+import { Form, Input, Select, Popconfirm, Table,Space, DatePicker, Typography, Button, InputNumber} from 'antd';
 import axios from "axios";
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc'
@@ -32,9 +32,17 @@ const EditableCell = ({
       {
         value: 'Черновые',
         label: 'Черновые',
+      },
+      {
+        value: 'Мебель',
+        label: 'Мебель',
+      },
+      {
+        value: 'Техника',
+        label: 'Техника',
       }
     ]}/> :  inputType === 'date' ? 
-  <DatePicker  format={dateFormat}/>
+  <DatePicker  format={dateFormat}/> : inputType === 'number' ? <InputNumber />
   : <Input />
   return (
     <td {...restProps}>
@@ -308,7 +316,8 @@ const Repair = ({filter_json}) => {
       onCell: (record) => ({
         record,
         inputType: col.dataIndex === 'category_repair' ? 'select' : 
-        col.dataIndex === 'date_repair' ? 'date' : 'text',
+        col.dataIndex === 'date_repair' ? 'date' : 
+        col.dataIndex === 'sum_repair' ? 'number' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
