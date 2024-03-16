@@ -72,46 +72,15 @@ const items = [
           getItem('Порядок чтения', '/write_inquisition'),
           getItem('Charts', '/chart_inquisition')]),
 
-          getItem('Крестовый поход Махариуса', 'g33', null, [
-            getItem('Все книги', '/books_Macharian_Crusade'), 
-            getItem('Порядок чтения', '/write_Macharian_Crusade'),
-            getItem('Charts', '/chart_Macharian_Crusade')]),
-
-          getItem('Призраки Гаунта', 'g31', null, [
-            getItem('Все книги', '/books_Ghosts'), 
-            getItem('Порядок чтения', '/write_Ghosts'),
-            getItem('Charts', '/chart_Ghosts')]),
-
-            getItem('Вольный Торговец', 'g39', null, [
-              getItem('Все книги', '/books_Rogue_Trader'), 
-              getItem('Порядок чтения', '/write_Rogue_Trader'),
-              getItem('Charts', '/chart_Rogue_Trader')]),
-
-          getItem('Кархародоны', 'g26', null, [
-            getItem('Все книги', '/books_Carcharodons'), 
-            getItem('Порядок чтения', '/write_Carcharodons'),
-            getItem('Charts', '/chart_Carcharodons')]), 
-
         getItem('Комиссар Каин', 'g5', null, [
           getItem('Все книги', '/books_comissar'), 
           getItem('Порядок чтения', '/write_comissar'),
           getItem('Charts', '/chart_comissar')]),
 
-          getItem('Арбитр', 'g44', null, [
-            getItem('Все книги', '/books_Enforcer'), 
-            getItem('Порядок чтения', '/write_Enforcer'),
-            getItem('Charts', '/chart_Enforcer')]),
-
           getItem('Кузницы Марса', 'g14', null, [
             getItem('Все книги', '/books_mars'), 
             getItem('Порядок чтения', '/write_mars'),
             getItem('Charts', '/chart_mars')]),
-
-
-            getItem('Северина Рейн', 'g32', null, [
-              getItem('Все книги', '/books_Severina_Raine'), 
-              getItem('Порядок чтения', '/write_Severina_Raine'),
-              getItem('Charts', '/chart_Severina_Raine')]),
 
 
             getItem('Испивающие Души', 'g17', null, [
@@ -139,37 +108,17 @@ const items = [
                     getItem('Порядок чтения', '/write_Deathwatch'),
                     getItem('Charts', '/chart_Deathwatch')]),
 
-                  getItem('Саламандры', 'g21', null, [
-                    getItem('Все книги', '/books_salamanders'), 
-                    getItem('Порядок чтения', '/write_salamanders'),
-                    getItem('Charts', '/chart_salamanders')]),
-
                     getItem('Железные Воины', 'g28', null, [
                       getItem('Все книги', '/books_Iron_Warriors'), 
                       getItem('Порядок чтения', '/write_Iron_Warriors'),
                       getItem('Charts', '/chart_Iron_Warriors')]),
-
-                      getItem('Имперские Рыцари', 'g40', null, [
-                        getItem('Все книги', '/books_Imperial_Knights'), 
-                        getItem('Порядок чтения', '/write_Imperial_Knights'),
-                        getItem('Charts', '/chart_Imperial_Knights')]),
 
                       getItem('Сёстры Битвы', 'g34', null, [
                         getItem('Все книги', '/books_Sisters_of_Battle'), 
                         getItem('Порядок чтения', '/write_Sisters_of_Battle'),
                         getItem('Charts', '/chart_Sisters_of_Battle')]),
 
-         getItem('Кровь Асахейма', 'g23', null, [
-           getItem('Все книги', '/books_blood_of_Asaheim'), 
-           getItem('Порядок чтения', '/write_blood_of_Asaheim'),
-           getItem('Charts', '/chart_blood_of_Asaheim')]),
-
-           getItem('Война за Фенрис', 'g24', null, [
-             getItem('Все книги', '/books_war_Fenris'), 
-             getItem('Порядок чтения', '/write_war_Fenris'),
-             getItem('Charts', '/chart_war_Fenris')]),   
-
-            getItem('Кровавые Ангелы', 'g13', null, [
+            getItem('Мефистон', 'g13', null, [
               getItem('Все книги', '/books_mephiston'), 
               getItem('Порядок чтения', '/write_mephiston'),
               getItem('Charts', '/chart_mephiston')]),
@@ -204,25 +153,10 @@ const items = [
               getItem('Порядок чтения', '/write_dark_imperium'),
               getItem('Charts', '/chart_dark_imperium')]),
 
-              getItem('Завоевания Космодесанта', 'g30', null, [
-                getItem('Все книги', '/books_Space_Marine'), 
-                getItem('Порядок чтения', '/write_Space_Marine'),
-                getItem('Charts', '/chart_Space_Marine')]),
-
-                getItem('Легенды Космодесанта', 'g45', null, [
-                  getItem('Все книги', '/books_Space_Marine_Legends'), 
-                  getItem('Порядок чтения', '/write_Space_Marine_Legends'),
-                  getItem('Charts', '/chart_Space_Marine_Legends')]),
-
           getItem('Отдельные романы', 'g15', null, [
             getItem('Все книги', '/books_ohter'), 
             getItem('Порядок чтения', '/write_ohter'),
             getItem('Charts', '/chart_ohter')]),
-
-            getItem('Warhammer Crime', 'g36', null, [
-            getItem('Все книги', '/books_Crime'), 
-            getItem('Порядок чтения', '/write_Crime'),
-            getItem('Charts', '/chart_Crime')]),
       ]),
       ]),
 

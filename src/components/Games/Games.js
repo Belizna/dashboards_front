@@ -278,6 +278,10 @@ const Games = ({library_name}) => {
       dataIndex: 'time_game',
       width: '10%',
       editable: true,
+      sorter: {
+        compare: (a, b) => a.time_game - b.time_game,
+        multiple: 1,
+      },
     },
     {
       title: 'Действия',
