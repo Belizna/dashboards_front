@@ -22,31 +22,31 @@ const PageChartCredit = () =>
 
     const data3 = [
       {
-        type: 'Выплачено',
+        name: 'Выплачено',
         value: staticData.count_month_paid,
       },
       {
-        type: 'Осталось',
+        name: 'Осталось',
         value: staticData.count_month_remainder,
       }
     ];
     const data1 = [
       {
-        type: 'Переплата',
+        name: 'Переплата',
         value: staticData.overpayment,
       },
       {
-        type: 'Экономия',
+        name: 'Экономия',
         value: staticData.saving,
       }
     ];
     const data2 = [
       {
-        type: 'Выплачено',
+        name: 'Выплачено',
         value: staticData.paid,
       },
       {
-        type: 'Осталось',
+        name: 'Осталось',
         value: staticData.remainder,
       }
     ];

@@ -82,7 +82,7 @@ const PageChartsRepair = () => {
         staticData === null ? 
         <>
         <div className="loader">
-          <Spin indicator={<LoadingOutlined style={{fontSize: 80,}}spin/>}/>
+          <Spin indicator={<LoadingOutlined style={{fontSize: 80}}spin/>}/>
           </div>
         </> : 
         <>

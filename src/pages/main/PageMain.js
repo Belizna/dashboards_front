@@ -102,7 +102,7 @@ const PageMain = ({year}) => {
                    <div className="card">
                       <Text style={{marginTop: -10, marginBottom: 15}}>Выплачено ипотеки: <Text type="success">{staticData.summPayments} р.</Text> </Text>
                       <LineMain data = {staticData.sortedPayments}/> 
-                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Ежемесячные платежи: <Text type="success">{staticData.summ_payments} р.</Text> </Text>
+                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Ежемесячные платежи: <Text type="success">{(staticData.summ_payments).toFixed(2)} р.</Text> </Text>
                       <Text level={5} style={{marginTop: -5, marginBottom: 15}}>Досрочные платежи: <Text type="success">{staticData.summ_early_payment} р.</Text> </Text>
                       </div>
                     </Card>
@@ -112,7 +112,7 @@ const PageMain = ({year}) => {
                       <LineMain style={{height: 100}} data = {staticData.sortedGames}/> 
                       
                       <Text level={5} style={{marginTop: 2}}>Потрачено на игры: <Text type="success">{staticData.sum_games_nowyear} р.</Text> </Text>
-                      <Text level={5} style={{marginTop: 10}}>Затрачено времени: <Text type="success">{staticData.time_games_nowyear} ч.</Text> </Text>
+                      <Text level={5} style={{marginTop: 10}}>Затрачено времени: <Text type="success">{(staticData.time_games_nowyear).toFixed(2)} ч.</Text> </Text>
                       <Text level={5} style={{marginTop: 10}}>Приобретено игр: <Text type="success">{staticData.count_games_price}</Text> </Text>
                       </div>
                     </Card>

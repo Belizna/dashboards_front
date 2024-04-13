@@ -58,10 +58,10 @@ const EditableCell = ({
 const Games = ({library_name}) => {
   const [countSave, setCountSave] = useState(0);
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}games/library/${library_name.library_name}`)
+    axios.get(`${process.env.REACT_APP_API_URL}games/library/${library_name}`)
     .then((res) => setData(res.data.libraryGames))
     // eslint-disable-next-line
-  }, [countSave])
+  }, [countSave,library_name])
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
@@ -339,7 +339,7 @@ const Games = ({library_name}) => {
       _id: Math.random(),
       game_name: 'game_name',
       summ_game: 0,
-      compilation: library_name.library_name,
+      compilation: library_name,
       presence: 'Не Пройдено',
       time_game: 0
     };

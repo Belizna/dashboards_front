@@ -9,7 +9,7 @@ const DemoPie = (static_paid) => {
         appendPadding: 10,
         data,
         angleField: 'value',
-        colorField: 'type',
+        colorField: 'name',
         radius: 0.9,
         label: {
           type: 'inner',

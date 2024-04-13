@@ -163,6 +163,7 @@ const items = [
     getItem('Игры', 'sub3', <DesktopOutlined />, [
       getItem('Steam', '/steam_games'), 
       getItem('Ubisoft Connect', '/ubi_games'),
+      getItem('PlayStation', '/ps_games'),
       getItem('Charts', '/chart_games')]),
 
     getItem('Работа', 'sub4', <WalletOutlined />, [

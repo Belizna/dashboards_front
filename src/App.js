@@ -7,9 +7,8 @@ import PageEarlyPayments from './pages/credit/PageEarlyPaymens/PageEarlyPayments
 import PageChartCredit from './pages/credit/PageChartCredit/PageChartCredit';
 import PageBooks from './pages/books/horus_heresy/books/PageBooks';
 import PageWriteBooks from './pages/books/horus_heresy/write_books/PageWriteBooks';
-import PageGamesLibrary from './pages/games/gamesLibrary/PageGamesLibrary';
-import PageGamesLibraryUbi from './pages/games/gamesLibrary/PageGamesLibrary_Ubi';
-import PageGamesLibraryCharts from './pages/games/gamesLibrary/PageGamesLibraryCharts'
+import PageGamesLibrary from './pages/games/PageGamesLibrary';
+import PageGamesLibraryCharts from './pages/games/PageGamesLibraryCharts';
 import PageRepair from './pages/repair/pageRepair';
 import PageChartsHobby from './pages/hobby/PageChartsHobby';
 import PageSalary from './pages/work/PageSalary';
@@ -197,7 +196,8 @@ const App = () => {
               <Route path='/chart_war_horus' element={<PageChartsBooks name_book='Хорусианские Войны'/>} exact/>
 
               <Route path='/steam_games' element={<PageGamesLibrary library_name='Steam'/>} exact/>
-              <Route path='/ubi_games' element={<PageGamesLibraryUbi library_name='Ubisoft Connect'/>} exact/>
+              <Route path='/ubi_games' element={<PageGamesLibrary library_name='Ubisoft Connect'/>} exact/>
+              <Route path='/ps_games' element={<PageGamesLibrary library_name='PlayStation'/>} exact/>
               <Route path='/chart_games' element={<PageGamesLibraryCharts/>} exact/>
 
               <Route path='/salary' element={<PageSalary/>} exact/>

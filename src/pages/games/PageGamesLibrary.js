@@ -1,11 +1,12 @@
 import React from "react";
 
-import Games from "../../../components/Games/Games";
+import Games from "../../components/Games/Games";
 
 import './pageGamesLibrary.css'
 
-const PageGamesLibrary = (library_name) => {
+const PageGamesLibrary = ({library_name}) => {
 
+    console.log(library_name)
     return (
       <div className="pageGamesLibrary">
             <div className="tableGamesLibrary">

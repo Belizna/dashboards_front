@@ -42,7 +42,7 @@ const PageChartsHobby = () => {
               {
                 staticData && staticData.test.map((obj) => <div className="pieHobby">
                 <DemoPie data={obj}/>
-                    <Title style={{marginTop: -10}} level={5}>Процент покрашенных {obj[0].name}</Title>
+                    <Title style={{marginTop: -10}} level={5}>Процент покрашенных {obj[0].key}</Title>
                 </div>
                 )
               }
