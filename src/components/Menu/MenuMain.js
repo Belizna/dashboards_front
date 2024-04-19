@@ -72,6 +72,11 @@ const items = [
           getItem('Порядок чтения', '/write_inquisition'),
           getItem('Charts', '/chart_inquisition')]),
 
+          getItem('Вольный Торговец', 'g39', null, [
+            getItem('Все книги', '/books_Rogue_Trader'), 
+            getItem('Порядок чтения', '/write_Rogue_Trader'),
+            getItem('Charts', '/chart_Rogue_Trader')]),
+
         getItem('Комиссар Каин', 'g5', null, [
           getItem('Все книги', '/books_comissar'), 
           getItem('Порядок чтения', '/write_comissar'),
@@ -108,6 +113,11 @@ const items = [
                     getItem('Порядок чтения', '/write_Deathwatch'),
                     getItem('Charts', '/chart_Deathwatch')]),
 
+                    getItem('Саламандры', 'g21', null, [
+                      getItem('Все книги', '/books_salamanders'), 
+                      getItem('Порядок чтения', '/write_salamanders'),
+                      getItem('Charts', '/chart_salamanders')]),
+                      
                     getItem('Железные Воины', 'g28', null, [
                       getItem('Все книги', '/books_Iron_Warriors'), 
                       getItem('Порядок чтения', '/write_Iron_Warriors'),

@@ -191,6 +191,14 @@ const App = () => {
               <Route path='/write_soul_drinkers' element={<PageWriteBooks name_book='Испивающие Души'/>} exact/>
               <Route path='/chart_soul_drinkers' element={<PageChartsBooks name_book='Испивающие Души'/>} exact/>
 
+              <Route path='/books_salamanders' element={<PageBooks name_book='Саламандры'/>} exact/>
+              <Route path='/write_salamanders' element={<PageWriteBooks name_book='Саламандры'/>} exact/>
+              <Route path='/chart_salamanders' element={<PageChartsBooks name_book='Саламандры'/>} exact/>
+
+              <Route path='/books_Rogue_Trader' element={<PageBooks name_book='Вольный Торговец'/>} exact/>
+              <Route path='/write_Rogue_Trader' element={<PageWriteBooks name_book='Вольный Торговец'/>} exact/>
+              <Route path='/chart_Rogue_Trader' element={<PageChartsBooks name_book='Вольный Торговец'/>} exact/>
+              
               <Route path='/books_war_horus' element={<PageBooks name_book='Хорусианские Войны'/>} exact/>
               <Route path='/write_war_horus' element={<PageWriteBooks name_book='Хорусианские Войны'/>} exact/>
               <Route path='/chart_war_horus' element={<PageChartsBooks name_book='Хорусианские Войны'/>} exact/>
