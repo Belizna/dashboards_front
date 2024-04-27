@@ -195,6 +195,47 @@ const App = () => {
               <Route path='/write_salamanders' element={<PageWriteBooks name_book='Саламандры'/>} exact/>
               <Route path='/chart_salamanders' element={<PageChartsBooks name_book='Саламандры'/>} exact/>
 
+              <Route path='/books_Space_Marine' element={<PageBooks name_book='Завоевания Космодесанта'/>} exact/>
+              <Route path='/write_Space_Marine' element={<PageWriteBooks name_book='Завоевания Космодесанта'/>} exact/>
+              <Route path='/chart_Space_Marine' element={<PageChartsBooks name_book='Завоевания Космодесанта'/>} exact/>
+
+              <Route path='/books_blood_of_Asaheim' element={<PageBooks name_book='Кровь Асахейма'/>} exact/>
+              <Route path='/write_blood_of_Asaheim' element={<PageWriteBooks name_book='Кровь Асахейма'/>} exact/>
+              <Route path='/chart_blood_of_Asaheim' element={<PageChartsBooks name_book='Кровь Асахейма'/>} exact/>
+
+              <Route path='/books_Enforcer' element={<PageBooks name_book='Арбитр'/>} exact/>
+              <Route path='/write_Enforcer' element={<PageWriteBooks name_book='Арбитр'/>} exact/>
+              <Route path='/chart_Enforcer' element={<PageChartsBooks name_book='Арбитр'/>} exact/>
+
+              <Route path='/books_Armageddon' element={<PageBooks name_book='Армагеддон'/>} exact/>
+              <Route path='/write_Armageddon' element={<PageWriteBooks name_book='Армагеддон'/>} exact/>
+              <Route path='/chart_Armageddon' element={<PageChartsBooks name_book='Армагеддон'/>} exact/>
+
+              <Route path='/books_twice_dead_king' element={<PageBooks name_book='Дважды мёртвый царь'/>} exact/>
+              <Route path='/write_twice_dead_king' element={<PageWriteBooks name_book='Дважды мёртвый царь'/>} exact/>
+              <Route path='/chart_twice_dead_king' element={<PageChartsBooks name_book='Дважды мёртвый царь'/>} exact/>
+
+              <Route path='/books_Crime' element={<PageBooks name_book='Warhammer Crime'/>} exact/>
+              <Route path='/write_Crime' element={<PageWriteBooks name_book='Warhammer Crime'/>} exact/>
+              <Route path='/chart_Crime' element={<PageChartsBooks name_book='Warhammer Crime'/>} exact/>
+
+
+              <Route path='/books_war_Fenris' element={<PageBooks name_book='Война за Фенрис'/>} exact/>
+              <Route path='/write_war_Fenris' element={<PageWriteBooks name_book='Война за Фенрис'/>} exact/>
+              <Route path='/chart_war_Fenris' element={<PageChartsBooks name_book='Война за Фенрис'/>} exact/>
+
+              <Route path='/books_Severina_Raine' element={<PageBooks name_book='Северина Рейн'/>} exact/>
+              <Route path='/write_Severina_Raine' element={<PageWriteBooks name_book='Северина Рейн'/>} exact/>
+              <Route path='/chart_Severina_Raine' element={<PageChartsBooks name_book='Северина Рейн'/>} exact/>
+
+              <Route path='/books_Carcharodons' element={<PageBooks name_book='Кархародоны'/>} exact/>
+              <Route path='/write_Carcharodons' element={<PageWriteBooks name_book='Кархародоны'/>} exact/>
+              <Route path='/chart_Carcharodons' element={<PageChartsBooks name_book='Кархародоны'/>} exact/>
+
+              <Route path='/books_Macharian_Crusade' element={<PageBooks name_book='Крестовый поход Махариуса'/>} exact/>
+              <Route path='/write_Macharian_Crusade' element={<PageWriteBooks name_book='Крестовый поход Махариуса'/>} exact/>
+              <Route path='/chart_Macharian_Crusade' element={<PageChartsBooks name_book='Крестовый поход Махариуса'/>} exact/>
+
               <Route path='/books_Rogue_Trader' element={<PageBooks name_book='Вольный Торговец'/>} exact/>
               <Route path='/write_Rogue_Trader' element={<PageWriteBooks name_book='Вольный Торговец'/>} exact/>
               <Route path='/chart_Rogue_Trader' element={<PageChartsBooks name_book='Вольный Торговец'/>} exact/>
