@@ -16,6 +16,7 @@ import PageBonus from './pages/work/PageBonus';
 import PageChartsWork from './pages/work/PageCartsWork';
 import PageMain from './pages/main/PageMain';
 import PageMinuiatures from './pages/hobby/pageMiniatures';
+import PageCards from './pages/collections/PageCards';
 import {useState } from 'react';
 import axios from 'axios'
 import PageChartsBooks from './pages/books/chartsBooks/PageChartsBooks';
@@ -248,6 +249,10 @@ const App = () => {
               <Route path='/ubi_games' element={<PageGamesLibrary library_name='Ubisoft Connect'/>} exact/>
               <Route path='/ps_games' element={<PageGamesLibrary library_name='PlayStation'/>} exact/>
               <Route path='/chart_games' element={<PageGamesLibraryCharts/>} exact/>
+
+              <Route path='/all_card_fighting' element={<PageCards collection_card='Боевая четверка'/>} exact/>
+              <Route path='/all_card_shadow' element={<PageCards collection_card='Воины тени'/>} exact/>
+              <Route path='/all_card_brothers' element={<PageCards collection_card='Братья по оружию'/>} exact/>
 
               <Route path='/salary' element={<PageSalary/>} exact/>
               <Route path='/bonus' element={<PageBonus/>} exact/>

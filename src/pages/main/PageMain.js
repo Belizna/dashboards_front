@@ -74,20 +74,23 @@ const PageMain = ({year}) => {
                         /> </Title>
                   </div>
                   <div className="tab1_2">
-                    <Card style={{height: 230, marginTop:10, marginRight: 10}}>
-                   <div className="card">
-                      <Text style={{marginTop: -10, marginBottom: 15}}>Покрашено миниатюр: <Text type="success">{staticData.summMiniatures}</Text> </Text>
-                      <LineMain data = {staticData.sortedMiniatures}/> 
-                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Потрачено на миньки: <Text type="success">{staticData.sum_miniatures_nowyear} р.</Text> </Text>
-                      <Text level={5} style={{marginTop: -5, marginBottom: 15}}>Потрачено на краску: <Text type="success">{staticData.sum_color_nowyear} р.</Text> </Text>
+                  <Card style={{height: 385, marginTop:10,marginRight: 10}}>
+                   <div className="card_game">
+                      <Text style={{marginTop: -10, marginBottom: 15}}>Пройдено игр: <Text type="success">{staticData.summGames}</Text> </Text>
+                      <LineMain style={{height: 100}} data = {staticData.sortedGames}/> 
+                      <Text level={5} style={{marginBottom: 15, marginTop: 10}}>Приобретено игр: <Text type="success">{staticData.count_games_price}</Text> </Text>
+                      <LineMain style={{height: 100}} data = {staticData.sortedGamesPrice}/>
+                      <Text level={5} style={{marginTop: 10}}>Потрачено на игры: <Text type="success">{staticData.sum_games_nowyear} р.</Text> </Text>
+                      <Text level={5} style={{marginTop: 10}}>Затрачено времени: <Text type="success">{(staticData.time_games_nowyear).toFixed(2)} ч.</Text> </Text>
                       </div>
                     </Card>
-                    <Card style={{height: 230, marginTop:10}}>
-                   <div className="card">
+                    <Card style={{height: 385, marginTop:10}}>
+                   <div className="card_game">
                       <Text style={{marginTop: -10, marginBottom: 15}}>Прочитано книг: <Text type="success">{staticData.summBooks}</Text> </Text>
                       <LineMain data = {staticData.sortedBooks}/> 
-                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Потрачено на книги: <Text type="success">{staticData.sum_books_nowyear} р.</Text> </Text>
-                      <Text level={5} style={{marginTop: -5,marginBottom: 15}}>Приобретено книг: <Text type="success">{staticData.count_books_price}</Text> </Text>
+                      <Text level={5} style={{marginBottom: 15, marginTop: 10}}>Приобретено книг: <Text type="success">{staticData.count_books_price}</Text> </Text>
+                      <LineMain data = {staticData.sortedBooksPrice}/> 
+                      <Text level={5} style={{marginTop: 10}}>Потрачено на книги: <Text type="success">{staticData.sum_books_nowyear} р.</Text> </Text>
                       </div>
                     </Card>
                     <Card style={{height: 230, marginTop:10, marginRight: 10}}>
@@ -106,14 +109,12 @@ const PageMain = ({year}) => {
                       <Text level={5} style={{marginTop: -5, marginBottom: 15}}>Досрочные платежи: <Text type="success">{staticData.summ_early_payment} р.</Text> </Text>
                       </div>
                     </Card>
-                    <Card style={{height: 260, marginTop:10}}>
-                   <div className="card_game">
-                      <Text style={{marginTop: -10, marginBottom: 15}}>Пройдено игр: <Text type="success">{staticData.summGames}</Text> </Text>
-                      <LineMain style={{height: 100}} data = {staticData.sortedGames}/> 
-                      
-                      <Text level={5} style={{marginTop: 2}}>Потрачено на игры: <Text type="success">{staticData.sum_games_nowyear} р.</Text> </Text>
-                      <Text level={5} style={{marginTop: 10}}>Затрачено времени: <Text type="success">{(staticData.time_games_nowyear).toFixed(2)} ч.</Text> </Text>
-                      <Text level={5} style={{marginTop: 10}}>Приобретено игр: <Text type="success">{staticData.count_games_price}</Text> </Text>
+                    <Card style={{height: 230, marginTop:10}}>
+                   <div className="card">
+                      <Text style={{marginTop: -10, marginBottom: 15}}>Покрашено миниатюр: <Text type="success">{staticData.summMiniatures}</Text> </Text>
+                      <LineMain data = {staticData.sortedMiniatures}/> 
+                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Потрачено на миньки: <Text type="success">{staticData.sum_miniatures_nowyear} р.</Text> </Text>
+                      <Text level={5} style={{marginTop: -5, marginBottom: 15}}>Потрачено на краску: <Text type="success">{staticData.sum_color_nowyear} р.</Text> </Text>
                       </div>
                     </Card>
                   </div>

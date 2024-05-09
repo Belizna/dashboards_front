@@ -14,6 +14,7 @@ function getItem(label, key, icon, children, type) {
     type,
   };
 }
+
 const items = [
   getItem('Главная страница', 'sub6', <AreaChartOutlined />),
 
@@ -217,7 +218,6 @@ const items = [
               getItem('Все книги', '/books_Crime'), 
               getItem('Порядок чтения', '/write_Crime'),
               getItem('Charts', '/chart_Crime')]),
-
       ]),
       ]),
 
@@ -226,6 +226,25 @@ const items = [
       getItem('Ubisoft Connect', '/ubi_games'),
       getItem('PlayStation', '/ps_games'),
       getItem('Charts', '/chart_games')]),
+      
+      getItem('Коллекция', 'sub8', <BookOutlined />, [
+        getItem('Карточки', 'sub8-2', null , [
+          getItem('Черепашки Ниндзя', 'sub8-3', null, [
+
+            getItem('Боевая четверка', 'sub8-3-2', null , [
+            getItem('Все карточки', '/all_card_fighting'), 
+            getItem('Charts', '/chart_card_fighting')]),
+
+            getItem('Воины тени', 'sub8-3-3', null , [
+              getItem('Все карточки', '/all_card_shadow'), 
+              getItem('Charts', '/chart_card_shadow')]),
+
+            getItem('Братья по оружию', 'sub8-3-4', null , [
+                getItem('Все карточки', '/all_card_brothers'), 
+                getItem('Charts', '/chart_card_brothers')]),
+          ])
+          ]),
+        ]),
 
     getItem('Работа', 'sub4', <WalletOutlined />, [
       getItem('Зарплата', '/salary'), 

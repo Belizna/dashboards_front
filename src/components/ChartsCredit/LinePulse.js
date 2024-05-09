@@ -1,5 +1,5 @@
 import React from 'react';
-import { Line } from '@ant-design/plots';
+import { Column } from '@ant-design/plots';
 
 const LineMain = ({data}) => {
     const config = {
@@ -7,35 +7,13 @@ const LineMain = ({data}) => {
         padding: 'auto',
         xField: 'date_pulse',
         yField: 'count_pulse',
-        point: {
-          size: 5,
-          shape: 'diamond',
-          style: {
-            fill: 'white',
-            stroke: '#5B8FF9',
-            lineWidth: 2,
-          },
+        label: {
+          text: (d) => `${(d.count_pulse).toFixed(1)}%`,
+          textBaseline: 'bottom',
         },
-        tooltip: {
-          showMarkers: false,
-        },
-        state: {
-          active: {
-            style: {
-              shadowBlur: 4,
-              stroke: '#000',
-              fill: 'red',
-            },
-          },
-        },
-        interactions: [
-          {
-            type: 'marker-active',
-          },
-        ],
       };
-
-  return <Line style={{height: 100, width: 400, marginBottom: 5}} {...config}/>;
+      
+  return <Column style={{height: 100, width: 450, marginBottom: 5}} {...config}/>;
 };
 
 export default LineMain;
