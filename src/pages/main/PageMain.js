@@ -31,7 +31,6 @@ const PageMain = ({year}) => {
   }
 
   const onSelect = (selectedKeys, info) => {
-    console.log(info.node.title);
     navigator.clipboard.writeText(info.node.title)
     messageApi.open({
       type: 'success',

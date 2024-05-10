@@ -22,6 +22,7 @@ import axios from 'axios'
 import PageChartsBooks from './pages/books/chartsBooks/PageChartsBooks';
 import PageColor from './pages/hobby/pageColor';
 import PageChartsRepair from './pages/repair/PageChartsRepair';
+import PageChartsCards from './pages/collections/PageChartsCards';
 
 const { Sider, Content } = Layout;
 
@@ -253,6 +254,10 @@ const App = () => {
               <Route path='/all_card_fighting' element={<PageCards collection_card='Боевая четверка'/>} exact/>
               <Route path='/all_card_shadow' element={<PageCards collection_card='Воины тени'/>} exact/>
               <Route path='/all_card_brothers' element={<PageCards collection_card='Братья по оружию'/>} exact/>
+
+              <Route path='/chart_card_fighting' element={<PageChartsCards collection_card='Боевая четверка'/>} exact/>
+              <Route path='/chart_card_shadow' element={<PageChartsCards collection_card='Воины тени'/>} exact/>
+              <Route path='/chart_card_brothers' element={<PageChartsCards collection_card='Братья по оружию'/>} exact/>
 
               <Route path='/salary' element={<PageSalary/>} exact/>
               <Route path='/bonus' element={<PageBonus/>} exact/>
