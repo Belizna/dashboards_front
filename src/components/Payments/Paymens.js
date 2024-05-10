@@ -56,6 +56,8 @@ const Payments = () => {
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const [searchText, setSearchText] = useState('');
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(15);
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -230,6 +232,7 @@ const Payments = () => {
       dataIndex: 'status_payment',
       width: '30%',
       editable: true,
+      defaultFilteredValue: ['Не оплачено'],
       filters: [
         {
           text: 'Оплачено',
@@ -306,7 +309,12 @@ const Payments = () => {
         dataSource={data}
         columns={mergedColumns}
         pagination={{
-          onChange: cancel,
+          current: page,
+          pageSize: pageSize,
+          onChange: (page, pageSize) => {
+            setPage(page)
+            setPageSize(pageSize)
+          },
         }}
         style={{marginTop: 35}}
       />

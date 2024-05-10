@@ -76,6 +76,8 @@ const WriteBooks = ({name_book}) => {
   
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(15);
   const [filter, setDataFilter] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
@@ -271,6 +273,7 @@ const WriteBooks = ({name_book}) => {
       dataIndex: 'presence',
       width: '13%',
       editable: true,
+      defaultFilteredValue : ['Не Прочитано'], 
       filters:[
         {
           text: 'Прочитано',
@@ -336,9 +339,10 @@ const WriteBooks = ({name_book}) => {
   });
 
   const handleAdd = async () => {
+    setPage(Math.ceil((data.length + 1)/15))
     const newData = {
       _id: Math.random(),
-      book_name: 'book_name',
+      book_name: '',
       format: 'рассказ',
       presence: 'Не Прочитано'
     };
@@ -358,7 +362,12 @@ const WriteBooks = ({name_book}) => {
         dataSource={data}
         columns={mergedColumns}
         pagination={{
-          onChange: cancel,
+          current: page,
+          pageSize: pageSize,
+          onChange: (page, pageSize) => {
+            setPage(page)
+            setPageSize(pageSize)
+          },
         }}
         style={{marginTop: 35}}
         rowClassName={(record, index) => record.presence === 'Прочитано'  ? 'table-row-light' : 'table-row-dark'}

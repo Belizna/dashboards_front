@@ -30,36 +30,36 @@ const PageChartsBooks = ({name_book}) => {
           <>
         <div className="pageChartGames">
             <div className="liquid">
-                <DemoLiquid percentPay={staticData.procentStaticBooks}/>
+                <DemoLiquid percentPay={staticData.booksProcentStatic}/>
                 <Title style={{marginTop: -10}} level={5}>Процент прочитанного цикла</Title>
             </div>
             <div className="pieGroup">
-                {staticData.data_books_novel && <div className="pie">
-                <DemoPie data={staticData.data_books_novel}/>
+                {staticData.booksDataRomans && <div className="pie">
+                <DemoPie data={staticData.booksDataRomans}/>
                     <Title style={{marginTop: -10}} level={5}>Процент прочитанных романов</Title>
                 </div> }
-                {staticData.data_books_big_story && <div className="pie">
-                <DemoPie data={staticData.data_books_big_story}/>
+                {staticData.booksDataBigStory && <div className="pie">
+                <DemoPie data={staticData.booksDataBigStory}/>
                     <Title style={{marginTop: -30}} level={5}>Процент прочитанных повестей</Title>
                 </div> }
-                {staticData.data_books_story && <div className="pie">
-                <DemoPie data={staticData.data_books_story}/>
+                {staticData.booksDataStory && <div className="pie">
+                <DemoPie data={staticData.booksDataStory}/>
                 <Title style={{marginTop: -30}} level={5}>Процент прочитанных рассказов</Title>
                 </div> }
             </div>
             <div className="lineGames">
-                <DemoLineGames data={staticData.dataDemoLine}/>
+                <DemoLineGames data={staticData.booksDataDemoLine}/>
                 <Title level={5}>Общая сводка</Title> 
             </div>
             <div className="table">
             <Card style={{width: 245}}>
-                <Title style={{marginTop: -10}} level={4}>Потрачено на книги</Title>
-                <Text style={{marginLeft: 65}} strong type="danger">{staticData.books_summ}р.</Text>
+                <Title style={{marginTop: -10}} level={5}>Потрачено на книги</Title>
+                <Text style={{marginLeft: 65}} strong type="danger">{staticData.booksPriceSum}р.</Text>
                 </Card>
                 <Card style={{width: 245}}>
-                <Title style={{marginTop: -10}} level={4}>Приобретено книг</Title>
+                <Title style={{marginTop: -10}} level={5}>Приобретено книг</Title>
                 <Text style={{marginLeft: 71}} strong type="danger">
-                  {staticData.books_there_is_count} / {staticData.books_all_there_is_count}</Text>
+                  {staticData.booksPriceCount} / {staticData.booksCount}</Text>
                 </Card>
             </div>
         </div>

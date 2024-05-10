@@ -52,6 +52,8 @@ const EarlyPayments = () => {
   }, [countSave])
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(15);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
   const handleDelete = async (record) => {
@@ -180,6 +182,7 @@ const EarlyPayments = () => {
   });
 
   const handleAdd = async () => {
+    setPage(Math.ceil((data.length + 1)/15))
     const newData = {
       _id: Math.random(),
       summ_earlyPayment: 10,
@@ -200,7 +203,12 @@ const EarlyPayments = () => {
         dataSource={data}
         columns={mergedColumns}
         pagination={{
-          onChange: cancel,
+          current: page,
+          pageSize: pageSize,
+          onChange: (page, pageSize) => {
+            setPage(page)
+            setPageSize(pageSize)
+          },
         }}
         style={{marginTop: 35}}
         rowClassName={'table-row-dark'}

@@ -63,7 +63,8 @@ const Books = ({name_book}) => {
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
-
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(15);
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
@@ -301,10 +302,11 @@ const Books = ({name_book}) => {
   });
 
   const handleAdd = async () => {
+    setPage(Math.ceil((data.length + 1)/15))
     const newData = {
       _id: Math.random(),
-      book_name: 'book_name',
-      summ_book: 1000,
+      book_name: '',
+      summ_book: 0,
       presence: 'Нет'
     };
     setData([...data, newData])
@@ -323,7 +325,12 @@ const Books = ({name_book}) => {
         dataSource={data}
         columns={mergedColumns}
         pagination={{
-          onChange: cancel,
+          current: page,
+          pageSize: pageSize,
+          onChange: (page, pageSize) => {
+            setPage(page)
+            setPageSize(pageSize)
+          },
         }}
         style={{marginTop: 35}}
         rowClassName={(record, index) => record.presence === 'Есть'  ? 'table-row-light' : 'table-row-dark'}

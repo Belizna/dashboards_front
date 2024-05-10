@@ -67,7 +67,8 @@ const Color = ({filter_json}) => {
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
-
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(15);
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
@@ -314,8 +315,9 @@ const Color = ({filter_json}) => {
   const handleAdd = async () => {
     const newData = {
       _id: Math.random(),
-      name_color: 'name_color',
+      name_color: '',
       summ_color: 0,
+      collection_color: 'Citadel'
     };
     setData([newData,...data])
     add(newData)
@@ -333,7 +335,12 @@ const Color = ({filter_json}) => {
         dataSource={data}
         columns={mergedColumns}
         pagination={{
-          onChange: cancel,
+          current: page,
+          pageSize: pageSize,
+          onChange: (page, pageSize) => {
+            setPage(page)
+            setPageSize(pageSize)
+          },
         }}
         style={{marginTop: 35}}
         rowClassName={'table-row-dark'}

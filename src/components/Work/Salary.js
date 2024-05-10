@@ -325,7 +325,7 @@ catch(errInfo) {
   const handleAdd = async () => {
     const newData = {
       _id: Math.random(),
-      summ_salary: 160000,
+      summ_salary: 0,
       company: 'Иннотех'
     };
     setData([newData, ...data])

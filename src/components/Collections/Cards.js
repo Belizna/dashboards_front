@@ -78,6 +78,8 @@ const Cards = ({collection_card}) => {
 
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(15);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
   const [searchText, setSearchText] = useState('');
@@ -349,6 +351,7 @@ const Cards = ({collection_card}) => {
   });
 
   const handleAdd = async () => {
+    setPage(Math.ceil((data.length + 1)/15))
     const newData = {
       _id: Math.random(),
       number_card: data.length + 1,
@@ -372,7 +375,12 @@ const Cards = ({collection_card}) => {
         dataSource={data}
         columns={mergedColumns}
         pagination={{
-          onChange: cancel,
+          current: page,
+          pageSize: pageSize,
+          onChange: (page, pageSize) => {
+            setPage(page)
+            setPageSize(pageSize)
+          },
         }}
         style={{marginTop: 35}}
         rowClassName={(record, index) => record.status_card === 'Есть'  ? 'table-row-light' : 'table-row-dark'}

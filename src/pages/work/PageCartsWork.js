@@ -34,32 +34,32 @@ const PageChartsWork = () => {
         <div className="pageChartGames">
             <div className="pieGroup">
                 <div className="pie">
-                        <PieWork staticData={staticData.salary_year} />
+                        <PieWork staticData={staticData.salaryPieGroupYear} />
                         <Title style={{marginTop: -10}} level={5}>Процент заработка по годам</Title>
                 </div>
                 <div className="pie">
-                        <PieWork staticData={staticData.salary_company} />
+                        <PieWork staticData={staticData.salaryPieGroupCompany} />
                         <Title style={{marginTop: -10}} level={5}>Процент заработка по компаниям</Title>
                 </div>
                 <div className="pie">
-                        <PieWork staticData={staticData.bonus_year} />
+                        <PieWork staticData={staticData.bonusPieGroupYear} />
                         <Title style={{marginTop: -10}} level={5}>Процент подработок по годам</Title>
                 </div>
             </div>
             <div className="lineWorkGroup">
                 <div className="lineWork">
-                <DemoDualAxes staticData={staticData.bonus_month} conf='bonus'/>
+                <DemoDualAxes staticData={staticData.bonusGroupMonth} conf='bonus'/>
                 <Title style={{marginTop: 10}} level={5}>Подработки по месяцам</Title>
                 </div>
                 <div className="lineWork">
-                <DemoDualAxes staticData={staticData.salary_month} conf='salary'/>
+                <DemoDualAxes staticData={staticData.salaryMonth} conf='salary'/>
                 <Title style={{marginTop: 10}} level={5}>Зарплата по месяцам</Title>
                 </div>
         
             </div>
             <div className="table"><Card>
-                <Title style={{marginTop: -10}} level={4}>Не выплачено</Title>
-                <Text style={{marginLeft: 40}} strong type="danger">{(staticData.summ_bonus).toFixed(2)}р.</Text>
+                <Title style={{marginTop: -10}} level={5}>Не выплачено</Title>
+                <Text strong type="danger">{(staticData.bonusSumm).toFixed(2)}р.</Text>
                 </Card>
             </div>
         </div>

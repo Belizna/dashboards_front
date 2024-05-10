@@ -64,6 +64,8 @@ const Games = ({library_name}) => {
   }, [countSave,library_name])
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(15);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
   const [searchText, setSearchText] = useState('');
@@ -335,9 +337,10 @@ const Games = ({library_name}) => {
   });
 
   const handleAdd = async () => {
+    setPage(Math.ceil((data.length + 1)/15))
     const newData = {
       _id: Math.random(),
-      game_name: 'game_name',
+      game_name: '',
       summ_game: 0,
       compilation: library_name,
       presence: 'Не Пройдено',
@@ -359,7 +362,12 @@ const Games = ({library_name}) => {
         dataSource={data}
         columns={mergedColumns}
         pagination={{
-          onChange: cancel,
+          current: page,
+          pageSize: pageSize,
+          onChange: (page, pageSize) => {
+            setPage(page)
+            setPageSize(pageSize)
+          },
         }}
         style={{marginTop: 35}}
         rowClassName={(record, index) => record.presence === 'Пройдено'  ? 'table-row-light' : 'table-row-dark'}

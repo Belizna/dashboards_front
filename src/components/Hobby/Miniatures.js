@@ -78,7 +78,8 @@ const Miniatures = ({filter_json}) => {
   const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
-
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(15);
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
@@ -358,9 +359,10 @@ const Miniatures = ({filter_json}) => {
   });
 
   const handleAdd = async () => {
+    setPage(Math.ceil((data.length + 1)/15))
     const newData = {
       _id: Math.random(),
-      miniature_name: 'miniature_name',
+      miniature_name: '',
       collection_miniature: 'Black Legion',
       count_miniatures: 1,
       count_miniatures_color: 0
@@ -381,7 +383,12 @@ const Miniatures = ({filter_json}) => {
         dataSource={data}
         columns={mergedColumns}
         pagination={{
-          onChange: cancel,
+          current: page,
+          pageSize: pageSize,
+          onChange: (page, pageSize) => {
+            setPage(page)
+            setPageSize(pageSize)
+          },
         }}
         style={{marginTop: 35, width: 1100}}
         rowClassName={(record, index) => record.procent_miniatures_color === 100 ? 'table-row-light' :
