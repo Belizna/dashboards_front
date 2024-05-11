@@ -189,7 +189,8 @@ const Cards = ({collection_card}) => {
       level_card: record.level_card,
       collection_card: record.collection_card,
       status_card: record.status_card,
-      number_card: record.number_card
+      number_card: record.number_card,
+      summ_card: record.summ_card
     });
     setEditingKey(record._id);
   };
@@ -299,6 +300,16 @@ const Cards = ({collection_card}) => {
       onFilter: (value, record) => record.status_card.startsWith(value)
     },
     {
+      title: 'Цена',
+      dataIndex: 'summ_card',
+      width: '10%',
+      editable: true,
+      sorter: {
+        compare: (a, b) => a.summ_card - b.summ_card,
+        multiple: 1,
+      },
+    },
+    {
       title: 'Действия',
       dataIndex: 'operation',
       render: (_, record) => {
@@ -357,7 +368,8 @@ const Cards = ({collection_card}) => {
       number_card: data.length + 1,
       status_card: 'Нет',
       level_card: 'O',
-      collection_card: collection_card
+      collection_card: collection_card,
+      summ_card : 0
     };
     setData([...data, newData])
     edit(newData)

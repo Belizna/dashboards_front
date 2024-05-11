@@ -108,12 +108,19 @@ const PageMain = ({year}) => {
                       <Text level={5} style={{marginTop: -5, marginBottom: 15}}>Досрочные платежи: <Text type="success">{staticData.summ_early_payment} р.</Text> </Text>
                       </div>
                     </Card>
-                    <Card style={{height: 230, marginTop:10}}>
+                    <Card style={{height: 230, marginTop:10, marginRight: 10}}>
                    <div className="card">
                       <Text style={{marginTop: -10, marginBottom: 15}}>Покрашено миниатюр: <Text type="success">{staticData.summMiniatures}</Text> </Text>
                       <LineMain data = {staticData.sortedMiniatures}/> 
                       <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Потрачено на миньки: <Text type="success">{staticData.sum_miniatures_nowyear} р.</Text> </Text>
                       <Text level={5} style={{marginTop: -5, marginBottom: 15}}>Потрачено на краску: <Text type="success">{staticData.sum_color_nowyear} р.</Text> </Text>
+                      </div>
+                    </Card>
+                    <Card style={{height: 230, marginTop:10}}>
+                   <div className="card">
+                      <Text style={{marginTop: -10, marginBottom: 15}}>Приобретено карточек: <Text type="success">{staticData.count_card_price}</Text> </Text>
+                      <LineMain data = {staticData.sortedCardPrice}/> 
+                      <Text level={5} style={{marginTop: 2,marginBottom: 15}}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyear} р.</Text> </Text>
                       </div>
                     </Card>
                   </div>

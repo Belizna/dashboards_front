@@ -259,6 +259,14 @@ const App = () => {
               <Route path='/chart_card_shadow' element={<PageChartsCards collection_card='Воины тени'/>} exact/>
               <Route path='/chart_card_brothers' element={<PageChartsCards collection_card='Братья по оружию'/>} exact/>
 
+              <Route path='/all_spider_part_1' element={<PageCards collection_card='Герои и Злодеи'/>} exact/>
+              <Route path='/all_spider_part_2' element={<PageCards collection_card='Герои и Злодеи. 2-я часть.'/>} exact/>
+              <Route path='/all_spider_part_3' element={<PageCards collection_card='Герои и Злодеи. 3-я часть.'/>} exact/>
+
+              <Route path='/chart_spider_part_1' element={<PageChartsCards collection_card='Герои и Злодеи'/>} exact/>
+              <Route path='/chart_spider_part_2' element={<PageChartsCards collection_card='Герои и Злодеи. 2-я часть.'/>} exact/>
+              <Route path='/chart_spider_part_3' element={<PageChartsCards collection_card='Герои и Злодеи. 3-я часть.'/>} exact/>
+
               <Route path='/salary' element={<PageSalary/>} exact/>
               <Route path='/bonus' element={<PageBonus/>} exact/>
               <Route path='/chart_work' element={<PageChartsWork/>} exact/>

@@ -242,6 +242,20 @@ const items = [
             getItem('Братья по оружию', 'sub8-3-4', null , [
                 getItem('Все карточки', '/all_card_brothers'), 
                 getItem('Charts', '/chart_card_brothers')]),
+          ]),
+          getItem('Человек-Паук', 'sub8-4', null, [
+
+            getItem('Герои и Злодеи', 'sub8-4-2', null , [
+            getItem('Все карточки', '/all_spider_part_1'), 
+            getItem('Charts', '/chart_spider_part_1')]),
+
+            getItem('Герои и Злодеи. 2-я часть.', 'sub8-4-3', null , [
+              getItem('Все карточки', '/all_spider_part_2'), 
+              getItem('Charts', '/chart_spider_part_2')]),
+
+            getItem('Герои и Злодеи. 3-я часть', 'sub8-4-4', null , [
+                getItem('Все карточки', '/all_spider_part_3'), 
+                getItem('Charts', '/chart_spider_part_3')]),
           ])
           ]),
         ]),
