@@ -256,6 +256,10 @@ const items = [
             getItem('Герои и Злодеи. 3-я часть', 'sub8-4-4', null , [
                 getItem('Все карточки', '/all_spider_part_3'), 
                 getItem('Charts', '/chart_spider_part_3')]),
+
+                getItem('Герои и Злодеи. 4-я часть', 'sub8-4-4', null , [
+                  getItem('Все карточки', '/all_spider_part_4'), 
+                  getItem('Charts', '/chart_spider_part_4')]),
           ])
           ]),
         ]),
