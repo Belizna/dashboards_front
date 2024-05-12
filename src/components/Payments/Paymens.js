@@ -154,13 +154,13 @@ const Payments = () => {
   const isEditing = (record) => record._id === editingKey;
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}credit/payments`)
+    axios.get(`${process.env.REACT_APP_API_URL}/credit/payments`)
     .then((res) => setData(res.data.payments))
   }, [])
 
 
   const handleDelete = async (record) => {
-    const deletePayments = await axios.delete(`${process.env.REACT_APP_API_URL}credit/payments/${record._id}`)
+    const deletePayments = await axios.delete(`${process.env.REACT_APP_API_URL}/credit/payments/${record._id}`)
     console.log(deletePayments)
     const newData = data.filter((item) => item._id !== record._id);
     setData(newData);
@@ -201,7 +201,7 @@ const Payments = () => {
         });
         setData(newData);
         setEditingKey('');
-        const patch = await axios.patch(`${process.env.REACT_APP_API_URL}credit/payments/${data[index]._id}`, row)
+        const patch = await axios.patch(`${process.env.REACT_APP_API_URL}/credit/payments/${data[index]._id}`, row)
         console.log(patch)
       } else {
         newData.push(row);

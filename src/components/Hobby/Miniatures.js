@@ -71,7 +71,7 @@ const Miniatures = ({filter_json}) => {
 
   const [countSave, setCountSave] = useState(0);
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}hobby/miniatures/`)
+    axios.get(`${process.env.REACT_APP_API_URL}/hobby/miniatures/`)
     .then((res) => setData(res.data.miniatures))
   }, [countSave])
   const [form] = Form.useForm();
@@ -176,7 +176,7 @@ const Miniatures = ({filter_json}) => {
   });
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}hobby/miniatures/delete/${record._id}`)
+    const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}/hobby/miniatures/delete/${record._id}`)
     console.log(deleteBooks)
     setData(newData);
   };
@@ -227,8 +227,8 @@ const Miniatures = ({filter_json}) => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}hobby/miniatures/add`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}hobby/miniatures/edit/${_id}`,row) 
+        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}/hobby/miniatures/add`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}/hobby/miniatures/edit/${_id}`,row) 
         setCountSave(countSave+1)
       } else {
         newData.push(row);

@@ -13,7 +13,7 @@ const {Title, Text} = Typography;
 const PageGamesLibraryCharts = () => {
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}games/static`)
+        axios.get(`${process.env.REACT_APP_API_URL}/games/static`)
         .then(res => setStaticData(res.data))
       }, [])
 

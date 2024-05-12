@@ -17,8 +17,8 @@ const PageMain = ({year}) => {
   const [messageApi, contextHolder] = message.useMessage();
 
  const fetchStatic = async (years) => {
-  console.log(`${process.env.REACT_APP_API_URL}main/static/${years}`)
-      await axios.get(`${process.env.REACT_APP_API_URL}main/static/${years}`)
+  console.log(`${process.env.REACT_APP_API_URL}/main/static/${years}`)
+      await axios.get(`${process.env.REACT_APP_API_URL}/main/static/${years}`)
     .then(res => setStaticData(res.data))
   }
   useEffect(() => {
@@ -26,7 +26,7 @@ const PageMain = ({year}) => {
   }, [year])
 
   const handleChange = async (value) => {
-    await axios.get(`${process.env.REACT_APP_API_URL}main/static/${value}`)
+    await axios.get(`${process.env.REACT_APP_API_URL}/main/static/${value}`)
     .then(res => setStaticData(res.data))
   }
 

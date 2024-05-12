@@ -162,13 +162,13 @@ const Salary = () => {
   const isEditing = (record) => record._id === editingKey;
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}weekend/salary`)
+    axios.get(`${process.env.REACT_APP_API_URL}/weekend/salary`)
     .then((res) => setData(res.data.salary))
   }, [countSave])
 
 
   const handleDelete = async (record) => {
-    const deleteSalary = await axios.delete(`${process.env.REACT_APP_API_URL}weekend/salary/delete/${record._id}`)
+    const deleteSalary = await axios.delete(`${process.env.REACT_APP_API_URL}/weekend/salary/delete/${record._id}`)
     console.log(deleteSalary)
     const newData = data.filter((item) => item._id !== record._id);
     setData(newData);
@@ -220,8 +220,8 @@ catch(errInfo) {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}weekend/salary/add`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}weekend/salary/edit/${data[index]._id}`, row)
+        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}/weekend/salary/add`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}/weekend/salary/edit/${data[index]._id}`, row)
         setCountSave(countSave+1)
       } else {
         newData.push(row);

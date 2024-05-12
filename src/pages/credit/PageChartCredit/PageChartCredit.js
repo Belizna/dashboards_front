@@ -16,7 +16,7 @@ const PageChartCredit = () =>
   const [staticData, setStaticData] = useState(0)
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}carts/static`)
+        axios.get(`${process.env.REACT_APP_API_URL}/carts/static`)
         .then(res => setStaticData(res.data))
       }, [])
 

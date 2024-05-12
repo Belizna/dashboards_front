@@ -71,7 +71,7 @@ const Cards = ({collection_card}) => {
   const [countSave, setCountSave] = useState(0);
 
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}collection/card/${collection_card}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/collection/card/${collection_card}`)
     .then((res) => setData(res.data.card))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countSave, collection_card])
@@ -179,7 +179,7 @@ const Cards = ({collection_card}) => {
 
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    await axios.delete(`${process.env.REACT_APP_API_URL}collection/card/delete/${record._id}`)
+    await axios.delete(`${process.env.REACT_APP_API_URL}/collection/card/delete/${record._id}`)
     setData(newData);
   };
 
@@ -223,8 +223,8 @@ const Cards = ({collection_card}) => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}collection/card/add/${collection_card}`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}collection/card/edit/${_id}`,row) 
+        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}/collection/card/add/${collection_card}`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}/collection/card/edit/${_id}`,row) 
         setCountSave(countSave+1)
       } else {
         newData.push(row);

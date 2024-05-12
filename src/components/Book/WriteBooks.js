@@ -69,7 +69,7 @@ const EditableCell = ({
 const WriteBooks = ({name_book}) => {
   const [countSave, setCountSave] = useState(0);
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}books/write_books/${name_book}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/books/write_books/${name_book}`)
     .then((res) => [setData(res.data.write_books), setDataFilter(res.data.filter)])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countSave, name_book])
@@ -177,7 +177,7 @@ const WriteBooks = ({name_book}) => {
   });
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    await axios.delete(`${process.env.REACT_APP_API_URL}books/write_books/delete/${record._id}`)
+    await axios.delete(`${process.env.REACT_APP_API_URL}/books/write_books/delete/${record._id}`)
     setData(newData);
   };
 
@@ -217,8 +217,8 @@ const WriteBooks = ({name_book}) => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}books/write_books/add/${name_book}`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}books/write_books/edit/${_id}`,row) 
+        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}/books/write_books/add/${name_book}`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}/books/write_books/edit/${_id}`,row) 
         setCountSave(countSave+1)
       } else {
         newData.push(row);

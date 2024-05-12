@@ -60,7 +60,7 @@ const Color = ({filter_json}) => {
 
   const [countSave, setCountSave] = useState(0);
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}hobby/colors/`)
+    axios.get(`${process.env.REACT_APP_API_URL}/hobby/colors/`)
     .then((res) => setData(res.data.color))
   }, [countSave])
   const [form] = Form.useForm();
@@ -165,7 +165,7 @@ const Color = ({filter_json}) => {
   });
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}hobby/colors/delete/${record._id}`)
+    const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}/hobby/colors/delete/${record._id}`)
     console.log(deleteBooks)
     setData(newData);
   };
@@ -214,8 +214,8 @@ const Color = ({filter_json}) => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}hobby/colors/add`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}hobby/colors/edit/${_id}`,row) 
+        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}/hobby/colors/add`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}/hobby/colors/edit/${_id}`,row) 
         setCountSave(countSave+1)
       } else {
         newData.push(row);

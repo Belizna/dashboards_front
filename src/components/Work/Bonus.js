@@ -161,13 +161,13 @@ const Bonus = () => {
   const isEditing = (record) => record._id === editingKey;
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}weekend/bonus/`)
+    axios.get(`${process.env.REACT_APP_API_URL}/weekend/bonus/`)
     .then((res) => setData(res.data.bonus))
   }, [countSave])
 
 
   const handleDelete = async (record) => {
-    await axios.delete(`${process.env.REACT_APP_API_URL}weekend/bonus/delete/${record._id}`)
+    await axios.delete(`${process.env.REACT_APP_API_URL}/weekend/bonus/delete/${record._id}`)
     const newData = data.filter((item) => item._id !== record._id);
     setData(newData);
   };
@@ -219,8 +219,8 @@ const Bonus = () => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}weekend/bonus/add`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}weekend/bonus/edit/${data[index]._id}`, row)
+        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}/weekend/bonus/add`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}/weekend/bonus/edit/${data[index]._id}`, row)
         setCountSave(countSave+1)
       } else {
         newData.push(row);

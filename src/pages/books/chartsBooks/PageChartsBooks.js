@@ -13,7 +13,7 @@ const {Title, Text} = Typography;
 const PageChartsBooks = ({name_book}) => {
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}books/static/${name_book}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/books/static/${name_book}`)
         .then(res => setStaticData(res.data))
       }, [name_book])
 

@@ -58,7 +58,7 @@ const EditableCell = ({
 const Games = ({library_name}) => {
   const [countSave, setCountSave] = useState(0);
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}games/library/${library_name}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/games/library/${library_name}`)
     .then((res) => setData(res.data.libraryGames))
     // eslint-disable-next-line
   }, [countSave,library_name])
@@ -165,7 +165,7 @@ const Games = ({library_name}) => {
 
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    const deleteGames = await axios.delete(`${process.env.REACT_APP_API_URL}games/library/delete/${record._id}`)
+    const deleteGames = await axios.delete(`${process.env.REACT_APP_API_URL}/games/library/delete/${record._id}`)
     console.log(deleteGames)
     setData(newData);
   };
@@ -216,8 +216,8 @@ const Games = ({library_name}) => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}games/library/add/`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}games/library/edit/${_id}`,row) 
+        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}/games/library/add/`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}/games/library/edit/${_id}`,row) 
         setCountSave(countSave+1)
       } else {
         newData.push(row);

@@ -15,7 +15,7 @@ const PageChartsRepair = () => {
   const [countSave, setCountSave] = useState(0);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}repair/static`)
+        axios.get(`${process.env.REACT_APP_API_URL}/repair/static`)
         .then(res => setStaticData(res.data))
       }, [countSave])
 
@@ -28,7 +28,7 @@ const PageChartsRepair = () => {
           option : dataOption,
           sum: valueInput
         }
-          await axios.post(`${process.env.REACT_APP_API_URL}repair/outlay/edit_sum`,value)
+          await axios.post(`${process.env.REACT_APP_API_URL}/repair/outlay/edit_sum`,value)
           setCountSave(countSave+1)
       }
 

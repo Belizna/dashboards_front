@@ -12,7 +12,7 @@ const {Title, Text} = Typography;
 const PageChartsCards = ({collection_card}) => {
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}cards/static/${collection_card}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/cards/static/${collection_card}`)
         .then(res => setStaticData(res.data))
       }, [collection_card])
 

@@ -28,7 +28,7 @@ const { Sider, Content } = Layout;
 
 const App = () => {
   const onFinish = (values) => {
-    axios.post(`${process.env.REACT_APP_API_URL}auth/login/`,values)
+    axios.post(`${process.env.REACT_APP_API_URL}/auth/login/`,values)
     .then(res => setAuth(res.data))
 }
   const [auth, setAuth] = useState(null)

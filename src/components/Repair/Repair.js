@@ -72,7 +72,7 @@ const Repair = ({filter_json}) => {
 
   const [countSave, setCountSave] = useState(0);
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}repair/outlay/`)
+    axios.get(`${process.env.REACT_APP_API_URL}/repair/outlay/`)
     .then((res) => [setData(res.data.repair), setDataFilter(res.data.filter)])
   }, [countSave])
   const [form] = Form.useForm();
@@ -177,7 +177,7 @@ const Repair = ({filter_json}) => {
   });
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    await axios.delete(`${process.env.REACT_APP_API_URL}repair/outlay/delete/${record._id}`)
+    await axios.delete(`${process.env.REACT_APP_API_URL}/repair/outlay/delete/${record._id}`)
     setData(newData);
   };
 
@@ -225,10 +225,10 @@ const Repair = ({filter_json}) => {
         });
         setData(newData);
         setEditingKey('');
-        console.log(`${process.env.REACT_APP_API_URL}repair/outlay/add`)
+        console.log(`${process.env.REACT_APP_API_URL}/repair/outlay/add`)
         console.log(row)
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}repair/outlay/add`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}repair/outlay/edit/${_id}`,row) 
+        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}/repair/outlay/add`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}/repair/outlay/edit/${_id}`,row) 
         setCountSave(countSave+1)
       } else {
         newData.push(row);

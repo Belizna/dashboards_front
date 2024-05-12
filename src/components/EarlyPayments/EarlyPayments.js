@@ -47,7 +47,7 @@ const EditableCell = ({
 const EarlyPayments = () => {
   const [countSave, setCountSave] = useState(0);
   useEffect(()  => {
-    axios.get(`${process.env.REACT_APP_API_URL}credit/early_payment/`)
+    axios.get(`${process.env.REACT_APP_API_URL}/credit/early_payment/`)
     .then((res) => setData(res.data.early_payment))
   }, [countSave])
   const [form] = Form.useForm();
@@ -58,7 +58,7 @@ const EarlyPayments = () => {
   const isEditing = (record) => record._id === editingKey;
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    const deleteEarlyPay = await axios.delete(`${process.env.REACT_APP_API_URL}credit/early_payment/${record._id}`)
+    const deleteEarlyPay = await axios.delete(`${process.env.REACT_APP_API_URL}/credit/early_payment/${record._id}`)
     console.log(deleteEarlyPay)
     setData(newData);
   };
@@ -105,8 +105,8 @@ const EarlyPayments = () => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}credit/early_payment/`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}credit/early_payment/${_id}`,row) 
+        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}/credit/early_payment/`,row) 
+        : await axios.patch(`${process.env.REACT_APP_API_URL}/credit/early_payment/${_id}`,row) 
         setCountSave(countSave+1)
       } else {
         newData.push(row);

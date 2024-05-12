@@ -13,7 +13,7 @@ const {Title, Text} = Typography;
 const PageChartsHobby = () => {
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}hobby/static/`)
+        axios.get(`${process.env.REACT_APP_API_URL}/hobby/static/`)
         .then(res => setStaticData(res.data))
       }, [])
 
