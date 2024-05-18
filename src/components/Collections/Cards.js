@@ -258,8 +258,8 @@ const Cards = ({collection_card}) => {
       editable: true,
       filters:[
         {
-          text: 'О',
-          value: 'О'
+          text: 'O',
+          value: 'O'
         },
         {
           text: 'Р',

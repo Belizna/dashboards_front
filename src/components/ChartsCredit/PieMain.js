@@ -9,6 +9,7 @@ const PieMain = ({data}) => {
         data,
         angleField: 'value',
         colorField: 'type',
+        color : ['#204CA3', '#6783BB', '#6396FA', '#8AB1FD', '#A9C5FD'],
         radius: 0.75,
         legend: false,
         label: {
@@ -59,7 +60,7 @@ const PieMain = ({data}) => {
         ],
       };
       const config = cfg;
-      return <Pie style={{width: 625}} {...config}/>
+      return <Pie style={{width: 700}} {...config}/>
 }
 
 export default PieMain
