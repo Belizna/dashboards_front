@@ -106,6 +106,11 @@ const PageChartsCards = ({collection_card}) => {
                       Номера
                     </Button>
                 </Card>
+                <Card style={{width: 245}}>
+                <Title style={{marginTop: -10}} level={5}>Потрачено на коллекцию</Title>
+                <Text style={{marginLeft: 71}} strong type="danger">
+                  {staticData.cardSummCollection}р.</Text>
+                </Card>
               </div>
           </div>
         </>}
