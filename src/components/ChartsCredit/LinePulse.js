@@ -13,7 +13,7 @@ const LineMain = ({data}) => {
         },
       };
       
-  return <Column style={{height: 100, width: 450, marginBottom: 5}} {...config}/>;
+  return <Column style={{height: 110, width: 450, marginBottom: 5}} {...config}/>;
 };
 
 export default LineMain;

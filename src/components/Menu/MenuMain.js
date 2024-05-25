@@ -1,5 +1,6 @@
-import {BankOutlined, BookOutlined,AreaChartOutlined,
-   StarOutlined, DesktopOutlined,WalletOutlined, HomeOutlined} from '@ant-design/icons';
+import {BankOutlined, BookOutlined, AreaChartOutlined,
+        StarOutlined, DesktopOutlined, WalletOutlined, 
+        HomeOutlined, HighlightOutlined} from '@ant-design/icons';
 import { Menu } from 'antd';
 import {useNavigate } from 'react-router-dom'
 
@@ -227,7 +228,7 @@ const items = [
       getItem('PlayStation', '/ps_games'),
       getItem('Charts', '/chart_games')]),
       
-      getItem('Коллекция', 'sub8', <BookOutlined />, [
+      getItem('Коллекция', 'sub8', <StarOutlined />, [
         getItem('Карточки', 'sub8-2', null , [
           getItem('Черепашки Ниндзя', 'sub8-3', null, [
 
@@ -269,7 +270,7 @@ const items = [
       getItem('Переработка', '/bonus'),
       getItem('Charts', '/chart_work')]),
 
-    getItem('Хобби', 'sub5', <StarOutlined />, [
+    getItem('Хобби', 'sub5', <HighlightOutlined />, [
         getItem('Миниатюры', '/hobby/miniatures/'), 
         getItem('Краска', '/hobby/colors'),
         getItem('Charts', '/chart_hobby')]),

@@ -165,8 +165,7 @@ const Color = ({filter_json}) => {
   });
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    const deleteBooks = await axios.delete(`${process.env.REACT_APP_API_URL}/hobby/colors/delete/${record._id}`)
-    console.log(deleteBooks)
+    await axios.delete(`${process.env.REACT_APP_API_URL}/hobby/colors/delete/${record._id}`)
     setData(newData);
   };
 

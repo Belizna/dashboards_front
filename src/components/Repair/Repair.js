@@ -225,8 +225,6 @@ const Repair = ({filter_json}) => {
         });
         setData(newData);
         setEditingKey('');
-        console.log(`${process.env.REACT_APP_API_URL}/repair/outlay/add`)
-        console.log(row)
         typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}/repair/outlay/add`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}/repair/outlay/edit/${_id}`,row) 
         setCountSave(countSave+1)

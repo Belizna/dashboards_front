@@ -58,8 +58,7 @@ const EarlyPayments = () => {
   const isEditing = (record) => record._id === editingKey;
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
-    const deleteEarlyPay = await axios.delete(`${process.env.REACT_APP_API_URL}/credit/early_payment/${record._id}`)
-    console.log(deleteEarlyPay)
+    await axios.delete(`${process.env.REACT_APP_API_URL}/credit/early_payment/${record._id}`)
     setData(newData);
   };
 

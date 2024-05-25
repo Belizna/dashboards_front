@@ -6,7 +6,6 @@ import './pageGamesLibrary.css'
 
 const PageGamesLibrary = ({library_name}) => {
 
-    console.log(library_name)
     return (
       <div className="pageGamesLibrary">
             <div className="tableGamesLibrary">

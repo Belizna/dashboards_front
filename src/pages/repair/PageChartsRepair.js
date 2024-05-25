@@ -21,7 +21,7 @@ const PageChartsRepair = () => {
 
       const [staticData, setStaticData] = useState(null)
       const [valueInput, setValueInput] = useState(0)
-      const [dataOption, setDataOption] = useState("+")  
+      const [dataOption, setDataOption] = useState("-")  
       
       const handleAdd = async () => {
         const value = {
@@ -65,7 +65,7 @@ const PageChartsRepair = () => {
 
       const selectBefore = (
         <Select
-          defaultValue="+"
+          defaultValue="-"
           style={{
             width: 53,
           }}
@@ -91,7 +91,7 @@ const PageChartsRepair = () => {
             <div className="liquid"> </div>
                 <div className="liquid">
                 <Liquid  {...config} />
-                  <Text strong style={{marginBottom: 10, fontSize :19}}>{`Остаток бюджета: ${staticData.rate}₽`}</Text>
+                  <Text strong style={{marginBottom: 10, fontSize :19}}>{`Остаток долга: ${staticData.rate}₽`}</Text>
                 </div>
                 <div className="liquid"> <div className="input_sum">
                   <Text  strong style={{marginBottom: 10}}>Бюджет на ремонт</Text>
