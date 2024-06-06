@@ -18,37 +18,6 @@ const PageChartCredit = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/carts/static`)
       .then(res => setStaticData(res.data))
   }, [])
-  const data3 = [
-    {
-      name: 'Выплачено',
-      value: staticData.count_month_paid,
-    },
-    {
-      name: 'Осталось',
-      value: staticData.count_month_remainder,
-    }
-  ];
-  const data1 = [
-    {
-      name: 'Переплата',
-      value: staticData.overpayment,
-    },
-    {
-      name: 'Экономия',
-      value: staticData.saving,
-    }
-  ];
-  const data2 = [
-    {
-      name: 'Выплачено',
-      value: staticData.paid,
-    },
-    {
-      name: 'Осталось',
-      value: staticData.remainder,
-    }
-  ];
-
   return (
     <>
       {staticData === 0 ? <><div className="loader">
@@ -71,15 +40,15 @@ const PageChartCredit = () => {
             </div>
             <div className="pieGroup">
               <div className="pie">
-                <DemoPie data={data3} />
+                <DemoPie data={staticData.data3} />
                 <Title style={{ marginTop: -10 }} level={5}>Процент выплаты</Title>
               </div>
               <div className="pie">
-                <DemoPie data={data2} />
+                <DemoPie data={staticData.data2} />
                 <Title style={{ marginTop: -30 }} level={5}>Процент суммы выплаты</Title>
               </div>
               <div className="pie">
-                <DemoPie data={data1} />
+                <DemoPie data={staticData.data1} />
                 <Title style={{ marginTop: -30 }} level={5}>Процент экономии</Title>
               </div>
             </div>
