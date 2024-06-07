@@ -1,7 +1,7 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, FloatButton, Input, Popconfirm, Table,Space, Select, Typography, Button} from 'antd';
+import { Form, FloatButton, Input, Popconfirm, Table, Space, Select, Typography, Button } from 'antd';
 import axios from "axios";
 
 const EditableCell = ({
@@ -15,34 +15,38 @@ const EditableCell = ({
   ...restProps
 }) => {
   const inputNode = inputType === 'select_status' ? <Select
-  options={[
-    {
-      value: 'Есть',
-      label: 'Есть',
-    },
-    {
-      value: 'Нет',
-      label: 'Нет',
-    },
-  ]}/> : inputType === 'select_level' ? <Select
-  options={[
-    {
-      value: 'О',
-      label: 'О',
-    },
-    {
-      value: 'Р',
-      label: 'Р',
-    },
-    {
-      value: 'СР',
-      label: 'СР',
-    },
-    {
-      value: 'УР',
-      label: 'УР',
-    },
-  ]}/> : <Input />;
+    options={[
+      {
+        value: 'Есть',
+        label: 'Есть',
+      },
+      {
+        value: 'Нет',
+        label: 'Нет',
+      },
+      {
+        value: 'Замена',
+        label: 'Замена',
+      }
+    ]} /> : inputType === 'select_level' ? <Select
+      options={[
+        {
+          value: 'О',
+          label: 'О',
+        },
+        {
+          value: 'Р',
+          label: 'Р',
+        },
+        {
+          value: 'СР',
+          label: 'СР',
+        },
+        {
+          value: 'УР',
+          label: 'УР',
+        },
+      ]} /> : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -67,12 +71,12 @@ const EditableCell = ({
   );
 };
 
-const Cards = ({collection_card}) => {
+const Cards = ({ collection_card }) => {
   const [countSave, setCountSave] = useState(0);
 
-  useEffect(()  => {
+  useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/collection/card/${collection_card}`)
-    .then((res) => setData(res.data.card))
+      .then((res) => setData(res.data.card))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countSave, collection_card])
 
@@ -196,25 +200,24 @@ const Cards = ({collection_card}) => {
   };
 
   const cancel = (_id) => {
-    try{
-      if(typeof _id === 'number')
-      {
+    try {
+      if (typeof _id === 'number') {
         const newData = data.filter((item) => item._id !== _id);
         setData(newData);
         setEditingKey('');
       }
       else setEditingKey('');
-  }
-  catch(errInfo) {
-    console.log('Cancel error:', errInfo);
-  }
+    }
+    catch (errInfo) {
+      console.log('Cancel error:', errInfo);
+    }
   };
 
   const save = async (_id) => {
     try {
       const row = await form.validateFields();
       const newData = [...data];
-      const index = newData.findIndex((item) => _id === item._id );
+      const index = newData.findIndex((item) => _id === item._id);
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, {
@@ -223,9 +226,9 @@ const Cards = ({collection_card}) => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}/collection/card/add/${collection_card}`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}/collection/card/edit/${_id}`,row) 
-        setCountSave(countSave+1)
+        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}/collection/card/add/${collection_card}`, row)
+          : await axios.patch(`${process.env.REACT_APP_API_URL}/collection/card/edit/${_id}`, row)
+        setCountSave(countSave + 1)
       } else {
         newData.push(row);
         setData(newData);
@@ -247,7 +250,7 @@ const Cards = ({collection_card}) => {
     {
       title: 'Наименование',
       dataIndex: 'name_card',
-      width: '30%',
+      width: '27%',
       editable: true,
       ...getColumnSearchProps('name_card')
     },
@@ -256,7 +259,7 @@ const Cards = ({collection_card}) => {
       dataIndex: 'level_card',
       width: '10%',
       editable: true,
-      filters:[
+      filters: [
         {
           text: 'O',
           value: 'O'
@@ -285,9 +288,9 @@ const Cards = ({collection_card}) => {
     {
       title: 'Наличие',
       dataIndex: 'status_card',
-      width: '10%',
+      width: '13%',
       editable: true,
-      filters:[
+      filters: [
         {
           text: 'Есть',
           value: 'Есть'
@@ -295,6 +298,10 @@ const Cards = ({collection_card}) => {
         {
           text: 'Нет',
           value: 'Нет'
+        },
+        {
+          text: 'Замена',
+          value: 'Замена'
         }
       ],
       onFilter: (value, record) => record.status_card.startsWith(value)
@@ -331,14 +338,14 @@ const Cards = ({collection_card}) => {
           </span>
         ) : (
           <>
-          <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{marginRight: 8}}>
-            Edit
-          </Typography.Link>
-          <Popconfirm title="Уверен в удалении?" onConfirm={() => handleDelete(record)}>
-          <a>Delete</a>
-        </Popconfirm>
-        </>
-        /* eslint-enable */
+            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{ marginRight: 8 }}>
+              Edit
+            </Typography.Link>
+            <Popconfirm title="Уверен в удалении?" onConfirm={() => handleDelete(record)}>
+              <a>Delete</a>
+            </Popconfirm>
+          </>
+          /* eslint-enable */
         );
       },
     },
@@ -351,9 +358,9 @@ const Cards = ({collection_card}) => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'status_card' ? 'select_status' : 
-        col.dataIndex === 'level_card' ? 'select_level' :
-         'text',
+        inputType: col.dataIndex === 'status_card' ? 'select_status' :
+          col.dataIndex === 'level_card' ? 'select_level' :
+            'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -362,55 +369,56 @@ const Cards = ({collection_card}) => {
   });
 
   const handleAdd = async () => {
-    setPage(Math.ceil((data.length + 1)/15))
+    setPage(Math.ceil((data.length + 1) / 15))
     const newData = {
       _id: Math.random(),
       number_card: data.length + 1,
       status_card: 'Нет',
       level_card: 'O',
       collection_card: collection_card,
-      summ_card : 0
+      summ_card: 0
     };
     setData([...data, newData])
     edit(newData)
   };
   return (
     <>
-    <Form form={form} component={false}>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        bordered
-        dataSource={data}
-        columns={mergedColumns}
-        pagination={{
-          current: page,
-          pageSize: pageSize,
-          onChange: (page, pageSize) => {
-            setPage(page)
-            setPageSize(pageSize)
-          },
-        }}
-        style={{marginTop: 35}}
-        rowClassName={(record, index) => record.status_card === 'Есть'  ? 'table-row-light' : 'table-row-dark'}
-      />
-    </Form>
-    <Button
+      <Form form={form} component={false}>
+        <Table
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          bordered
+          dataSource={data}
+          columns={mergedColumns}
+          pagination={{
+            current: page,
+            pageSize: pageSize,
+            onChange: (page, pageSize) => {
+              setPage(page)
+              setPageSize(pageSize)
+            },
+          }}
+          style={{ marginTop: 35 }}
+          rowClassName={(record, index) => record.status_card === 'Есть' ? 'table-row-light' :
+            record.status_card === 'Замена' ? 'table-row-light-to' : 'table-row-dark'}
+        />
+      </Form>
+      <Button
         onClick={handleAdd}
         type="primary"
         style={{
           marginTop: 10,
-          backgroundColor:'#5270A7',
+          backgroundColor: '#5270A7',
         }}
       >
         Добавить карточку
       </Button>
       <FloatButton.BackTop />
     </>
-      
+
   );
 }
 

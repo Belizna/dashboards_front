@@ -88,6 +88,22 @@ const PageChartsCards = ({ collection_card }) => {
                 treeData={staticData.cardPrice}
               />
             </Card>
+            <Card style={{ width: 390, marginRight: 10 }} size='small' bordered={false}>
+              <Statistic
+                title="Карточки под замену"
+                value={staticData.countReplace}
+                valueStyle={{
+                  color: '#cf1322',
+                  fontSize: 20
+                }}
+              />
+              <Tree style={{ width: 360 }}
+                onSelect={onSelect}
+                showLine
+                defaultExpandAll={false}
+                treeData={staticData.cardPriceReplace}
+              />
+            </Card>
             <Card style={{ width: 260, marginRight: 10 }}>
               <Title style={{ marginTop: -10 }} level={5}>Скопировать: </Title>
               <Button
