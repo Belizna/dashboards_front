@@ -23,6 +23,7 @@ import PageChartsBooks from './pages/books/chartsBooks/PageChartsBooks';
 import PageColor from './pages/hobby/pageColor';
 import PageChartsRepair from './pages/repair/PageChartsRepair';
 import PageChartsCards from './pages/collections/PageChartsCards';
+import PageComics from './pages/comics/pageComics';
 
 const { Sider, Content } = Layout;
 
@@ -278,6 +279,9 @@ const App = () => {
               
               <Route path='/repair/outlay/' element={<PageRepair/>} exact/>
               <Route path='/repair/chart/' element={<PageChartsRepair/>} exact/>
+
+              <Route path='/comics_marvel/' element={<PageComics comics_collect={'Marvel Comics'}/>} exact/>
+              <Route path='/comics_dc/' element={<PageComics comics_collect={'DC Comics'}/>} exact/>
               
               <Route
                   path="*"

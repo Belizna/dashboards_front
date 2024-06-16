@@ -10,6 +10,7 @@ const DemoPie = (static_paid) => {
         data,
         angleField: 'value',
         colorField: 'name',
+        color : ['#61D9AA', '#6294F9'],
         radius: 0.9,
         label: {
           type: 'inner',

@@ -11,6 +11,7 @@ const DemoLineGames = (static_paid) => {
     xField: 'key',
     yField: 'value',
     seriesField: 'name',
+    color : ['#61D9AA', '#6294F9','#647697' ],
     columnStyle: {
         radius: [20, 20, 0, 0],
       },

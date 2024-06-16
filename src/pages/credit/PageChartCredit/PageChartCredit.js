@@ -8,7 +8,7 @@ import axios from "axios";
 
 import './pageChartCredit.css'
 
-const { Title} = Typography;
+const { Title } = Typography;
 
 const PageChartCredit = () => {
 

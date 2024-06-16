@@ -14,8 +14,10 @@ const DemoLine = ({data}) => {
         opacity: 0.9,
       },
     },
+    color : ['#61D9AA', '#6294F9'],
     columnStyle: {
       radius: [20, 20, 0, 0],
+      fill: '#61D9AA',
     },
     xAxis: {
       label: {

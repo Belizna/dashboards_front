@@ -45,9 +45,9 @@ const PageChartsCards = ({ collection_card }) => {
             <DemoLiquid percentPay={staticData.procentCard} />
             <Title style={{ marginTop: -10 }} level={5}>Процент собранной коллекции {collection_card}</Title>
           </div>
-          <div className="pieGroupHobby">
+          <div className="pieGroup">
             {
-              staticData && staticData.cardPie.map((obj) => <div className="pieHobby">
+              staticData && staticData.cardPie.map((obj) => <div className="pie">
                 <DemoPie data={obj} />
                 <Title style={{ marginTop: -10 }} level={5}>Процент собранных {obj[0].key} карт</Title>
               </div>
