@@ -370,10 +370,9 @@ const Cards = ({ collection_card }) => {
 
   const handleAdd = async () => {
     setPage(Math.ceil((data.length + 1) / 15))
-    console.log(data[data.length-1])
     const newData = {
       _id: Math.random(),
-      number_card: data[data.length-1].number_card + 1,
+      number_card: data[data.length-1]?.number_card + 1,
       status_card: 'Нет',
       level_card: 'O',
       collection_card: collection_card,

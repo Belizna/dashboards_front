@@ -267,7 +267,28 @@ const items = [
         getItem('Герои и Злодеи. 4-я часть', 'sub8-4-5', null, [
           getItem('Все карточки', '/all_spider_part_4'),
           getItem('Charts', '/chart_spider_part_4')]),
-      ])
+      ]),
+      getItem('Бакуган', 'sub8-5', null, [
+
+        getItem('Отчаянные бойцы', 'sub8-5-2', null, [
+          getItem('Все карточки', '/all_bakugan'),
+          getItem('Charts', '/chart_bakugan')]),
+
+        getItem('Отчаянные бойцы - Новая Вестроя', 'sub8-5-3', null, [
+          getItem('Все карточки', '/all_bakugan_new_Vestroia'),
+          getItem('Charts', '/chart_bakugan_new_Vestroia')]),
+      ]),
+
+      getItem('BEYBLADE', 'sub6-5', null, [
+          getItem('Все карточки', '/all_beyblade'),
+          getItem('Charts', '/chart_beyblade'),
+      ]),
+
+      getItem('Transformers Prime', 'sub7-5', null, [
+        getItem('Все карточки', '/all_transformers'),
+        getItem('Charts', '/chart_transformers'),
+    ])
+
     ]),
   ]),
 
