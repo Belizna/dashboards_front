@@ -271,10 +271,10 @@ const App = () => {
               <Route path='/chart_spider_part_4' element={<PageChartsCards collection_card='Герои и Злодеи. 4-я часть.'/>} exact/>
 
               <Route path='/all_bakugan' element={<PageCards collection_card='Отчаянные бойцы'/>} exact/>
-              <Route path='/all_bakugan_new_Vestroia' element={<PageCards collection_card='Отчаянные бойцы - Новая Вестроя'/>} exact/>
+              <Route path='/all_bakugan_new_Vestroia' element={<PageCards collection_card='Новая Вестроя'/>} exact/>
 
               <Route path='chart_bakugan' element={<PageChartsCards collection_card='Отчаянные бойцы'/>} exact/>
-              <Route path='/chart_bakugan_new_Vestroia' element={<PageChartsCards collection_card='Отчаянные бойцы - Новая Вестроя'/>} exact/>
+              <Route path='/chart_bakugan_new_Vestroia' element={<PageChartsCards collection_card='Новая Вестроя'/>} exact/>
 
               <Route path='/all_beyblade' element={<PageCards collection_card='Beyblade Metal Fusion'/>} exact/>
               <Route path='/chart_beyblade' element={<PageChartsCards collection_card='Beyblade Metal Fusion'/>} exact/>
