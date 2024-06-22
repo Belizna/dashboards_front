@@ -131,7 +131,7 @@ const PageMain = ({ year }) => {
                         <Button style={{ marginLeft: 365, marginTop: -6 }} type="link" onClick={() => showModal(staticData.gamesAssemble, `Общая статистика по играм за ${isModalYear}`, columns[0])}>Подробнее...</Button>
                       </div>
                     </Card>
-                    <Card style={{ height: 506, marginTop: 10, marginRight: 10 }}>
+                    <Card style={{ height: 636, marginTop: 10, marginRight: 10 }}>
                       <div className="card_game">
                         <Text style={{ marginTop: -10, marginBottom: 10 }}>Приобретено карточек Человек Паук: <Text type="success">{staticData.count_card_priceSpider_Man}</Text> </Text>
                         <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearSpider_Man} р.</Text> </Text>
@@ -139,6 +139,9 @@ const PageMain = ({ year }) => {
                         <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Черепашки Ниндзя: <Text type="success">{staticData.count_card_priceTeenage_Mutant_Ninja}</Text> </Text>
                         <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearTeenage_Mutant_Ninja} р.</Text> </Text>
                         <LineMain data={staticData.sortedCardPriceTeenage_Mutant_Ninja} />
+                        <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек других коллекций: <Text type="success">{staticData.count_other_card_price}</Text> </Text>
+                        <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_other_card_nowyear} р.</Text> </Text>
+                        <LineMain data={staticData.cardsOtherCollection} />
                         <Text style={{ marginTop: 15, marginBottom: 15 }}>Приобретено карточек всего: <Text type="success">{staticData.count_card_price}</Text> </Text>
                         <Text level={5} style={{ marginTop: -10, }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyear} р.</Text> </Text>
                         <Button style={{ marginLeft: 365 }} type="link" onClick={() => showModal(staticData.cardsAssemble, `Общая статистика по карточкам за ${isModalYear}`, columns[3])}>Подробнее...</Button>
