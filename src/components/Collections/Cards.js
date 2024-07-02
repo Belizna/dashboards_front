@@ -4,76 +4,10 @@ import Highlighter from 'react-highlight-words';
 import { Form, FloatButton, Input, Popconfirm, Table, Space, Select, Typography, Button } from 'antd';
 import axios from "axios";
 
-const EditableCell = ({
-  editing,
-  dataIndex,
-  title,
-  inputType,
-  record,
-  index,
-  children,
-  ...restProps
-}) => {
-  const inputNode = inputType === 'select_status' ? <Select
-    options={[
-      {
-        value: 'Есть',
-        label: 'Есть',
-      },
-      {
-        value: 'Нет',
-        label: 'Нет',
-      },
-      {
-        value: 'Замена',
-        label: 'Замена',
-      }
-    ]} /> : inputType === 'select_level' ? <Select
-      options={[
-        {
-          value: 'О',
-          label: 'О',
-        },
-        {
-          value: 'Р',
-          label: 'Р',
-        },
-        {
-          value: 'СР',
-          label: 'СР',
-        },
-        {
-          value: 'УР',
-          label: 'УР',
-        },
-      ]} /> : <Input />;
-  return (
-    <td {...restProps}>
-      {editing ? (
-        <Form.Item
-          name={dataIndex}
-          style={{
-            margin: 0,
-          }}
-          rules={[
-            {
-              required: true,
-              message: `Please Input ${title}!`,
-            },
-          ]}
-        >
-          {inputNode}
-        </Form.Item>
-      ) : (
-        children
-      )}
-    </td>
-  );
-};
 
-const Cards = ({ collection_card }) => {
+const Cards = ({ collection_card, option, filter }) => {
   const [countSave, setCountSave] = useState(0);
-
+console.log(option)
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/collection/card/${collection_card}`)
       .then((res) => setData(res.data.card))
@@ -97,6 +31,56 @@ const Cards = ({ collection_card }) => {
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText('');
+  };
+
+  const EditableCell = ({
+    editing,
+    dataIndex,
+    title,
+    inputType,
+    record,
+    index,
+    children,
+    ...restProps
+  }) => {
+    const inputNode = inputType === 'select_status' ? <Select
+      options={[
+        {
+          value: 'Есть',
+          label: 'Есть',
+        },
+        {
+          value: 'Нет',
+          label: 'Нет',
+        },
+        {
+          value: 'Замена',
+          label: 'Замена',
+        }
+      ]} /> : inputType === 'select_level' ? <Select
+        options={option} /> : <Input />;
+    return (
+      <td {...restProps}>
+        {editing ? (
+          <Form.Item
+            name={dataIndex}
+            style={{
+              margin: 0,
+            }}
+            rules={[
+              {
+                required: true,
+                message: `Please Input ${title}!`,
+              },
+            ]}
+          >
+            {inputNode}
+          </Form.Item>
+        ) : (
+          children
+        )}
+      </td>
+    );
   };
 
   const getColumnSearchProps = (dataIndex) => ({
@@ -259,24 +243,7 @@ const Cards = ({ collection_card }) => {
       dataIndex: 'level_card',
       width: '10%',
       editable: true,
-      filters: [
-        {
-          text: 'O',
-          value: 'O'
-        },
-        {
-          text: 'Р',
-          value: 'Р'
-        },
-        {
-          text: 'СР',
-          value: 'СР'
-        },
-        {
-          text: 'УР',
-          value: 'УР'
-        }
-      ],
+      filters: filter,
       onFilter: (value, record) => record.level_card.startsWith(value)
     },
     {
@@ -374,7 +341,7 @@ const Cards = ({ collection_card }) => {
       _id: Math.random(),
       number_card: data[data.length-1]?.number_card + 1,
       status_card: 'Нет',
-      level_card: 'O',
+      level_card: option[0].value,
       collection_card: collection_card,
       summ_card: 0
     };

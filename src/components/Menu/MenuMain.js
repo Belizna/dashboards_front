@@ -279,17 +279,17 @@ const items = [
           getItem('Charts', '/chart_bakugan_new_Vestroia')]),
       ]),
 
-      getItem('BEYBLADE', 'sub6-5', null, [
+      getItem('Бейблейд', 'sub6-5', null, [
           getItem('Все карточки', '/all_beyblade'),
           getItem('Charts', '/chart_beyblade'),
       ]),
 
-      getItem('Transformers Prime', 'sub7-5', null, [
+      getItem('Трансформеры Прайм', 'sub7-5', null, [
         getItem('Все карточки', '/all_transformers'),
         getItem('Charts', '/chart_transformers'),
     ]),
 
-    getItem('Naruto', 'sub9-5', null, [
+    getItem('Наруто', 'sub9-5', null, [
       getItem('Все карточки', '/all_naruto'),
       getItem('Charts', '/chart_naruto'),
   ])
