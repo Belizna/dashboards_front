@@ -279,6 +279,9 @@ const App = () => {
               <Route path='/all_beyblade' element={<PageCards collection_card='Beyblade Metal Fusion'/>} exact/>
               <Route path='/chart_beyblade' element={<PageChartsCards collection_card='Beyblade Metal Fusion'/>} exact/>
 
+              <Route path='/all_naruto' element={<PageCards collection_card='Naruto'/>} exact/>
+              <Route path='/chart_naruto' element={<PageChartsCards collection_card='Naruto'/>} exact/>
+
               <Route path='/all_transformers' element={<PageCards collection_card='Transformers Prime'/>} exact/>
               <Route path='/chart_transformers' element={<PageChartsCards collection_card='Transformers Prime'/>} exact/>
 

@@ -287,7 +287,12 @@ const items = [
       getItem('Transformers Prime', 'sub7-5', null, [
         getItem('Все карточки', '/all_transformers'),
         getItem('Charts', '/chart_transformers'),
-    ])
+    ]),
+
+    getItem('Naruto', 'sub9-5', null, [
+      getItem('Все карточки', '/all_naruto'),
+      getItem('Charts', '/chart_naruto'),
+  ])
 
     ]),
   ]),
