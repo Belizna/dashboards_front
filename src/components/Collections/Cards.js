@@ -7,7 +7,6 @@ import axios from "axios";
 
 const Cards = ({ collection_card, option, filter }) => {
   const [countSave, setCountSave] = useState(0);
-console.log(option)
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/collection/card/${collection_card}`)
       .then((res) => setData(res.data.card))
@@ -16,6 +15,7 @@ console.log(option)
 
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
+  const [filters, setFilters] = useState(option[0].value);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(15);
   const [editingKey, setEditingKey] = useState('');
@@ -142,12 +142,14 @@ console.log(option)
         }}
       />
     ),
-    onFilter: (value, record) =>
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+    onFilter: (value, record) =>{
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())},
+      
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
         setTimeout(() => searchInput.current?.select(), 100);
       }
+      
     },
     render: (text) =>
       searchedColumn === dataIndex ? (
@@ -244,7 +246,10 @@ console.log(option)
       width: '10%',
       editable: true,
       filters: filter,
-      onFilter: (value, record) => record.level_card.startsWith(value)
+      onFilter: (value, record) => {
+        setFilters(value)
+        return record.level_card.startsWith(value);
+      }
     },
     {
       title: 'Коллекция',
@@ -341,7 +346,7 @@ console.log(option)
       _id: Math.random(),
       number_card: data[data.length-1]?.number_card + 1,
       status_card: 'Нет',
-      level_card: option[0].value,
+      level_card: filters,
       collection_card: collection_card,
       summ_card: 0
     };
