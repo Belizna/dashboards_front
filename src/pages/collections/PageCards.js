@@ -68,7 +68,6 @@ const PageCards = ({ collection_card }) => {
         filter = filters[4]
     }
 
-    console.log(option)
     return (
         <div className="pageBooks">
             <div className="tableBooks">

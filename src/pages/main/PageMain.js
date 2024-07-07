@@ -3,7 +3,6 @@ import axios from "axios";
 import { Typography, Card, Spin, Select, Tabs, Tree, message, Button, Table, Modal } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import LineMain from "../../components/ChartsCredit/LinePulse";
-import PieMain from "../../components/ChartsCredit/PieMain";
 
 import "./pageMain.css"
 

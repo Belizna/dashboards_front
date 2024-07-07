@@ -200,7 +200,6 @@ const Comics = ({comics_collect}) => {
         setData(newData);
         setEditingKey('');
         row["collection_comics"] = comics_collect
-        console.log(row)
         typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}/comics/add`,row) 
         : await axios.patch(`${process.env.REACT_APP_API_URL}/comics/edit/${_id}`,row) 
         setCountSave(countSave+1)

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DemoLiquid from "../../components/ChartsCredit/Liquid";
-import DemoPie from "../../components/ChartsCredit/Pie";
-import DemoLineGames from "../../components/ChartsCredit/LineGames";
 import { FieldNumberOutlined, UnorderedListOutlined, LoadingOutlined } from '@ant-design/icons';
-import { Typography, Card, Spin, Tree, Button, Statistic, message } from 'antd';
+import { Typography, Card, Spin, Tree, Button, Statistic, message, Progress } from 'antd';
 
 const { Title } = Typography;
 
@@ -45,22 +43,24 @@ const PageChartsCards = ({ collection_card }) => {
             <DemoLiquid percentPay={staticData.procentCard} />
             <Title style={{ marginTop: -10 }} level={5}>Процент собранной коллекции {collection_card}</Title>
           </div>
-          <div className="pieGroup">
+          <div className="processGroup">
             {
-              staticData && staticData.cardPie.map((obj) => <div className="pie">
-                <DemoPie data={obj} />
-                <Title style={{ marginTop: -10 }} level={5}>Процент собранных {obj[0].key} карт</Title>
+              staticData && staticData.staticCards.map((obj) => <div className="process">
+                <Title style={{ marginTop: -10 }} level={5}>Собранно {obj.key} карт {obj.yesCards}/{obj.countCards}</Title>
+                <Title style={{ marginTop: -10 }} level={5}>Потрачено на {obj.key} карт: {obj.sumCards}р.</Title>
+                <Progress percent={obj.procentYesCards} />
+      
               </div>
               )
             }
           </div>
-          <div className="lineGames">
+          {/* <div className="lineGames">
             {staticData && <>
               <DemoLineGames data={staticData.cardColumn} />
               <Title level={5}>Общая сводка</Title>
             </>
             }
-          </div>
+          </div> */}
           <div className="table">
             <Card style={{ width: 195, marginRight: 10 }} size='small' bordered={false}>
               <Statistic
