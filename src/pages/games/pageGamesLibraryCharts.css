@@ -56,3 +56,16 @@
     width: 900px;
     height: 250px;
 }
+
+.cardListImage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cardImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 230px;
+}

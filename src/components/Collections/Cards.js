@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, FloatButton, Input, Popconfirm, Table, Space, Select, Typography, Button } from 'antd';
+import { Form, FloatButton, Input, Popconfirm, Table, Space, Select, Typography, Button, Modal } from 'antd';
 import axios from "axios";
-
+import PageCardsImage from "../../pages/collections/PageCardsImage";
 
 const Cards = ({ collection_card, option, filter }) => {
   const [countSave, setCountSave] = useState(0);
@@ -16,12 +16,47 @@ const Cards = ({ collection_card, option, filter }) => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [filters, setFilters] = useState(option[0].value);
+  const [filterLevel, setFilterLevel] = useState('')
+  const [filterStatus, setFilterStatus] = useState('')
+  const [card, setCard] = useState([])
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(15);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    var cardList = []
+    console.log(filterStatus)
+    if (filterLevel === '' && filterStatus === '') {
+      cardList = data
+    }
+    else if (filterLevel !== '' && filterStatus === '') {
+      data.map(obj => obj.level_card === filterLevel ? cardList.push(obj) : '')
+    }
+    else if (filterLevel === '' && filterStatus !== '') {
+      data.map(obj => obj.status_card === filterStatus ? cardList.push(obj) : '')
+    }
+    else {
+      data.map(obj => obj.status_card === filterStatus && obj.level_card === filterLevel ? cardList.push(obj) : '')
+    }
+    setCard(cardList)
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleResetFilter = () => {
+    setFilterLevel('')
+    setFilterStatus('')
+  }
+
   const searchInput = useRef(null);
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -142,14 +177,13 @@ const Cards = ({ collection_card, option, filter }) => {
         }}
       />
     ),
-    onFilter: (value, record) =>{
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())},
-      
+    onFilter: (value, record) => {
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
+    },
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
         setTimeout(() => searchInput.current?.select(), 100);
       }
-      
     },
     render: (text) =>
       searchedColumn === dataIndex ? (
@@ -248,6 +282,7 @@ const Cards = ({ collection_card, option, filter }) => {
       filters: filter,
       onFilter: (value, record) => {
         setFilters(value)
+        setFilterLevel(value)
         return record.level_card.startsWith(value);
       }
     },
@@ -276,7 +311,10 @@ const Cards = ({ collection_card, option, filter }) => {
           value: 'Замена'
         }
       ],
-      onFilter: (value, record) => record.status_card.startsWith(value)
+      onFilter: (value, record) => {
+        setFilterStatus(value)
+        return record.status_card.startsWith(value);
+      }
     },
     {
       title: 'Цена',
@@ -344,7 +382,7 @@ const Cards = ({ collection_card, option, filter }) => {
     setPage(Math.ceil((data.length + 1) / 15))
     const newData = {
       _id: Math.random(),
-      number_card: data[data.length-1]?.number_card + 1,
+      number_card: data[data.length - 1]?.number_card + 1,
       status_card: 'Нет',
       level_card: filters,
       collection_card: collection_card,
@@ -388,6 +426,24 @@ const Cards = ({ collection_card, option, filter }) => {
       >
         Добавить карточку
       </Button>
+      <Button onClick={showModal} type="primary"
+        style={{
+          marginLeft: 10,
+          marginTop: 10,
+          backgroundColor: '#5270A7',
+        }}>Посмотреть коллекцию</Button>
+
+      <Button onClick={handleResetFilter} type="primary"
+        style={{
+          marginLeft: 10,
+          marginTop: 10,
+          backgroundColor: '#5270A7',
+        }}>Сбросить фильтр</Button>
+
+      <Modal zIndex={100} centered={true} width={1300} title={collection_card} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <PageCardsImage collection_card={collection_card} card={card} />
+      </Modal>
+
       <FloatButton.BackTop />
     </>
 

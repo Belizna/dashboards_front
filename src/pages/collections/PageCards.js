@@ -7,10 +7,10 @@ const PageCards = ({ collection_card }) => {
     var filter = null
 
     const options = [
-        [{ value: 'О', label: 'О' }, { value: 'Р', label: 'Р' }, { value: 'СР', label: 'СР' }, { value: 'УР', label: 'УР' }],
-        [{ value: 'О', label: 'О' }, { value: 'СК', label: 'СК' }, { value: 'УК', label: 'УК' }, { value: 'УСК', label: 'УСК' }],
+        [{ value: 'O', label: 'O' }, { value: 'Р', label: 'Р' }, { value: 'СР', label: 'СР' }, { value: 'УР', label: 'УР' }],
+        [{ value: 'O', label: 'O' }, { value: 'СК', label: 'СК' }, { value: 'УК', label: 'УК' }, { value: 'УСК', label: 'УСК' }],
         [{ value: 'C', label: 'C' }, { value: 'R', label: 'R' }, { value: 'VR', label: 'VR' }, { value: 'UR', label: 'UR' }],
-        [{ value: 'О', label: 'О' }, { value: 'ГК', label: 'ГК' }],
+        [{ value: 'O', label: 'O' }, { value: 'ГК', label: 'ГК' }],
         [{ value: 'R', label: 'R' }, { value: 'SR', label: 'SR' },
         { value: 'SSR', label: 'SSR' }, { value: 'TR', label: 'TR' },
         { value: 'HR', label: 'HR' }, { value: 'ZR', label: 'ZR' },
@@ -25,10 +25,10 @@ const PageCards = ({ collection_card }) => {
     ]
 
     const filters = [
-        [{ value: 'О', text: 'О' }, { value: 'Р', text: 'Р' }, { value: 'СР', text: 'СР' }, { value: 'УР', text: 'УР' }],
-        [{ value: 'О', text: 'О' }, { value: 'СК', text: 'СК' }, { value: 'УК', text: 'УК' }, { value: 'УСК', text: 'УСК' }],
+        [{ value: 'O', text: 'O' }, { value: 'Р', text: 'Р' }, { value: 'СР', text: 'СР' }, { value: 'УР', text: 'УР' }],
+        [{ value: 'O', text: 'O' }, { value: 'СК', text: 'СК' }, { value: 'УК', text: 'УК' }, { value: 'УСК', text: 'УСК' }],
         [{ value: 'C', text: 'C' }, { value: 'R', text: 'R' }, { value: 'VR', text: 'VR' }, { value: 'UR', text: 'UR' }],
-        [{ value: 'О', text: 'О' }, { value: 'ГК', text: 'ГК' }],
+        [{ value: 'O', text: 'O' }, { value: 'ГК', text: 'ГК' }],
         [{ value: 'R', text: 'R' }, { value: 'SR', text: 'SR' },
         { value: 'SSR', text: 'SSR' }, { value: 'TR', text: 'TR' },
         { value: 'HR', text: 'HR' }, { value: 'ZR', text: 'ZR' },
