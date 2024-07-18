@@ -24,6 +24,7 @@ import PageColor from './pages/hobby/pageColor';
 import PageChartsRepair from './pages/repair/PageChartsRepair';
 import PageChartsCards from './pages/collections/PageChartsCards';
 import PageComics from './pages/comics/pageComics';
+import PageCardsGroupCharts from './pages/collections/PageCardsGroupCharts';
 
 const { Sider, Content } = Layout;
 
@@ -281,6 +282,8 @@ const App = () => {
 
               <Route path='/all_naruto' element={<PageCards collection_card='Naruto'/>} exact/>
               <Route path='/chart_naruto' element={<PageChartsCards collection_card='Naruto'/>} exact/>
+
+              <Route path='/charts_group_cards' element={<PageCardsGroupCharts/>} exact/>
 
               <Route path='/all_transformers' element={<PageCards collection_card='Transformers Prime'/>} exact/>
               <Route path='/chart_transformers' element={<PageChartsCards collection_card='Transformers Prime'/>} exact/>

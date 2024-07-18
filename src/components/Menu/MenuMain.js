@@ -280,19 +280,20 @@ const items = [
       ]),
 
       getItem('Бейблейд', 'sub6-5', null, [
-          getItem('Все карточки', '/all_beyblade'),
-          getItem('Charts', '/chart_beyblade'),
+        getItem('Все карточки', '/all_beyblade'),
+        getItem('Charts', '/chart_beyblade'),
       ]),
 
       getItem('Трансформеры Прайм', 'sub7-5', null, [
         getItem('Все карточки', '/all_transformers'),
         getItem('Charts', '/chart_transformers'),
-    ]),
+      ]),
 
-    getItem('Наруто', 'sub9-5', null, [
-      getItem('Все карточки', '/all_naruto'),
-      getItem('Charts', '/chart_naruto'),
-  ])
+      getItem('Наруто', 'sub9-5', null, [
+        getItem('Все карточки', '/all_naruto'),
+        getItem('Charts', '/chart_naruto'),
+      ]),
+      getItem('Charts', '/charts_group_cards'),
 
     ]),
   ]),

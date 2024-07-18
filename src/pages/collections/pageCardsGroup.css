@@ -1,0 +1,38 @@
+.blockCardCollection {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    margin: 10px;
+    width: 800px;
+    border-radius: 15px 15px 15px 15px;
+    box-shadow: -1px 1px 5px -1px #333; 
+    background-color: rgb(248, 255, 254);
+}
+
+.linkCard span{
+    border-radius: 5px 5px 5px 5px;
+    visibility: hidden;
+    position:fixed;
+    top: 200px;
+    background: #fff;
+    box-shadow: -2px 2px 10px -1px #333; 
+    border-radius: 5px;	
+}
+
+.cardName {
+    display: flex;
+}
+
+.mapBlockCollection {
+    display: ruby;
+}
+ 
+.linkCards:hover span{
+visibility: visible;
+}
+
+.cardProcent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}

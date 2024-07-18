@@ -28,8 +28,9 @@ const Cards = ({ collection_card, option, filter }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
+
     var cardList = []
-    console.log(filterStatus)
+
     if (filterLevel === '' && filterStatus === '') {
       cardList = data
     }
@@ -177,9 +178,8 @@ const Cards = ({ collection_card, option, filter }) => {
         }}
       />
     ),
-    onFilter: (value, record) => {
-      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase())
-    },
+    onFilter: (value, record) =>
+      record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
     onFilterDropdownOpenChange: (visible) => {
       if (visible) {
         setTimeout(() => searchInput.current?.select(), 100);
@@ -440,7 +440,7 @@ const Cards = ({ collection_card, option, filter }) => {
           backgroundColor: '#5270A7',
         }}>Сбросить фильтр</Button>
 
-      <Modal zIndex={100} centered={true} width={1300} title={collection_card} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal zIndex={100} centered={true} width={1300} title={`${collection_card}: ${card.length} шт.`} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <PageCardsImage collection_card={collection_card} card={card} />
       </Modal>
 
