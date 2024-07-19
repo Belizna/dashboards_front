@@ -26,10 +26,6 @@
 .mapBlockCollection {
     display: ruby;
 }
- 
-.linkCards:hover span{
-visibility: visible;
-}
 
 .cardProcent {
     display: flex;

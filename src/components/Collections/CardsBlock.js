@@ -8,24 +8,24 @@ const CardsBlock = ({ staticData }) => {
         <div className="blockCardCollection">
             <div className="cardName">
                 <Image
-                    width={90} height={107}
+                    width={80} height={97}
                     src={`https://www.laststicker.ru/i/album/${staticData.keyCards}.jpg`}
                 />
-                <Title style={{ marginLeft: 25 }} level={3}>{staticData.nameCollection}</Title>
+                <Title style={{ marginLeft: 25 }} level={4}>{staticData.nameCollection}</Title>
             </div>
             <div className="cardProcent">
                 <Text type="secondary">Собрано.. {staticData.procent}%</Text>
                 <Progress size={[350, 10]} percent={staticData.procent} showInfo={false} />
             </div>
             <div className="cardNumber">
-                <Text style={{ fontSize: 16 }} strong>Осталось ({staticData.countNotCard}): </Text>
+                <Text style={{ fontSize: 15 }} strong>Осталось ({staticData.countNotCard}): </Text>
                 {
                     staticData.items.map(obj =>
                         <Popover placement="bottomLeft" content={<Image
                             width={218} height={300}
                             src={`https://www.laststicker.ru/i/cards/${staticData.keyCards}/${obj}.jpg`}
                         />}>
-                            <Link style={{ fontSize: 16 }} target="_blank">
+                            <Link style={{ fontSize: 15}} target="_blank">
                                 , {obj}
                             </Link >
                         </Popover>)

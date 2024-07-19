@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Typography, Dropdown, Space } from 'antd';
+import { Image, Typography } from 'antd';
 
 const PageCardsImage = ({ collection_card, card }) => {
 
@@ -20,30 +20,10 @@ const PageCardsImage = ({ collection_card, card }) => {
 
   var cards = ''
 
-  const items = [
-    {
-      key: '1',
-      label: (
-        <Image
-              width={218} height={300}
-              src={`https://www.laststicker.ru/i/cards/123/1.jpg`}
-          />
-      ),
-    },
-  ];
-
   filters.map(obj => obj.cards === collection_card ? cards = obj.key : '')
+
   return (
     <>
-      <Dropdown
-        menu={{
-          items,
-        }}
-      >
-          <Space>
-            Hover me
-          </Space>
-      </Dropdown>
       <div className="cardListImage">
         {
           card && card.map((obj) => <div className="cardImage">
