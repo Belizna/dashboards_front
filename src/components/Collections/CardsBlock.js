@@ -15,7 +15,7 @@ const CardsBlock = ({ staticData }) => {
             </div>
             <div className="cardProcent">
                 <Text type="secondary">Собрано.. {staticData.procent}%</Text>
-                <Progress size={[350, 10]} percent={staticData.procent} showInfo={false} />
+                <Progress size={[350, 8]} percent={staticData.procent} showInfo={false} />
             </div>
             <div className="cardNumber">
                 <Text style={{ fontSize: 15 }} strong>Осталось ({staticData.countNotCard}): </Text>

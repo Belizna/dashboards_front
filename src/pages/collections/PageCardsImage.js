@@ -24,18 +24,29 @@ const PageCardsImage = ({ collection_card, card }) => {
 
   return (
     <>
+    
       <div className="cardListImage">
         {
-          card && card.map((obj) => <div className="cardImage">
+          collection_card === 'Naruto' ? 
+          
+          card.map((obj) => <div className="cardImage">
             <Title style={{ marginBottom: -2 }} level={2}>{obj.number_card}</Title>
             <Image
               width={218} height={300}
-              src={`https://www.laststicker.ru/i/cards/${cards}/${obj.number_card}.jpg`}
+              src={`https://capsulecorpgear.com/wp-content/uploads/${obj.hashImage_card}`}
             />
             <Text strong>{obj.name_card}</Text>
           </div>
           )
-
+          :
+          card.map((obj) => <div className="cardImage">
+          <Title style={{ marginBottom: -2 }} level={2}>{obj.number_card}</Title>
+          <Image
+            width={218} height={300}
+            src={`https://www.laststicker.ru/i/cards/${cards}/${obj.number_card}.jpg`}
+          />
+          <Text strong>{obj.name_card}</Text>
+        </div>)
         }
       </div>
     </>

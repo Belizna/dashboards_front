@@ -13,6 +13,7 @@ const Cards = ({ collection_card, option, filter }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countSave, collection_card])
 
+
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [filters, setFilters] = useState(option[0].value);
@@ -26,7 +27,7 @@ const Cards = ({ collection_card, option, filter }) => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  
   const showModal = () => {
 
     var cardList = []
