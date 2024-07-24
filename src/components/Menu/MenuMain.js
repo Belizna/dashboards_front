@@ -293,6 +293,18 @@ const items = [
         getItem('Все карточки', '/all_naruto'),
         getItem('Charts', '/chart_naruto'),
       ]),
+
+      getItem('Супергонки', 'sub10-5', null, [
+
+        getItem('Супергонки. 1 серия.', 'sub10-5-2', null, [
+          getItem('Все карточки', '/all_racing_part_1'),
+          getItem('Charts', '/chart_racing_part_1')]),
+
+        getItem('Супергонки. 2 серия.', 'sub10-5-3', null, [
+          getItem('Все карточки', '/all_racing_part_2'),
+          getItem('Charts', '/chart_racing_part_2')]),
+      ]),
+      
       getItem('Charts', '/charts_group_cards'),
 
     ]),

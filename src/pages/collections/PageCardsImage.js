@@ -16,6 +16,8 @@ const PageCardsImage = ({ collection_card, card }) => {
     { cards: 'Новая Вестроя', key: '594' },
     { cards: 'Beyblade Metal Fusion', key: '934' },
     { cards: 'Transformers Prime', key: '991' },
+    { cards: 'Супергонки. 1 серия.', key: '446' },
+    { cards: 'Супергонки. 2 серия.', key: '983' },
   ]
 
   var cards = ''

@@ -271,6 +271,12 @@ const App = () => {
               <Route path='/chart_spider_part_3' element={<PageChartsCards collection_card='Герои и Злодеи. 3-я часть.'/>} exact/>
               <Route path='/chart_spider_part_4' element={<PageChartsCards collection_card='Герои и Злодеи. 4-я часть.'/>} exact/>
 
+              <Route path='/all_racing_part_1' element={<PageCards collection_card='Супергонки. 1 серия.'/>} exact/>
+              <Route path='/all_racing_part_2' element={<PageCards collection_card='Супергонки. 2 серия.'/>} exact/>
+
+              <Route path='/chart_racing_part_1' element={<PageChartsCards collection_card='Супергонки. 1 серия.'/>} exact/>
+              <Route path='/chart_racing_part_2' element={<PageChartsCards collection_card='Супергонки. 2 серия.'/>} exact/>
+
               <Route path='/all_bakugan' element={<PageCards collection_card='Отчаянные бойцы'/>} exact/>
               <Route path='/all_bakugan_new_Vestroia' element={<PageCards collection_card='Новая Вестроя'/>} exact/>
 
