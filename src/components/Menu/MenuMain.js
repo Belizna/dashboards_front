@@ -197,6 +197,16 @@ const items = [
         getItem('Порядок чтения', '/write_Vaults_of_Terra'),
         getItem('Charts', '/chart_Vaults_of_Terra')]),
 
+      getItem('Кадия', 'g42', null, [
+        getItem('Все книги', '/books_Cadia'),
+        getItem('Порядок чтения', '/write_Cadia'),
+        getItem('Charts', '/chart_Cadia')]),
+
+      getItem('Криг', 'g43', null, [
+        getItem('Все книги', '/books_Krieg'),
+        getItem('Порядок чтения', '/write_Krieg'),
+        getItem('Charts', '/chart_Krieg')]),
+
       getItem('Темный Империум', 'g35', null, [
         getItem('Все книги', '/books_dark_imperium'),
         getItem('Порядок чтения', '/write_dark_imperium'),
@@ -211,6 +221,21 @@ const items = [
         getItem('Все книги', '/books_Space_Marine'),
         getItem('Порядок чтения', '/write_Space_Marine'),
         getItem('Charts', '/chart_Space_Marine')]),
+
+      getItem('Тёмный клубок', 'g41', null, [
+        getItem('Все книги', '/books_Dark_Coil'),
+        getItem('Порядок чтения', '/write_Dark_Coil'),
+        getItem('Charts', '/chart_Dark_Coil')]),
+
+      getItem('Уфтхак Чёрный Гребень', 'g40', null, [
+        getItem('Все книги', '/books_Ufthak'),
+        getItem('Порядок чтения', '/write_Ufthak'),
+        getItem('Charts', '/chart_Ufthak')]),
+
+      getItem('Ассасинорум', 'g44', null, [
+        getItem('Все книги', '/books_Assassinorum'),
+        getItem('Порядок чтения', '/write_Assassinorum'),
+        getItem('Charts', '/chart_Assassinorum')]),
 
       getItem('Отдельные романы', 'g38', null, [
         getItem('Все книги', '/books_ohter'),
@@ -304,7 +329,7 @@ const items = [
           getItem('Все карточки', '/all_racing_part_2'),
           getItem('Charts', '/chart_racing_part_2')]),
       ]),
-      
+
       getItem('Charts', '/charts_group_cards'),
 
     ]),

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DemoLiquid from "../../components/ChartsCredit/Liquid";
 import { FieldNumberOutlined, UnorderedListOutlined, LoadingOutlined } from '@ant-design/icons';
-import { Typography, Card, Spin, Tree, Button, Statistic, message, Progress, Flex } from 'antd';
+import { Typography, Card, Spin, Tree, Button, Statistic, message, Progress} from 'antd';
 
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 
 const PageChartsCards = ({ collection_card }) => {
 

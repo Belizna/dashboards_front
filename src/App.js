@@ -207,6 +207,26 @@ const App = () => {
               <Route path='/write_blood_of_Asaheim' element={<PageWriteBooks name_book='Кровь Асахейма'/>} exact/>
               <Route path='/chart_blood_of_Asaheim' element={<PageChartsBooks name_book='Кровь Асахейма'/>} exact/>
 
+              <Route path='/books_Dark_Coil' element={<PageBooks name_book='Тёмный клубок'/>} exact/>
+              <Route path='/write_Dark_Coil' element={<PageWriteBooks name_book='Тёмный клубок'/>} exact/>
+              <Route path='/chart_Dark_Coil' element={<PageChartsBooks name_book='Тёмный клубок'/>} exact/>
+
+              <Route path='/books_Ufthak' element={<PageBooks name_book='Уфтхак Чёрный Гребень'/>} exact/>
+              <Route path='/write_Ufthak' element={<PageWriteBooks name_book='Уфтхак Чёрный Гребень'/>} exact/>
+              <Route path='/chart_Ufthak' element={<PageChartsBooks name_book='Уфтхак Чёрный Гребень'/>} exact/>
+
+              <Route path='/books_Assassinorum' element={<PageBooks name_book='Ассасинорум'/>} exact/>
+              <Route path='/write_Assassinorum' element={<PageWriteBooks name_book='Ассасинорум'/>} exact/>
+              <Route path='/chart_Assassinorum' element={<PageChartsBooks name_book='Ассасинорум'/>} exact/>
+
+              <Route path='/books_Cadia' element={<PageBooks name_book='Кадия'/>} exact/>
+              <Route path='/write_Cadia' element={<PageWriteBooks name_book='Кадия'/>} exact/>
+              <Route path='/chart_Cadia' element={<PageChartsBooks name_book='Кадия'/>} exact/>
+
+              <Route path='/books_Krieg' element={<PageBooks name_book='Krieg'/>} exact/>
+              <Route path='/write_Krieg' element={<PageWriteBooks name_book='Krieg'/>} exact/>
+              <Route path='/chart_Krieg' element={<PageChartsBooks name_book='Krieg'/>} exact/>
+
               <Route path='/books_Enforcer' element={<PageBooks name_book='Арбитр'/>} exact/>
               <Route path='/write_Enforcer' element={<PageWriteBooks name_book='Арбитр'/>} exact/>
               <Route path='/chart_Enforcer' element={<PageChartsBooks name_book='Арбитр'/>} exact/>
