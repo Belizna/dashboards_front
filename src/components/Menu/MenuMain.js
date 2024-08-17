@@ -65,7 +65,6 @@ const items = [
         getItem('Порядок чтения', '/write_fabius'),
         getItem('Charts', '/chart_fabius')]),
 
-
       getItem('Пришествие Зверя', 'g9', null, [
         getItem('Все книги', '/books_coming'),
         getItem('Порядок чтения', '/write_coming'),
@@ -90,7 +89,6 @@ const items = [
         getItem('Все книги', '/books_Carcharodons'),
         getItem('Порядок чтения', '/write_Carcharodons'),
         getItem('Charts', '/chart_Carcharodons')]),
-
 
       getItem('Армагеддон', 'g14', null, [
         getItem('Все книги', '/books_Armageddon'),
@@ -247,6 +245,7 @@ const items = [
         getItem('Порядок чтения', '/write_Crime'),
         getItem('Charts', '/chart_Crime')]),
     ]),
+    getItem('Charts', '/charts_group_books'),
   ]),
 
   getItem('Комиксы', 'sub9', <DingdingOutlined />, [
@@ -262,7 +261,6 @@ const items = [
   getItem('Коллекция', 'sub8', <StarOutlined />, [
     getItem('Карточки', 'sub8-2', null, [
       getItem('Черепашки Ниндзя', 'sub8-3', null, [
-
         getItem('Боевая четверка', 'sub8-3-2', null, [
           getItem('Все карточки', '/all_card_fighting'),
           getItem('Charts', '/chart_card_fighting')]),
@@ -276,7 +274,6 @@ const items = [
           getItem('Charts', '/chart_card_brothers')]),
       ]),
       getItem('Человек-Паук', 'sub8-4', null, [
-
         getItem('Герои и Злодеи', 'sub8-4-2', null, [
           getItem('Все карточки', '/all_spider_part_1'),
           getItem('Charts', '/chart_spider_part_1')]),
