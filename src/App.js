@@ -224,9 +224,9 @@ const App = () => {
                 <Route path='/write_Cadia' element={<PageWriteBooks name_book='Кадия' />} exact />
                 <Route path='/chart_Cadia' element={<PageChartsBooks name_book='Кадия' />} exact />
 
-                <Route path='/books_Krieg' element={<PageBooks name_book='Krieg' />} exact />
-                <Route path='/write_Krieg' element={<PageWriteBooks name_book='Krieg' />} exact />
-                <Route path='/chart_Krieg' element={<PageChartsBooks name_book='Krieg' />} exact />
+                <Route path='/books_Krieg' element={<PageBooks name_book='Криг' />} exact />
+                <Route path='/write_Krieg' element={<PageWriteBooks name_book='Криг' />} exact />
+                <Route path='/chart_Krieg' element={<PageChartsBooks name_book='Криг' />} exact />
 
                 <Route path='/books_Enforcer' element={<PageBooks name_book='Арбитр' />} exact />
                 <Route path='/write_Enforcer' element={<PageWriteBooks name_book='Арбитр' />} exact />
