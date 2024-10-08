@@ -26,6 +26,7 @@ import PageChartsCards from './pages/collections/PageChartsCards';
 import PageComics from './pages/comics/pageComics';
 import PageCardsGroupCharts from './pages/collections/PageCardsGroupCharts';
 import PageChartsBooksGroup from './pages/books/chartsBooks/PageChartsBooksGroup';
+import PageLoan from './pages/credit/PageLoan/pageLoan';
 
 const { Sider, Content } = Layout;
 
@@ -93,6 +94,7 @@ const App = () => {
               <Routes>
                 <Route path='/' element={<PageMain year={'2024'} />} exact />
                 <Route path='/payments' element={<PagePayments />} exact />
+                <Route path='/credit_loan' element={<PageLoan />} exact />
                 <Route path='/early_payments' element={<PageEarlyPayments />} exact />
                 <Route path='/chart_credit' element={<PageChartCredit />} exact />
 

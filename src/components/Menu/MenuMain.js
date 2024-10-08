@@ -26,6 +26,7 @@ const items = [
       getItem('График платежей', '/payments'),
       getItem('Досрочные погашения', '/early_payments'),
       getItem('Charts', '/chart_credit')]),
+    getItem('Займ', '/credit_loan'),
   ]),
 
   getItem('Книги', 'sub2', <BookOutlined />, [

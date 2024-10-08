@@ -1,0 +1,10 @@
+.loansTable {
+    width: 700px;
+}
+
+.loans {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
