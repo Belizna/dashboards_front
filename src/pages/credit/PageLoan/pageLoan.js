@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Form, Input,FloatButton, Popconfirm, Table,  Button, Typography} from 'antd';
 import axios from 'axios'
-
+import { Area } from '@ant-design/plots';
 import './pageLoan.css'
 
 const EditableCell = ({
@@ -45,13 +45,14 @@ const PageLoan = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [summGroup, setSummGroup] = useState(0);
+  const [dataHistory, setDataHistory] = useState([]);
   const [editingKey, setEditingKey] = useState('');
 
   const isEditing = (record) => record._id === editingKey;
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/credit/loan`)
-    .then((res) => [setData(res.data.loan), setSummGroup(res.data.summLoans)])
+    .then((res) => [setData(res.data.loan), setSummGroup(res.data.summLoans),setDataHistory(res.data.history_loan) ])
   }, [countSave])
 
 
@@ -59,6 +60,7 @@ const PageLoan = () => {
     await axios.delete(`${process.env.REACT_APP_API_URL}/credit/loan/delete/${record._id}`)
     const newData = data.filter((item) => item._id !== record._id);
     setData(newData);
+    setCountSave(countSave+1)
   };
 
   const add = (record) => {
@@ -117,6 +119,12 @@ catch(errInfo) {
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
     }
+  };
+
+  const configArea = {
+    data: dataHistory,
+    xField: 'date_loan',
+    yField: 'summ_loan',
   };
 
   const columns = [
@@ -237,7 +245,9 @@ catch(errInfo) {
         Добавить займ
       </Button>
       <FloatButton.BackTop />
+      <Area style={{width: 1100, height: 300, marginTop: 100}} {...configArea} />
       </div>
+      
     </>
   );
 }
