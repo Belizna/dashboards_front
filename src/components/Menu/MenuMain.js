@@ -89,12 +89,7 @@ const items = [
       getItem('Кархародоны', 'g13', null, [
         getItem('Все книги', '/books_Carcharodons'),
         getItem('Порядок чтения', '/write_Carcharodons'),
-        getItem('Charts', '/chart_Carcharodons')]),
-
-      getItem('Армагеддон', 'g14', null, [
-        getItem('Все книги', '/books_Armageddon'),
-        getItem('Порядок чтения', '/write_Armageddon'),
-        getItem('Charts', '/chart_Armageddon')]),
+        getItem('Charts', '/chart_Carcharodons')]), ,
 
       getItem('Комиссар Каин', 'g15', null, [
         getItem('Все книги', '/books_comissar'),
@@ -235,6 +230,16 @@ const items = [
         getItem('Все книги', '/books_Assassinorum'),
         getItem('Порядок чтения', '/write_Assassinorum'),
         getItem('Charts', '/chart_Assassinorum')]),
+
+      getItem('Отступники', 'g45', null, [
+        getItem('Все книги', '/books_Renegades'),
+        getItem('Порядок чтения', '/write_Renegades'),
+        getItem('Charts', '/chart_Renegades')]),
+
+      getItem('Призраки Гаунта', 'g46', null, [
+        getItem('Все книги', '/books_GhostGaunt'),
+        getItem('Порядок чтения', '/write_GhostGaunt'),
+        getItem('Charts', '/chart_GhostGaunt')]),
 
       getItem('Отдельные романы', 'g38', null, [
         getItem('Все книги', '/books_ohter'),
