@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DemoLiquid from "../../components/ChartsCredit/Liquid";
 import { FieldNumberOutlined, UnorderedListOutlined, LoadingOutlined } from '@ant-design/icons';
-import { Typography, Card, Spin, Tree, Button, Statistic, message, Progress} from 'antd';
+import { Typography, Card, Spin, Tree, Button, Statistic, message, Progress } from 'antd';
+import { useParams } from "react-router-dom"
 
 const { Title } = Typography;
 
-const PageChartsCards = ({ collection_card }) => {
+const PageChartsCards = () => {
+
+  const { collection_card } = useParams()
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/cards/static/${collection_card}`)
@@ -48,14 +51,14 @@ const PageChartsCards = ({ collection_card }) => {
               staticData && staticData.staticCards.map((obj) => <div className="process">
                 <Title style={{ marginTop: -10 }} level={5}>Собранно {obj.key} карт {obj.yesCards}/{obj.countCards}</Title>
                 <Title style={{ marginTop: -10 }} level={5}>Потрачено на {obj.key} карт: {obj.sumCards}р.</Title>
-                <Title style={{ marginTop: -10 }} level={5}>Остаток {obj.key} карт: 
-                <Button style={{ width: 10 }} onClick={() => {
-                  navigator.clipboard.writeText(obj.numberCard)
-                  messageApi.open({
-                    type: 'success',
-                    content: `Номера скопированы`
-                  })
-                }} type="text" danger>{obj.countCards - obj.yesCards}</Button></Title>
+                <Title style={{ marginTop: -10 }} level={5}>Остаток {obj.key} карт:
+                  <Button style={{ width: 10 }} onClick={() => {
+                    navigator.clipboard.writeText(obj.numberCard)
+                    messageApi.open({
+                      type: 'success',
+                      content: `Номера скопированы`
+                    })
+                  }} type="text" danger>{obj.countCards - obj.yesCards}</Button></Title>
                 <Progress percent={obj.procentYesCards} />
               </div>
               )

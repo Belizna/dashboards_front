@@ -1,15 +1,19 @@
 import React from "react";
 import Books from "../../../../components/Book/Books";
+import { useParams } from "react-router-dom"
 
 import './pageBooks.css'
 
-const PageBooks = ({name_book}) => {
+const PageBooks = () => {
+
+    const { name_book } = useParams()
+
     return (
         <div className="pageBooks">
             <div className="tableBooks">
-            <Books name_book={name_book}/>
+                <Books name_book={name_book} />
             </div>
-            </div>
-            )
+        </div>
+    )
 }
 export default PageBooks;

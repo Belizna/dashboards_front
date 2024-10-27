@@ -1,7 +1,10 @@
 import React from "react";
 import Cards from "../../components/Collections/Cards";
+import { useParams } from "react-router-dom"
 
-const PageCards = ({ collection_card }) => {
+const PageCards = () => {
+
+    const { collection_card } = useParams()
 
     var option = null
     var filter = null
@@ -21,7 +24,7 @@ const PageCards = ({ collection_card }) => {
         { value: 'GP', label: 'GP' }, { value: 'MR', label: 'MR' },
         { value: 'CR', label: 'CR' }, { value: 'NR', label: 'NR' },
         { value: 'BP', label: 'BP' }, { value: 'SE', label: 'SE' },
-    ]
+        ]
     ]
 
     const filters = [
@@ -39,28 +42,25 @@ const PageCards = ({ collection_card }) => {
         { value: 'GP', text: 'GP' }, { value: 'MR', text: 'MR' },
         { value: 'CR', text: 'CR' }, { value: 'NR', text: 'NR' },
         { value: 'BP', text: 'BP' }, { value: 'SE', text: 'SE' },
-    ]
+        ]
     ]
 
     if (collection_card === 'Боевая четверка' || collection_card === 'Воины тени' ||
-    collection_card === 'Братья по оружию' ||  collection_card === 'Transformers Prime'
-    ||  collection_card === 'Супергонки. 1 серия.' ||  collection_card === 'Супергонки. 2 серия.') {
+        collection_card === 'Братья по оружию' || collection_card === 'Transformers Prime'
+        || collection_card === 'Супергонки. 1 серия.' || collection_card === 'Супергонки. 2 серия.') {
         option = options[0]
         filter = filters[0]
     }
     else if (collection_card === 'Герои и Злодеи' || collection_card === 'Герои и Злодеи. 2-я часть.' ||
-    collection_card === 'Герои и Злодеи. 3-я часть.' || collection_card === 'Герои и Злодеи. 4-я часть.')
-    {
+        collection_card === 'Герои и Злодеи. 3-я часть.' || collection_card === 'Герои и Злодеи. 4-я часть.') {
         option = options[1]
         filter = filters[1]
     }
-    else if (collection_card ==='Beyblade Metal Fusion')
-    {
+    else if (collection_card === 'Beyblade Metal Fusion') {
         option = options[2]
         filter = filters[2]
     }
-    else if (collection_card === 'Отчаянные бойцы'|| collection_card === 'Новая Вестроя')
-    {
+    else if (collection_card === 'Отчаянные бойцы' || collection_card === 'Новая Вестроя') {
         option = options[3]
         filter = filters[3]
     }

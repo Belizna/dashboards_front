@@ -5,12 +5,15 @@ import DemoPie from "../../../components/ChartsCredit/Pie";
 import DemoLineGames from "../../../components/ChartsCredit/LineGames"
 import { LoadingOutlined } from '@ant-design/icons';
 import { Typography, Card, Spin, Statistic } from 'antd';
+import { useParams } from "react-router-dom"
 import './pageHorusHeresyCharts.css'
 
 const { Title } = Typography;
 
 
-const PageChartsBooks = ({ name_book }) => {
+const PageChartsBooks = () => {
+
+    const { name_book } = useParams()
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/books/static/${name_book}`)
