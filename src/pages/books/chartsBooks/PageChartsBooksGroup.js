@@ -3,6 +3,7 @@ import axios from "axios";
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin, Image, Progress, Typography, Tabs } from 'antd';
 
+import './pageHorusHeresyCharts.css'
 
 const PageChartsBooksGroup = () => {
 
@@ -14,6 +15,7 @@ const PageChartsBooksGroup = () => {
     const [staticData, setStaticData] = useState(0)
     const [staticDataWrite, setStaticDataWrite] = useState(0)
     const { Title, Link, Text } = Typography;
+
     return (
         <>
             {staticData === 0 ? <><div className="loader">
@@ -106,7 +108,7 @@ const PageChartsBooksGroup = () => {
                                 }
                             </div>
                         </>,
-                    },
+                    }
                 ]} />
             }
         </>
