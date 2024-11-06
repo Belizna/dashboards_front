@@ -1,7 +1,10 @@
 import React from "react";
 import Beyblade from "../../components/Collections/Beyblade";
+import { useParams } from "react-router-dom"
 
 const PageBeyblade = () => {
+
+    const { beyblade_series } = useParams()
 
     const options = [
         { value: 'Metal Fusion', label: 'Metal Fusion' }, 
@@ -20,7 +23,7 @@ const PageBeyblade = () => {
     return (
         <div className="pageBooks">
             <div className="tableBooks">
-                <Beyblade option={options} filter={filters} />
+                <Beyblade beyblade_series={beyblade_series} option={options} filter={filters} />
             </div>
         </div>
     )

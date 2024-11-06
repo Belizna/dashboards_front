@@ -108,7 +108,7 @@ const App = () => {
 
                 <Route path='/cards/:collection_card' element={<PageCards />} exact />
                 <Route path='/chart_cards/:collection_card' element={<PageChartsCards />} exact />
-                <Route path='/beyblades/' element={<PageBeyblade />} exact />
+                <Route path='/beyblades/:beyblade_series' element={<PageBeyblade />} exact />
 
                 <Route path='/charts_group_cards' element={<PageCardsGroupCharts />} exact />
                 <Route path='/charts_group_books' element={<PageChartsBooksGroup />} exact />

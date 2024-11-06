@@ -5,15 +5,16 @@ import { Form, FloatButton, Input, Popconfirm, Table, Space, Select, Typography,
 import axios from "axios";
 import PageBeybladesImage from "../../pages/collections/PageBeybladesImage";
 
-const Beyblade = ({ option, filter }) => {
+const Beyblade = ({ option, filter, beyblade_series }) => {
 
   const [countSave, setCountSave] = useState(0);
 
+  console.log(beyblade_series)
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/collection/beyblade/`)
+    axios.get(`${process.env.REACT_APP_API_URL}/collection/beyblade/${beyblade_series}`)
       .then((res) => setData(res.data.beyblade))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countSave])
+  }, [countSave, beyblade_series])
 
 
   const [form] = Form.useForm();
