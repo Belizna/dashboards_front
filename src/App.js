@@ -28,6 +28,7 @@ import PageCardsGroupCharts from './pages/collections/PageCardsGroupCharts';
 import PageChartsBooksGroup from './pages/books/chartsBooks/PageChartsBooksGroup';
 import PageLoan from './pages/credit/PageLoan/pageLoan';
 import PageBeyblade from './pages/collections/PageBeyblades';
+import PageChartsBeyblades from './pages/collections/PageChartsBeyblades';
 
 const { Sider, Content } = Layout;
 
@@ -108,6 +109,7 @@ const App = () => {
 
                 <Route path='/cards/:collection_card' element={<PageCards />} exact />
                 <Route path='/chart_cards/:collection_card' element={<PageChartsCards />} exact />
+                <Route path='/charts_beyblades' element={<PageChartsBeyblades />} exact />
                 <Route path='/beyblades/:beyblade_series' element={<PageBeyblade />} exact />
 
                 <Route path='/charts_group_cards' element={<PageCardsGroupCharts />} exact />
