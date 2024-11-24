@@ -18,6 +18,7 @@ const CardsBlock = ({ staticData }) => {
                 <Progress size={[350, 8]} percent={staticData.procent} showInfo={false} />
             </div>
             <div className="cardNumber">
+                <Text style={{ fontSize: 15 }} strong>Потрачено: <Text style={{ fontSize: 15 }} type="success">{staticData.sumCards}р</Text></Text> <br />
                 <Text style={{ fontSize: 15 }} strong>Осталось ({staticData.countNotCard}): </Text>
                 {
                     staticData.items.map(obj =>
@@ -25,7 +26,7 @@ const CardsBlock = ({ staticData }) => {
                             width={218} height={300}
                             src={`https://www.laststicker.ru/i/cards/${staticData.keyCards}/${obj}.jpg`}
                         />}>
-                            <Link style={{ fontSize: 15}} target="_blank">
+                            <Link style={{ fontSize: 15 }} target="_blank">
                                 , {obj}
                             </Link >
                         </Popover>)

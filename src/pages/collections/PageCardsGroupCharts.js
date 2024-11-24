@@ -59,6 +59,7 @@ const PageCardsGroupCharts = () => {
                                             <Progress size={[350, 8]} percent={staticDataNaruto.procent} showInfo={false} />
                                         </div>
                                         <div className="cardNumber">
+                                            <Text style={{ fontSize: 15 }} strong>Потрачено: <Text style={{ fontSize: 15 }} type="success">{staticDataNaruto.sumCards}р</Text></Text> <br />
                                             <Text style={{ fontSize: 15 }} strong>Осталось ({staticDataNaruto.countNotCard}): </Text>
                                             {
                                                 staticDataNaruto.items.map(obj =>
@@ -96,6 +97,7 @@ const PageCardsGroupCharts = () => {
                                                 <Progress size={[350, 8]} percent={obj.procent} showInfo={false} />
                                             </div>
                                             <div className="cardNumber">
+                                                <Text style={{ fontSize: 15 }} strong>Потрачено: <Text style={{ fontSize: 15 }} type="success">{obj.summBeyblade}р</Text></Text> <br />
                                                 <Text style={{ fontSize: 15 }} strong>Осталось ({obj.countNotBeyblade}): </Text>
                                                 {
                                                     obj.items.map(obj =>
