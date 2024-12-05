@@ -16,14 +16,10 @@ const PageCards = () => {
         [{ value: 'O', label: 'O' }, { value: 'ГК', label: 'ГК' }],
         [{ value: 'R', label: 'R' }, { value: 'SR', label: 'SR' },
         { value: 'SSR', label: 'SSR' }, { value: 'TR', label: 'TR' },
-        { value: 'HR', label: 'HR' }, { value: 'ZR', label: 'ZR' },
+        { value: 'HR', label: 'HR' },
         { value: 'TGR', label: 'TGR' }, { value: 'UR', label: 'UR' },
         { value: 'OR', label: 'OR' }, { value: 'AR', label: 'AR' },
-        { value: 'SLR+', label: 'SLR+' }, { value: 'SLR-', label: 'SLR-' },
-        { value: 'SP', label: 'SP' }, { value: 'CP', label: 'CP' },
-        { value: 'GP', label: 'GP' }, { value: 'MR', label: 'MR' },
-        { value: 'CR', label: 'CR' }, { value: 'NR', label: 'NR' },
-        { value: 'BP', label: 'BP' }, { value: 'SE', label: 'SE' },
+        { value: 'SP', label: 'SP' },{ value: 'MR', label: 'MR' },
         ]
     ]
 
@@ -34,14 +30,10 @@ const PageCards = () => {
         [{ value: 'O', text: 'O' }, { value: 'ГК', text: 'ГК' }],
         [{ value: 'R', text: 'R' }, { value: 'SR', text: 'SR' },
         { value: 'SSR', text: 'SSR' }, { value: 'TR', text: 'TR' },
-        { value: 'HR', text: 'HR' }, { value: 'ZR', text: 'ZR' },
+        { value: 'HR', text: 'HR' },
         { value: 'TGR', text: 'TGR' }, { value: 'UR', text: 'UR' },
         { value: 'OR', text: 'OR' }, { value: 'AR', text: 'AR' },
-        { value: 'SLR+', text: 'SLR+' }, { value: 'SLR-', text: 'SLR-' },
-        { value: 'SP', text: 'SP' }, { value: 'CP', text: 'CP' },
-        { value: 'GP', text: 'GP' }, { value: 'MR', text: 'MR' },
-        { value: 'CR', text: 'CR' }, { value: 'NR', text: 'NR' },
-        { value: 'BP', text: 'BP' }, { value: 'SE', text: 'SE' },
+        { value: 'SP', text: 'SP' }, { value: 'MR', text: 'MR' },
         ]
     ]
 
