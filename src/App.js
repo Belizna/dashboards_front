@@ -32,6 +32,10 @@ import PageChartsBeyblades from './pages/collections/PageChartsBeyblades';
 
 const { Sider, Content } = Layout;
 
+const currentYear = new Date().getFullYear()
+
+console.log(currentYear)
+
 const App = () => {
   const onFinish = (values) => {
     axios.post(`${process.env.REACT_APP_API_URL}/auth/login/`, values)
@@ -94,7 +98,7 @@ const App = () => {
               }}
             >
               <Routes>
-                <Route path='/' element={<PageMain year={'2024'} />} exact />
+                <Route path='/' element={<PageMain year={currentYear} />} exact />
                 <Route path='/payments' element={<PagePayments />} exact />
                 <Route path='/credit_loan' element={<PageLoan />} exact />
                 <Route path='/early_payments' element={<PageEarlyPayments />} exact />
