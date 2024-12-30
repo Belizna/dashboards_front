@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Typography, Card, Spin, Select, Tabs, Tree, message, Button, Table, Modal } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import { Typography, Card, Spin, Select, Tabs, Tree, message, Button, Table, Modal, Statistic } from 'antd';
+import { LoadingOutlined, ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import LineMain from "../../components/ChartsCredit/LinePulse";
 
 import "./pageMain.css"
@@ -19,6 +19,13 @@ const PageMain = ({ year }) => {
   const [isModalTitle, setIsModalTitle] = useState('');
   const [isModalColumn, setIsModalColumn] = useState(null);
   const [isModalYear, setIsModalYear] = useState(year);
+  const [isCompareYear1, setIsCompareYear1] = useState(2024);
+  const [isCompareYear2, setIsCompareYear2] = useState(2025);
+  const [isDefaultYearCompare, setIsDefaultYearCompare] = useState({
+    year_1: isCompareYear1,
+    year_2: isCompareYear2
+  })
+  const [staticDataCompare, setStaticDataCompare] = useState(null)
 
   const fetchStatic = async (years) => {
     await axios.get(`${process.env.REACT_APP_API_URL}/main/static/${years}`)
@@ -31,6 +38,29 @@ const PageMain = ({ year }) => {
   const handleChange = async (value) => {
     await axios.get(`${process.env.REACT_APP_API_URL}/main/static/${value}`)
       .then(res => setStaticData(res.data), setIsModalYear(value))
+  }
+
+  const handleCompare = async () => {
+    await axios.post(`${process.env.REACT_APP_API_URL}/main/compare`, isDefaultYearCompare)
+      .then(res => setStaticDataCompare(res.data))
+  }
+
+  console.log(staticDataCompare)
+
+  const handleChangeYear1 = (value) => {
+    setIsCompareYear1(value)
+    setIsDefaultYearCompare({
+      year_1: value,
+      year_2: isCompareYear2
+    })
+  }
+
+  const handleChangeYear2 = (value) => {
+    setIsCompareYear2(value)
+    setIsDefaultYearCompare({
+      year_1: isCompareYear1,
+      year_2: value
+    })
   }
 
   const onSelect = (selectedKeys, info) => {
@@ -342,6 +372,128 @@ const PageMain = ({ year }) => {
                       />
                     </div>
 
+                  </div>
+                </div>
+              </div>}
+          </TabPane>
+          <TabPane tab="Сравнение" key="4">
+            {staticData &&
+
+              <div className="tabMain">
+                <div className="statisticMain">
+                  <div className="statisticKolbaska">
+                    <Title level={5}>Статистика за <Select
+                      defaultValue={isCompareYear1}
+                      onChange={handleChangeYear1}
+                      style={{ width: 85 }}
+                      options={[
+                        { value: '2024', label: '2024 г.' },
+                        { value: '2025', label: '2025 г.' },
+                        { value: '2026', label: '2026 г.' },
+                      ]}
+                    /> </Title>
+                    {
+                      staticDataCompare && staticDataCompare.statisticYearNumber1.map(arr =>
+                        arr.prefix === '<' ? <>
+                          <Card bordered={false}>
+                            <Statistic
+                              title={arr.name}
+                              value={arr.value.toFixed(0)}
+                              valueStyle={{
+                                color: '#cf1322',
+                                width: 400
+                              }}
+                              prefix={<ArrowDownOutlined />}
+                            />
+                          </Card>
+                        </> : arr.prefix === '>' ? <>
+                          <Card bordered={false}>
+                            <Statistic
+                              title={arr.name}
+                              value={arr.value.toFixed(0)}
+                              valueStyle={{
+                                color: '#3f8600',
+                                width: 400
+                              }}
+                              prefix={<ArrowUpOutlined />}
+                            />
+                          </Card>
+                        </> : <>
+                          <Card bordered={false}>
+                            <Statistic
+                              title={arr.name}
+                              value={arr.value.toFixed(0)}
+                              valueStyle={{
+                                width: 400
+                              }}
+                            />
+                          </Card>
+                        </>
+                      )
+                    }
+                  </div>
+                  <div>
+                    <Button
+                      onClick={handleCompare}
+                      type="primary"
+                      style={{
+                        marginTop: 10,
+                        backgroundColor: '#5270A7',
+                      }}
+                    >
+                      Сравнить
+                    </Button>
+                  </div>
+                  <div className="statisticKolbaska">
+                    <Title level={5}>Статистика за <Select
+                      defaultValue={isCompareYear2}
+                      onChange={handleChangeYear2}
+                      style={{ width: 85 }}
+                      options={[
+                        { value: '2024', label: '2024 г.' },
+                        { value: '2025', label: '2025 г.' },
+                        { value: '2026', label: '2026 г.' },
+                      ]}
+                    /> </Title>
+                    {
+                      staticDataCompare && staticDataCompare.statisticYearNumber2.map(arr =>
+                        arr.prefix === '<' ? <>
+                          <Card bordered={false}>
+                            <Statistic
+                              title={arr.name}
+                              value={arr.value.toFixed(0)}
+                              valueStyle={{
+                                color: '#cf1322',
+                                width: 400
+                              }}
+                              prefix={<ArrowDownOutlined />}
+                            />
+                          </Card>
+                        </> : arr.prefix === '>' ? <>
+                          <Card bordered={false}>
+                            <Statistic
+                              title={arr.name}
+                              value={arr.value.toFixed(0)}
+                              valueStyle={{
+                                color: '#3f8600',
+                                width: 400
+                              }}
+                              prefix={<ArrowUpOutlined />}
+                            />
+                          </Card>
+                        </> : <>
+                          <Card bordered={false}>
+                            <Statistic
+                              title={arr.name}
+                              value={arr.value.toFixed(0)}
+                              valueStyle={{
+                                width: 400
+                              }}
+                            />
+                          </Card>
+                        </>
+                      )
+                    }
                   </div>
                 </div>
               </div>}

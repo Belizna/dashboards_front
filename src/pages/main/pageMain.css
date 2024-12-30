@@ -100,3 +100,21 @@
     width: 100%;
 }
 
+.statisticMain {
+    display: flex;
+    width: 70%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.statisticKolbaska {
+    width: 500px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
