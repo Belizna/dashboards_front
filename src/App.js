@@ -29,12 +29,11 @@ import PageChartsBooksGroup from './pages/books/chartsBooks/PageChartsBooksGroup
 import PageLoan from './pages/credit/PageLoan/pageLoan';
 import PageBeyblade from './pages/collections/PageBeyblades';
 import PageChartsBeyblades from './pages/collections/PageChartsBeyblades';
+import PageBonusDays from './pages/work/PageBonusDays';
 
 const { Sider, Content } = Layout;
 
 const currentYear = new Date().getFullYear()
-
-console.log(currentYear)
 
 const App = () => {
   const onFinish = (values) => {
@@ -121,6 +120,7 @@ const App = () => {
 
                 <Route path='/salary' element={<PageSalary />} exact />
                 <Route path='/bonus' element={<PageBonus />} exact />
+                <Route path='/bonus_weekdays' element={<PageBonusDays />} exact />
                 <Route path='/chart_work' element={<PageChartsWork />} exact />
                 <Route path='/hobby/miniatures/' element={<PageMinuiatures />} exact />
                 <Route path='/hobby/colors/' element={<PageColor />} exact />

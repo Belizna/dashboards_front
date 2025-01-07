@@ -9,7 +9,6 @@ const Beyblade = ({ option, filter, beyblade_series }) => {
 
   const [countSave, setCountSave] = useState(0);
 
-  console.log(beyblade_series)
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/collection/beyblade/${beyblade_series}`)
       .then((res) => setData(res.data.beyblade))

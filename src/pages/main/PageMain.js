@@ -45,7 +45,6 @@ const PageMain = ({ year }) => {
       .then(res => setStaticDataCompare(res.data))
   }
 
-  console.log(staticDataCompare)
 
   const handleChangeYear1 = (value) => {
     setIsCompareYear1(value)
@@ -147,32 +146,38 @@ const PageMain = ({ year }) => {
         <Modal style={{
           top: 10,
         }} title={isModalTitle} open={isModalOpenCard} onOk={handleOk} onCancel={handleCancel} width={550}>
-          <Card style={{ height: 1336, marginTop: 10, marginRight: 10 }}>
-            <div className="card_game">
+          <Card style={{ height: 1465, marginTop: 10, marginRight: 10 }}>
+            <div className="cards">
               <Text style={{ marginTop: -10, marginBottom: 10 }}>Приобретено карточек Человек Паук: <Text type="success">{staticData.count_card_priceSpider_Man}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearSpider_Man} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceSpider_Man} />
-
+            </div>
+            <div className="cards">
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Черепашки Ниндзя: <Text type="success">{staticData.count_card_priceTeenage_Mutant_Ninja}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearTeenage_Mutant_Ninja} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceTeenage_Mutant_Ninja} />
-
+              </div>
+              <div className="cards">
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Бакуган: <Text type="success">{staticData.count_card_priceBakugan}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearBakugan} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceBakugan} />
-
+              </div>
+              <div className="cards">
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Бейблейд: <Text type="success">{staticData.count_card_priceBeyblade}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearBeyblade} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceBeyblade} />
-
+              </div>
+              <div className="cards">
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Трансформеры: <Text type="success">{staticData.count_card_priceTransformers}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearTransformers} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceTransformers} />
-
+              </div>
+              <div className="cards">
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Супергонки: <Text type="success">{staticData.count_card_priceSuperRacing}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearSuperRacing} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceSuperRacing} />
-
+              </div>
+              <div className="cards">
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Наруто: <Text type="success">{staticData.count_card_priceNaruto}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearNaruto} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceNaruto} />
