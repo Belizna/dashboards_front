@@ -30,6 +30,7 @@ import PageLoan from './pages/credit/PageLoan/pageLoan';
 import PageBeyblade from './pages/collections/PageBeyblades';
 import PageChartsBeyblades from './pages/collections/PageChartsBeyblades';
 import PageBonusDays from './pages/work/PageBonusDays';
+import PagePersonBooks from './pages/person/PagePersonBooks';
 
 const { Sider, Content } = Layout;
 
@@ -117,6 +118,7 @@ const App = () => {
 
                 <Route path='/charts_group_cards' element={<PageCardsGroupCharts />} exact />
                 <Route path='/charts_group_books' element={<PageChartsBooksGroup />} exact />
+                <Route path='/charts_group_person' element={<PagePersonBooks />} exact />
 
                 <Route path='/salary' element={<PageSalary />} exact />
                 <Route path='/bonus' element={<PageBonus />} exact />
