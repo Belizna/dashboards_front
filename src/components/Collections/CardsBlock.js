@@ -18,6 +18,7 @@ const CardsBlock = ({ staticData }) => {
                 <Progress size={[350, 8]} percent={staticData.procent} showInfo={false} />
             </div>
             <div className="cardNumber">
+                <Text style={{ fontSize: 15 }} strong>Количество: <Text style={{ fontSize: 15 }} type="success">{staticData.countCards}</Text></Text> <br />
                 <Text style={{ fontSize: 15 }} strong>Потрачено: <Text style={{ fontSize: 15 }} type="success">{staticData.sumCards}р</Text></Text> <br />
                 <Text style={{ fontSize: 15 }} strong>Осталось ({staticData.countNotCard}): </Text>
                 {

@@ -51,6 +51,7 @@ const PageChartsBooksGroup = () => {
                                                 <Progress size={[350, 8]} percent={obj.procent} showInfo={false} />
                                             </div>
                                             <div className="cardNumber">
+                                                <Text style={{ fontSize: 15 }} strong>Количество: <Text style={{ fontSize: 15 }} type="success">{obj.countBooks}</Text></Text> <br />
                                                 <Text style={{ fontSize: 15 }} strong>Потрачено: <Text style={{ fontSize: 15 }} type="success">{obj.summBooks}р</Text></Text> <br />
                                                 <Text style={{ fontSize: 15 }} strong>Осталось ({obj.countNotBooks}): </Text>
                                                 {
