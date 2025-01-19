@@ -9,11 +9,15 @@ const PageChartsBooksGroup = () => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/books/charts_group_list/`)
-            .then((res) => [setStaticData(res.data.booksListGroup), setStaticDataWrite(res.data.booksWriteListGroup)])
+            .then((res) => [setStaticData(res.data.booksListGroup),
+            setStaticDataWrite(res.data.booksWriteListGroup),
+            setStaticDataAuthor(res.data.booksAuthorWriteListGroup),
+            ])
     }, [])
 
     const [staticData, setStaticData] = useState(0)
     const [staticDataWrite, setStaticDataWrite] = useState(0)
+    const [staticDataAuthor, setStaticDataAuthor] = useState(0)
     const { Title, Link, Text } = Typography;
 
     return (
@@ -108,6 +112,65 @@ const PageChartsBooksGroup = () => {
                                         </div>
                                     )
                                 }
+                            </div>
+                        </>,
+                    },
+                    {
+                        key: '3',
+                        label: 'Авторы',
+                        children: <>
+                            <div className="mapBlockCollection">
+                                {
+                                    staticDataAuthor.map(obj => <div className="blockAutorCollection">
+                                        <div className="blockAutor">
+                                            <Image
+                                                width={160} height={207}
+                                                src={obj.keyImage}
+                                            />
+
+                                            <div className="blockAutorName">
+                                                <Title level={2}>{obj.author}</Title>
+                                                <Text style={{ fontSize: 16 }}>Количество циклов: {obj.summCycle} </Text>
+                                                <Text style={{ fontSize: 16 }}>Количество романов: {obj.summRomans} </Text>
+                                                <Text style={{ fontSize: 16 }}>Количество повестей: {obj.summBigStory}</Text>
+                                                <Text style={{ fontSize: 16 }}>Количество рассказов: {obj.summStory} </Text>
+                                            </div>
+                                        </div>
+
+                                        {
+                                            obj.books.map(ob => <div className="blockBookAuthorCollection">
+                                                <div className="cardName">
+                                                    <Image
+                                                        width={85} height={117}
+                                                        src={ob.keyBooks}
+                                                    />
+                                                    <Title style={{ marginLeft: 25 }} level={4}>{ob.nameCompilation}</Title>
+                                                </div>
+                                                <div className="cardNumber">
+                                                    {
+                                                        ob.group.map(arr =>
+                                                            <>
+                                                                <Text style={{ fontSize: 15 }} strong>{arr.staticWrite}</Text>
+                                                                {
+                                                                    arr.listWrite.map(obj =>
+                                                                        <Link style={{ fontSize: 15 }} target="_blank">
+                                                                            {obj},
+                                                                        </Link >
+                                                                    )
+                                                                }
+                                                                <br></br>
+                                                            </>
+                                                        )
+                                                    }
+
+                                                </div>
+                                            </div>)
+                                        }
+                                        <br />
+                                    </div>
+                                    )
+                                }
+
                             </div>
                         </>,
                     }

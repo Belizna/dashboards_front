@@ -1,89 +1,99 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, Input,FloatButton, Popconfirm, Table,Space, Select, Typography, Button} from 'antd';
+import { Form, Input, FloatButton, Popconfirm, Table, Space, Select, Typography, Button } from 'antd';
 import axios from "axios";
 
 import './books.css'
 
-const EditableCell = ({
-  editing,
-  dataIndex,
-  title,
-  inputType,
-  record,
-  index,
-  children,
-  ...restProps
-}) => {
-  const inputNode = inputType === 'select' ? <Select
-  options={[
-    {
-      value: 'Не Прочитано',
-      label: 'Не Прочитано',
-    },
-    {
-      value: 'Прочитано',
-      label: 'Прочитано',
-    },
-  ]}/> : inputType === 'select_format' ? <Select
-  options={[
-    {
-      value: 'роман',
-      label: 'роман',
-    },
-    {
-      value: 'повесть',
-      label: 'повесть',
-    },
-    {
-      value: 'рассказ',
-      label: 'рассказ',
-    },
-  ]}/>
-  : <Input />;
-  return (
-    <td {...restProps}>
-      {editing ? (
-        <Form.Item
-          name={dataIndex}
-          style={{
-            margin: 0,
-          }}
-          rules={[
-            {
-              required: false,
-              message: `Please Input ${title}!`,
-            },
-          ]}
-        >
-          {inputNode}
-        </Form.Item>
-      ) : (
-        children
-      )}
-    </td>
-  );
-};
 
-const WriteBooks = ({name_book}) => {
+const WriteBooks = ({ name_book }) => {
   const [countSave, setCountSave] = useState(0);
-  useEffect(()  => {
+  useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/books/write_books/${name_book}`)
-    .then((res) => [setData(res.data.write_books), setDataFilter(res.data.filter)])
+      .then((res) => [setData(res.data.write_books),
+      setDataFilter(res.data.filter),
+      setDataFilterAuthor(res.data.filteredAuthorList),
+      setDataAddFilterAuthor(res.data.filteredAddAuthorList),
+      ])
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countSave, name_book])
-  
+
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(15);
   const [filter, setDataFilter] = useState([]);
+  const [filterAuthor, setDataFilterAuthor] = useState([]);
+  const [filterAddAuthor, setDataAddFilterAuthor] = useState([]);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
+
+  const EditableCell = ({
+    editing,
+    dataIndex,
+    title,
+    inputType,
+    record,
+    index,
+    children,
+    ...restProps
+  }) => {
+    const inputNode = inputType === 'select' ? <Select
+      options={[
+        {
+          value: 'Не Прочитано',
+          label: 'Не Прочитано',
+        },
+        {
+          value: 'Прочитано',
+          label: 'Прочитано',
+        },
+      ]} /> : inputType === 'select_format' ? <Select
+        options={[
+          {
+            value: 'роман',
+            label: 'роман',
+          },
+          {
+            value: 'повесть',
+            label: 'повесть',
+          },
+          {
+            value: 'рассказ',
+            label: 'рассказ',
+          },
+        ]} />
+      : inputType === 'select_author' ? <Select
+        options={filterAddAuthor} />
+        : <Input />;
+    return (
+      <td {...restProps}>
+        {editing ? (
+          <Form.Item
+            name={dataIndex}
+            style={{
+              margin: 0,
+            }}
+            rules={[
+              {
+                required: false,
+                message: `Please Input ${title}!`,
+              },
+            ]}
+          >
+            {inputNode}
+          </Form.Item>
+        ) : (
+          children
+        )}
+      </td>
+    );
+  };
+
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
@@ -191,24 +201,23 @@ const WriteBooks = ({name_book}) => {
   };
 
   const cancel = (_id) => {
-    try{
-      if(typeof _id === 'number')
-      {
+    try {
+      if (typeof _id === 'number') {
         const newData = data.filter((item) => item._id !== _id);
         setData(newData);
         setEditingKey('');
       }
       else setEditingKey('');
-  }
-  catch(errInfo) {
-    console.log('Cancel error:', errInfo);
-  }
+    }
+    catch (errInfo) {
+      console.log('Cancel error:', errInfo);
+    }
   };
   const save = async (_id) => {
     try {
       const row = await form.validateFields();
       const newData = [...data];
-      const index = newData.findIndex((item) => _id === item._id );
+      const index = newData.findIndex((item) => _id === item._id);
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, {
@@ -217,9 +226,9 @@ const WriteBooks = ({name_book}) => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}/books/write_books/add/${name_book}`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}/books/write_books/edit/${_id}`,row) 
-        setCountSave(countSave+1)
+        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}/books/write_books/add/${name_book}`, row)
+          : await axios.patch(`${process.env.REACT_APP_API_URL}/books/write_books/edit/${_id}`, row)
+        setCountSave(countSave + 1)
       } else {
         newData.push(row);
         setData(newData);
@@ -238,26 +247,26 @@ const WriteBooks = ({name_book}) => {
       ...getColumnSearchProps('book_name')
     },
     {
-        title: 'Формат',
-        dataIndex: 'format',
-        width: '10%',
-        editable: true,
-        filters:[
-          {
-            text: 'Роман',
-            value: 'роман'
-          },
-          {
-            text: 'Повесть',
-            value: 'повесть'
-          },
-          {
-            text: 'Рассказ',
-            value: 'рассказ'
-          }
-        ],
-        onFilter: (value, record) => record.format.startsWith(value)
-      },
+      title: 'Формат',
+      dataIndex: 'format',
+      width: '10%',
+      editable: true,
+      filters: [
+        {
+          text: 'Роман',
+          value: 'роман'
+        },
+        {
+          text: 'Повесть',
+          value: 'повесть'
+        },
+        {
+          text: 'Рассказ',
+          value: 'рассказ'
+        }
+      ],
+      onFilter: (value, record) => record.format.startsWith(value)
+    },
     {
       title: 'Сборник',
       dataIndex: 'collection_book',
@@ -273,15 +282,17 @@ const WriteBooks = ({name_book}) => {
       dataIndex: 'author',
       width: '15%',
       editable: true,
-      ...getColumnSearchProps('author')
+      filters: filterAuthor,
+      onFilter: (value, record) => record.author?.startsWith(value),
+      filterSearch: true,
     },
     {
       title: 'Статус',
       dataIndex: 'presence',
       width: '13%',
       editable: true,
-      defaultFilteredValue : ['Не Прочитано'], 
-      filters:[
+      defaultFilteredValue: ['Не Прочитано'],
+      filters: [
         {
           text: 'Прочитано',
           value: 'Прочитано'
@@ -315,14 +326,14 @@ const WriteBooks = ({name_book}) => {
           </span>
         ) : (
           <>
-          <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{marginRight: 8}}>
-            Edit
-          </Typography.Link>
-          <Popconfirm title="Уверен в удалении?" onConfirm={() => handleDelete(record)}>
-          <a>Delete</a>
-        </Popconfirm>
-        </>
-        /* eslint-enable */
+            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{ marginRight: 8 }}>
+              Edit
+            </Typography.Link>
+            <Popconfirm title="Уверен в удалении?" onConfirm={() => handleDelete(record)}>
+              <a>Delete</a>
+            </Popconfirm>
+          </>
+          /* eslint-enable */
         );
       },
     },
@@ -336,8 +347,9 @@ const WriteBooks = ({name_book}) => {
       onCell: (record) => ({
         record,
         inputType: col.dataIndex === 'presence' ? 'select' :
-        col.dataIndex === 'format' ? 'select_format' :
-        'text',
+          col.dataIndex === 'format' ? 'select_format' :
+            col.dataIndex === 'author' ? 'select_author' :
+              'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -346,7 +358,7 @@ const WriteBooks = ({name_book}) => {
   });
 
   const handleAdd = async () => {
-    setPage(Math.ceil((data.length + 1)/15))
+    setPage(Math.ceil((data.length + 1) / 15))
     const newData = {
       _id: Math.random(),
       book_name: '',
@@ -359,41 +371,41 @@ const WriteBooks = ({name_book}) => {
   };
   return (
     <>
-    <Form form={form} component={false}>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        bordered
-        dataSource={data}
-        columns={mergedColumns}
-        pagination={{
-          current: page,
-          pageSize: pageSize,
-          onChange: (page, pageSize) => {
-            setPage(page)
-            setPageSize(pageSize)
-          },
-        }}
-        style={{marginTop: 35}}
-        rowClassName={(record, index) => record.presence === 'Прочитано'  ? 'table-row-light' : 'table-row-dark'}
-      />
-    </Form>
-    <Button
+      <Form form={form} component={false}>
+        <Table
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          bordered
+          dataSource={data}
+          columns={mergedColumns}
+          pagination={{
+            current: page,
+            pageSize: pageSize,
+            onChange: (page, pageSize) => {
+              setPage(page)
+              setPageSize(pageSize)
+            },
+          }}
+          style={{ marginTop: 35 }}
+          rowClassName={(record, index) => record.presence === 'Прочитано' ? 'table-row-light' : 'table-row-dark'}
+        />
+      </Form>
+      <Button
         onClick={handleAdd}
         type="primary"
         style={{
           marginTop: 10,
-          backgroundColor:'#5270A7',
+          backgroundColor: '#5270A7',
         }}
       >
         Добавить книгу
       </Button>
       <FloatButton.BackTop />
     </>
-      
+
   );
 }
 
