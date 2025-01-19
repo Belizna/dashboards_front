@@ -233,7 +233,7 @@ const WriteBooks = ({name_book}) => {
     {
       title: 'Наименование',
       dataIndex: 'book_name',
-      width: '32%',
+      width: '25%',
       editable: true,
       ...getColumnSearchProps('book_name')
     },
@@ -261,12 +261,19 @@ const WriteBooks = ({name_book}) => {
     {
       title: 'Сборник',
       dataIndex: 'collection_book',
-      width: '29%',
+      width: '25%',
       editable: true,
       require: false,
       filters: filter,
       onFilter: (value, record) => record.collection_book?.startsWith(value),
       filterSearch: true,
+    },
+    {
+      title: 'Автор',
+      dataIndex: 'author',
+      width: '15%',
+      editable: true,
+      ...getColumnSearchProps('author')
     },
     {
       title: 'Статус',
@@ -344,7 +351,8 @@ const WriteBooks = ({name_book}) => {
       _id: Math.random(),
       book_name: '',
       format: 'рассказ',
-      presence: 'Не Прочитано'
+      presence: 'Не Прочитано',
+      author: ''
     };
     setData([...data, newData])
     edit(newData)
