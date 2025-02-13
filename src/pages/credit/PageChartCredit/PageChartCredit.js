@@ -60,7 +60,7 @@ const PageChartCredit = () => {
               <Card style={{ width: 195, marginRight: 10 }} size='small' bordered={false}>
                 <Statistic
                   title="Остаток"
-                  value={staticData.remainder}
+                  value={(staticData.remainder).toFixed(2)}
                   valueStyle={{
                     color: '#cf1322',
                     fontSize: 20

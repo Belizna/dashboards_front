@@ -108,6 +108,7 @@ const PagePersonBooks = () => {
                                 <div className="pagePerson">
                                     <div className="pagePersonHeader">
                                         <Title level={5}>Статистика по <Select
+                                            style={{width: 300}}
                                             showSearch
                                             placeholder="Выбрать класс"
                                             filterOption={(input, option) =>
