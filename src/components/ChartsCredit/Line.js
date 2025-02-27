@@ -4,8 +4,8 @@ import { Column } from '@ant-design/plots';
 const DemoLine = ({data}) => {
   const config = {
     data,
-    xField: 'date_earlyPayment',
-    yField: 'summ_earlyPayment',
+    xField: '_id',
+    yField: 'sum',
     label: {
       position: 'middle',
       // 'top', 'bottom', 'middle',

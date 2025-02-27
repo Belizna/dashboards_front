@@ -31,6 +31,7 @@ const PagePersonBooks = () => {
                 setClassSelector(res.data.personSelectorClass),
                 setPersonSelector(res.data.groupPerson),
                 setData(treeToGraphData(ordens[0]))])
+                // eslint-disable-next-line
     }, [])
 
     const handleChangeNameOrden = (value) => {
@@ -108,7 +109,7 @@ const PagePersonBooks = () => {
                                 <div className="pagePerson">
                                     <div className="pagePersonHeader">
                                         <Title level={5}>Статистика по <Select
-                                            style={{width: 300}}
+                                            style={{ width: 300 }}
                                             showSearch
                                             placeholder="Выбрать класс"
                                             filterOption={(input, option) =>

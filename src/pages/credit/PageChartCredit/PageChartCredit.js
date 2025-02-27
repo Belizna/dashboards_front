@@ -53,7 +53,7 @@ const PageChartCredit = () => {
               </div>
             </div>
             <div className="line">
-              <DemoLine data={staticData.earlyPay} />
+              <DemoLine data={staticData.earlyPayGroup} />
               <Title level={5}>Досрочные погашения</Title>
             </div>
             <div className="table">
