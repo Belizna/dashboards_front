@@ -79,6 +79,14 @@
     margin-bottom: 15px;
 }
 
+.compareProduct {
+    width: 1250px;
+    height: 550px;
+    background-color: white;
+    padding: 30px;
+    margin-top: 50px;
+}
+
 .card_game {
     display: flex;
     align-items: center;
@@ -127,3 +135,9 @@
     align-items: center;
 }
 
+.tabCompare {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 45px;
+}

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Typography, Card, Spin, Select, Tabs, Tree, message, Button, Table, Modal, Statistic } from 'antd';
 import { LoadingOutlined, ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import LineMain from "../../components/ChartsCredit/LinePulse";
+import ColumnCompare from "../../components/ChartsCredit/Column";
 
 import "./pageMain.css"
 
@@ -21,11 +22,13 @@ const PageMain = ({ year }) => {
   const [isModalYear, setIsModalYear] = useState(year);
   const [isCompareYear1, setIsCompareYear1] = useState(2024);
   const [isCompareYear2, setIsCompareYear2] = useState(2025);
+  const [isProductCompare, setIsProductCompare] = useState('games');
   const [isDefaultYearCompare, setIsDefaultYearCompare] = useState({
     year_1: isCompareYear1,
     year_2: isCompareYear2
   })
   const [staticDataCompare, setStaticDataCompare] = useState(null)
+  const [staticDataCompareProduct, setStaticDataCompareProduct] = useState(null)
 
   const fetchStatic = async (years) => {
     await axios.get(`${process.env.REACT_APP_API_URL}/main/static/${years}`)
@@ -45,6 +48,14 @@ const PageMain = ({ year }) => {
       .then(res => setStaticDataCompare(res.data))
   }
 
+  const handleCompareProduct = async () => {
+    await axios.post(`${process.env.REACT_APP_API_URL}/main/compare/column/${isProductCompare}`, isDefaultYearCompare)
+      .then(res => setStaticDataCompareProduct(res.data.groupCompare))
+  }
+
+  const handleChangeProduct = (value) => {
+    setIsProductCompare(value)
+  }
 
   const handleChangeYear1 = (value) => {
     setIsCompareYear1(value)
@@ -81,8 +92,6 @@ const PageMain = ({ year }) => {
     setIsModalOpenCard(true);
     setIsModalTitle(title)
   };
-
-
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -156,28 +165,28 @@ const PageMain = ({ year }) => {
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Черепашки Ниндзя: <Text type="success">{staticData.count_card_priceTeenage_Mutant_Ninja}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearTeenage_Mutant_Ninja} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceTeenage_Mutant_Ninja} />
-              </div>
-              <div className="cards">
+            </div>
+            <div className="cards">
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Бакуган: <Text type="success">{staticData.count_card_priceBakugan}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearBakugan} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceBakugan} />
-              </div>
-              <div className="cards">
+            </div>
+            <div className="cards">
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Бейблейд: <Text type="success">{staticData.count_card_priceBeyblade}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearBeyblade} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceBeyblade} />
-              </div>
-              <div className="cards">
+            </div>
+            <div className="cards">
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Трансформеры: <Text type="success">{staticData.count_card_priceTransformers}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearTransformers} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceTransformers} />
-              </div>
-              <div className="cards">
+            </div>
+            <div className="cards">
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Супергонки: <Text type="success">{staticData.count_card_priceSuperRacing}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearSuperRacing} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceSuperRacing} />
-              </div>
-              <div className="cards">
+            </div>
+            <div className="cards">
               <Text style={{ marginTop: 15, marginBottom: 10 }}>Приобретено карточек Наруто: <Text type="success">{staticData.count_card_priceNaruto}</Text> </Text>
               <Text level={5} style={{ marginTop: -11, marginBottom: 15 }}>Потрачено на карточки: <Text type="success">{staticData.sum_card_nowyearNaruto} р.</Text> </Text>
               <LineMain data={staticData.sortedCardPriceNaruto} />
@@ -382,126 +391,209 @@ const PageMain = ({ year }) => {
               </div>}
           </TabPane>
           <TabPane tab="Сравнение" key="4">
-            {staticData &&
+            <Tabs defaultActiveKey="1">
+              <TabPane tab="Статистика общая" key="1">
+                {staticData &&
+                  <div className="tabMain">
+                    <div className="statisticMain">
+                      <div className="statisticKolbaska">
+                        <Title level={5}>Статистика за <Select
+                          defaultValue={isCompareYear1}
+                          onChange={handleChangeYear1}
+                          style={{ width: 85 }}
+                          options={[
+                            { value: '2024', label: '2024 г.' },
+                            { value: '2025', label: '2025 г.' },
+                            { value: '2026', label: '2026 г.' },
+                          ]}
+                        /> </Title>
+                        {
+                          staticDataCompare && staticDataCompare.statisticYearNumber1.map(arr =>
+                            arr.prefix === '<' ? <>
+                              <Card bordered={false}>
+                                <Statistic
+                                  title={arr.name}
+                                  value={arr.value.toFixed(0)}
+                                  valueStyle={{
+                                    color: '#cf1322',
+                                    width: 400
+                                  }}
+                                  prefix={<ArrowDownOutlined />}
+                                />
+                              </Card>
+                            </> : arr.prefix === '>' ? <>
+                              <Card bordered={false}>
+                                <Statistic
+                                  title={arr.name}
+                                  value={arr.value.toFixed(0)}
+                                  valueStyle={{
+                                    color: '#3f8600',
+                                    width: 400
+                                  }}
+                                  prefix={<ArrowUpOutlined />}
+                                />
+                              </Card>
+                            </> : <>
+                              <Card bordered={false}>
+                                <Statistic
+                                  title={arr.name}
+                                  value={arr.value.toFixed(0)}
+                                  valueStyle={{
+                                    width: 400
+                                  }}
+                                />
+                              </Card>
+                            </>
+                          )
+                        }
+                      </div>
+                      <div>
+                        <Button
+                          onClick={handleCompare}
+                          type="primary"
+                          style={{
+                            marginTop: 10,
+                            backgroundColor: '#5270A7',
+                          }}
+                        >
+                          Сравнить
+                        </Button>
+                      </div>
+                      <div className="statisticKolbaska">
+                        <Title level={5}>Статистика за <Select
+                          defaultValue={isCompareYear2}
+                          onChange={handleChangeYear2}
+                          style={{ width: 85 }}
+                          options={[
+                            { value: '2024', label: '2024 г.' },
+                            { value: '2025', label: '2025 г.' },
+                            { value: '2026', label: '2026 г.' },
+                          ]}
+                        /> </Title>
+                        {
+                          staticDataCompare && staticDataCompare.statisticYearNumber2.map(arr =>
+                            arr.prefix === '<' ? <>
+                              <Card bordered={false}>
+                                <Statistic
+                                  title={arr.name}
+                                  value={arr.value.toFixed(0)}
+                                  valueStyle={{
+                                    color: '#cf1322',
+                                    width: 400
+                                  }}
+                                  prefix={<ArrowDownOutlined />}
+                                />
+                              </Card>
+                            </> : arr.prefix === '>' ? <>
+                              <Card bordered={false}>
+                                <Statistic
+                                  title={arr.name}
+                                  value={arr.value.toFixed(0)}
+                                  valueStyle={{
+                                    color: '#3f8600',
+                                    width: 400
+                                  }}
+                                  prefix={<ArrowUpOutlined />}
+                                />
+                              </Card>
+                            </> : <>
+                              <Card bordered={false}>
+                                <Statistic
+                                  title={arr.name}
+                                  value={arr.value.toFixed(0)}
+                                  valueStyle={{
+                                    width: 400
+                                  }}
+                                />
+                              </Card>
+                            </>
+                          )
+                        }
+                      </div>
+                    </div>
+                  </div>}
+              </TabPane>
+              <TabPane tab="Статистика по продукту" key="2">
+                {staticData &&
 
-              <div className="tabMain">
-                <div className="statisticMain">
-                  <div className="statisticKolbaska">
-                    <Title level={5}>Статистика за <Select
-                      defaultValue={isCompareYear1}
-                      onChange={handleChangeYear1}
-                      style={{ width: 85 }}
-                      options={[
-                        { value: '2024', label: '2024 г.' },
-                        { value: '2025', label: '2025 г.' },
-                        { value: '2026', label: '2026 г.' },
-                      ]}
-                    /> </Title>
-                    {
-                      staticDataCompare && staticDataCompare.statisticYearNumber1.map(arr =>
-                        arr.prefix === '<' ? <>
-                          <Card bordered={false}>
-                            <Statistic
-                              title={arr.name}
-                              value={arr.value.toFixed(0)}
-                              valueStyle={{
-                                color: '#cf1322',
-                                width: 400
-                              }}
-                              prefix={<ArrowDownOutlined />}
-                            />
-                          </Card>
-                        </> : arr.prefix === '>' ? <>
-                          <Card bordered={false}>
-                            <Statistic
-                              title={arr.name}
-                              value={arr.value.toFixed(0)}
-                              valueStyle={{
-                                color: '#3f8600',
-                                width: 400
-                              }}
-                              prefix={<ArrowUpOutlined />}
-                            />
-                          </Card>
-                        </> : <>
-                          <Card bordered={false}>
-                            <Statistic
-                              title={arr.name}
-                              value={arr.value.toFixed(0)}
-                              valueStyle={{
-                                width: 400
-                              }}
-                            />
-                          </Card>
-                        </>
-                      )
-                    }
-                  </div>
-                  <div>
-                    <Button
-                      onClick={handleCompare}
-                      type="primary"
-                      style={{
-                        marginTop: 10,
-                        backgroundColor: '#5270A7',
-                      }}
-                    >
-                      Сравнить
-                    </Button>
-                  </div>
-                  <div className="statisticKolbaska">
-                    <Title level={5}>Статистика за <Select
-                      defaultValue={isCompareYear2}
-                      onChange={handleChangeYear2}
-                      style={{ width: 85 }}
-                      options={[
-                        { value: '2024', label: '2024 г.' },
-                        { value: '2025', label: '2025 г.' },
-                        { value: '2026', label: '2026 г.' },
-                      ]}
-                    /> </Title>
-                    {
-                      staticDataCompare && staticDataCompare.statisticYearNumber2.map(arr =>
-                        arr.prefix === '<' ? <>
-                          <Card bordered={false}>
-                            <Statistic
-                              title={arr.name}
-                              value={arr.value.toFixed(0)}
-                              valueStyle={{
-                                color: '#cf1322',
-                                width: 400
-                              }}
-                              prefix={<ArrowDownOutlined />}
-                            />
-                          </Card>
-                        </> : arr.prefix === '>' ? <>
-                          <Card bordered={false}>
-                            <Statistic
-                              title={arr.name}
-                              value={arr.value.toFixed(0)}
-                              valueStyle={{
-                                color: '#3f8600',
-                                width: 400
-                              }}
-                              prefix={<ArrowUpOutlined />}
-                            />
-                          </Card>
-                        </> : <>
-                          <Card bordered={false}>
-                            <Statistic
-                              title={arr.name}
-                              value={arr.value.toFixed(0)}
-                              valueStyle={{
-                                width: 400
-                              }}
-                            />
-                          </Card>
-                        </>
-                      )
-                    }
-                  </div>
-                </div>
-              </div>}
+                  <div className="tabMain">
+                    <div className="tabCompare">
+                      <div>
+                        <Card bordered={false}>
+
+                          <Title level={5}>Продукт <Select
+                            onChange={handleChangeProduct}
+                            style={{ width: 200 }}
+                            options={[
+                              { value: 'games', label: 'Пройдено игр' },
+                              { value: 'games_price', label: 'Приобретено игр' },
+                              { value: 'games_price2', label: 'Потрачено на игры' },
+
+                              { value: 'books', label: 'Прочитано книг' },
+                              { value: 'books_price', label: 'Приобретено книг' },
+                              { value: 'books_price2', label: 'Потрачено на книги' },
+
+                              { value: 'beyblade_price', label: 'Приобретено волчков' },
+                              { value: 'beyblade_price2', label: 'Потрачено на волчки' },
+
+                              { value: 'card_price', label: 'Приобретено карточек' },
+                              { value: 'card_price2', label: 'Потрачено на карточки' },
+
+                              { value: 'salary', label: 'Заработок' },
+
+                              { value: 'payments', label: 'Ипотека' },
+
+                              { value: 'miniature', label: 'Покрашено миниатюр' }
+                            ]} />
+                          </Title>
+
+                          <Title level={5}>Статистика за <Select
+                            defaultValue={isCompareYear1}
+                            onChange={handleChangeYear1}
+                            style={{ width: 85 }}
+                            options={[
+                              { value: '2024', label: '2024 г.' },
+                              { value: '2025', label: '2025 г.' },
+                              { value: '2026', label: '2026 г.' },
+                            ]}
+                          />
+                          </Title>
+
+                          <Title level={5}>Статистика за <Select
+                            defaultValue={isCompareYear2}
+                            onChange={handleChangeYear2}
+                            style={{ width: 85 }}
+                            options={[
+                              { value: '2024', label: '2024 г.' },
+                              { value: '2025', label: '2025 г.' },
+                              { value: '2026', label: '2026 г.' },
+                            ]}
+                          />
+                          </Title>
+
+                          <Button
+                            onClick={handleCompareProduct}
+                            type="primary"
+                            style={{
+                              marginTop: 10,
+                              backgroundColor: '#5270A7',
+                            }}
+                          >
+                            Сравнить
+                          </Button>
+                        </Card>
+                      </div>
+                      {staticDataCompareProduct &&
+                        <div className="compareProduct">
+                          <ColumnCompare data={staticDataCompareProduct} />
+                        </div>
+                      }
+
+                    </div>
+
+                  </div>}
+              </TabPane>
+            </Tabs>
           </TabPane>
         </Tabs>
       </>}
