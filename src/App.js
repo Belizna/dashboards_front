@@ -1,5 +1,8 @@
+import { useState } from 'react';
+import axios from 'axios'
 import { Layout, Form, Input, Button } from 'antd';
 import { Route, Routes, Navigate } from 'react-router-dom';
+
 import "./App.css"
 import MenuMain from './components/Menu/MenuMain';
 import PagePayments from './pages/credit/PagePayments/PagePayments';
@@ -17,8 +20,6 @@ import PageChartsWork from './pages/work/PageCartsWork';
 import PageMain from './pages/main/PageMain';
 import PageMinuiatures from './pages/hobby/pageMiniatures';
 import PageCards from './pages/collections/PageCards';
-import { useState } from 'react';
-import axios from 'axios'
 import PageChartsBooks from './pages/books/chartsBooks/PageChartsBooks';
 import PageColor from './pages/hobby/pageColor';
 import PageChartsRepair from './pages/repair/PageChartsRepair';
@@ -31,6 +32,8 @@ import PageBeyblade from './pages/collections/PageBeyblades';
 import PageChartsBeyblades from './pages/collections/PageChartsBeyblades';
 import PageBonusDays from './pages/work/PageBonusDays';
 import PagePersonBooks from './pages/person/PagePersonBooks';
+import PageMaps from './pages/maps/PageMaps';
+
 
 const { Sider, Content } = Layout;
 
@@ -41,6 +44,7 @@ const App = () => {
     axios.post(`${process.env.REACT_APP_API_URL}/auth/login/`, values)
       .then(res => setAuth(res.data))
   }
+
   const [auth, setAuth] = useState(null)
   return (
     <>
@@ -132,6 +136,8 @@ const App = () => {
                 <Route path='/repair/chart/' element={<PageChartsRepair />} exact />
 
                 <Route path='/comics:/comics_collect' element={<PageComics />} exact />
+
+                <Route path='/study' element={<PageMaps />} exact />
 
                 <Route
                   path="*"
