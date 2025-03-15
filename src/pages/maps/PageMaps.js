@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Map, useYMaps, Placemark, FullscreenControl } from '@pbe/react-yandex-maps';
+import { Map, useYMaps, Placemark, FullscreenControl, Clusterer } from '@pbe/react-yandex-maps';
 import { Button, DatePicker, Form, Input } from 'antd';
 import axios from "axios";
 import dayjs from 'dayjs';
@@ -91,10 +91,15 @@ const PageMaps = () => {
                         onClick={(e) => handleClickMap(e)}
                         defaultState={{ center: GEO_CENTER, zoom: GEO_ZOOM }}>
                         {coordinates && <Placemark geometry={coordinates} />}
-                        {coordinatesMaps && coordinatesMaps.map(coord => <>
+                        {coordinatesMaps && <> <Clusterer
+                            options={{
+                                preset: "islands#invertedDarkGreenClusterIcons",
+                                groupByCoordinates: false,
+                            }}
+                        >  {coordinatesMaps.map(coord => <>
                             <Placemark options={
                                 {
-                                    preset: 'islands#circleDotIcon',
+                                    preset: 'islands#darkGreenDotIcon',
                                     iconColor: 'green',
                                 }} geometry={coord.coordinates}
                                 properties={{
@@ -104,6 +109,9 @@ const PageMaps = () => {
                                 }}
                             />
                         </>)}
+                        </Clusterer >
+                        </>
+                        }
                         <FullscreenControl />
                     </Map>
                 </div>
