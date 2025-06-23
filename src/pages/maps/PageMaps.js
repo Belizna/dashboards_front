@@ -14,7 +14,6 @@ const GEO_ZOOM = 12
 
 const PageMaps = () => {
 
-    console.log(process.env.REACT_APP_MAP_KEY)
     const [coordinates, setCoordinates] = useState(null);
     const [coordinatesMaps, setCoordinatesMaps] = useState(null);
     const [adress, setAdress] = useState(null);
