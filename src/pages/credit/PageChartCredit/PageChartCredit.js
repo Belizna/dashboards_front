@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Card, Statistic, Spin, Button, Tabs } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import { Typography, Card, Statistic, Spin, Button, Tabs, Table} from 'antd';
+import { LoadingOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import DemoLiquid from "../../../components/ChartsCredit/Liquid";
 import DemoPie from "../../../components/ChartsCredit/Pie";
 import DemoLine from "../../../components/ChartsCredit/Line";
@@ -9,7 +9,8 @@ import axios from "axios";
 
 import './pageChartCredit.css'
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
+const { Column} = Table;
 
 const PageChartCredit = () => {
 
@@ -94,6 +95,89 @@ const PageChartCredit = () => {
                     {staticData.creditHistory[0].procent_econom && <>
                       <div className="pie">
                         <LineHistory data={staticData.creditHistory[0].procent_econom} />
+                        <Title level={5}>Процент экономии</Title>
+                      </div>
+                    </>}
+                  </div>
+                </>
+              },
+              {
+                key: '3',
+                label: 'Сводка по месяцам',
+                children: <>
+                  <div className="pieGroup">
+                    {staticData.procentDate && <>
+                      <div className="pie">
+                        <Table dataSource={staticData.procentDate}
+                          pagination={{
+                            pageSize: 4,
+                          }}>
+                          <Column title="Месяц 1" dataIndex="dateOld" key="dateOld" />
+                          <Column title="Месяц 2" dataIndex="dateNew" key="dateNew" />
+                          <Column
+                            title="Разница"
+                            dataIndex="diffValue"
+                            key="diffValue"
+                            render={diffValue => {
+                              let color = diffValue > 1 ? 'success' : 'default';
+                              return color === 'success' ? (
+                                <Text type={color}> <ArrowUpOutlined /> {diffValue}</Text>
+                              ) : (
+                                <Text type={color}>{diffValue}</Text>
+                              );
+                            }}
+                          />
+                        </Table>
+                        <Title level={5}>Процент выплаты</Title>
+                      </div>
+                    </>}
+                    {staticData.procentSumm && <>
+                      <div className="pie">
+                        <Table dataSource={staticData.procentSumm}
+                          pagination={{
+                            pageSize: 4,
+                          }}>
+                          <Column title="Месяц 1" dataIndex="dateOld" key="dateOld" />
+                          <Column title="Месяц 2" dataIndex="dateNew" key="dateNew" />
+                          <Column
+                            title="Разница"
+                            dataIndex="diffValue"
+                            key="diffValue"
+                            render={diffValue => {
+                              let color = diffValue === 74667.75 ? 'default' : 'success';
+                              return color === 'success' ? (
+                                <Text type={color}> <ArrowUpOutlined /> {diffValue}</Text>
+                              ) : (
+                                <Text type={color}>{diffValue}</Text>
+                              );
+                            }}
+                          />
+                        </Table>
+                        <Title level={5}>Процент суммы выплаты</Title>
+                      </div>
+                    </>}
+                    {staticData.procentEconom && <>
+                      <div className="pie">
+                        <Table dataSource={staticData.procentEconom}
+                          pagination={{
+                            pageSize: 5,
+                          }}>
+                          <Column title="Месяц 1" dataIndex="dateOld" key="dateOld" />
+                          <Column title="Месяц 2" dataIndex="dateNew" key="dateNew" />
+                          <Column
+                            title="Разница"
+                            dataIndex="diffValue"
+                            key="diffValue"
+                            render={diffValue => {
+                              let color = diffValue > 0 ? 'success' : 'default';
+                              return color === 'success' ? (
+                                <Text type={color}> <ArrowUpOutlined /> {diffValue}</Text>
+                              ) : (
+                                <Text type={color}>{diffValue}</Text>
+                              );
+                            }}
+                          />
+                        </Table>
                         <Title level={5}>Процент экономии</Title>
                       </div>
                     </>}
