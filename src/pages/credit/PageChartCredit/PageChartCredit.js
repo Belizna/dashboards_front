@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Card, Statistic, Spin, Button, Tabs, Table} from 'antd';
-import { LoadingOutlined, ArrowUpOutlined } from '@ant-design/icons';
+import { Typography, Card, Statistic, Spin, Button, Tabs, Table, Modal } from 'antd';
+import { LoadingOutlined, ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import DemoLiquid from "../../../components/ChartsCredit/Liquid";
 import DemoPie from "../../../components/ChartsCredit/Pie";
 import DemoLine from "../../../components/ChartsCredit/Line";
@@ -10,12 +10,16 @@ import axios from "axios";
 import './pageChartCredit.css'
 
 const { Title, Text } = Typography;
-const { Column} = Table;
+const { Column } = Table;
 
 const PageChartCredit = () => {
 
   const [staticData, setStaticData] = useState(0)
   const [countSave, setCountSave] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalData, setIsModalData] = useState(null);
+  const [isModalTitle, setIsModalTitle] = useState('');
+  const [isModalColor, setIsModalColor] = useState(0);
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/carts/static`)
@@ -34,6 +38,21 @@ const PageChartCredit = () => {
     setCountSave(countSave + 1)
   }
 
+  const showModal = (data, title, isColor) => {
+    setIsModalOpen(true);
+    setIsModalData(data)
+    setIsModalTitle(title)
+    setIsModalColor(isColor)
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       {staticData === 0 ? <><div className="loader">
@@ -48,6 +67,30 @@ const PageChartCredit = () => {
           }
         />
       </div></> : <>
+
+        <Modal title={isModalTitle} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+          <Table dataSource={isModalData}
+            pagination={{
+              pageSize: 12,
+            }}>
+            <Column title="Месяц 1" dataIndex="dateOld" key="dateOld" />
+            <Column title="Месяц 2" dataIndex="dateNew" key="dateNew" />
+            <Column
+              title="Разница"
+              dataIndex="diffValue"
+              key="diffValue"
+              render={diffValue => {
+                let color = diffValue > isModalColor ? 'success' : 'default';
+                return color === 'success' ? (
+                  <Text type={color}> <ArrowDownOutlined /> {diffValue.toFixed(2)}</Text>
+                ) : (
+                  <Text type={color}>{diffValue.toFixed(2)}</Text>
+                );
+              }}
+            />
+          </Table>
+        </Modal>
+
         {staticData &&
           <div className="pageChartCredit">
             <div className="liquid">
@@ -83,19 +126,19 @@ const PageChartCredit = () => {
                     {staticData.creditHistory[0].procent_date && <>
                       <div className="pie">
                         <LineHistory data={staticData.creditHistory[0].procent_date} />
-                        <Title level={5}>Процент выплаты</Title>
+                        <Title level={5}>Изменение срока</Title>
                       </div>
                     </>}
                     {staticData.creditHistory[0].procent_summ && <>
                       <div className="pie">
                         <LineHistory data={staticData.creditHistory[0].procent_summ} />
-                        <Title level={5}>Процент суммы выплаты</Title>
+                        <Title level={5}>Изменение остатка</Title>
                       </div>
                     </>}
                     {staticData.creditHistory[0].procent_econom && <>
                       <div className="pie">
                         <LineHistory data={staticData.creditHistory[0].procent_econom} />
-                        <Title level={5}>Процент экономии</Title>
+                        <Title level={5}>Изменение экономии</Title>
                       </div>
                     </>}
                   </div>
@@ -121,14 +164,18 @@ const PageChartCredit = () => {
                             render={diffValue => {
                               let color = diffValue > 1 ? 'success' : 'default';
                               return color === 'success' ? (
-                                <Text type={color}> <ArrowUpOutlined /> {diffValue}</Text>
+                                <Text type={color}> <ArrowDownOutlined /> {diffValue.toFixed(2)}</Text>
                               ) : (
-                                <Text type={color}>{diffValue}</Text>
+                                <Text type={color}>{diffValue.toFixed(2)}</Text>
                               );
                             }}
                           />
                         </Table>
-                        <Title level={5}>Процент выплаты</Title>
+                        <Button style={{ marginLeft: 205, marginTop: -6 }} type="link"
+                          onClick={() => showModal(staticData.procentDate, `Статистика по изменению срока`, 1)}>
+                          Подробнее...
+                        </Button>
+                        <Title level={5}>Изменение срока</Title>
                       </div>
                     </>}
                     {staticData.procentSumm && <>
@@ -146,14 +193,18 @@ const PageChartCredit = () => {
                             render={diffValue => {
                               let color = diffValue === 74667.75 ? 'default' : 'success';
                               return color === 'success' ? (
-                                <Text type={color}> <ArrowUpOutlined /> {diffValue}</Text>
+                                <Text type={color}> <ArrowDownOutlined /> {diffValue.toFixed(2)}</Text>
                               ) : (
-                                <Text type={color}>{diffValue}</Text>
+                                <Text type={color}>{diffValue.toFixed(2)}</Text>
                               );
                             }}
                           />
                         </Table>
-                        <Title level={5}>Процент суммы выплаты</Title>
+                        <Button style={{ marginLeft: 205, marginTop: -6 }} type="link"
+                          onClick={() => showModal(staticData.procentSumm, `Статистика по изменению остатка`,74667.75)}>
+                          Подробнее...
+                        </Button>
+                        <Title level={5}>Изменение остатка</Title>
                       </div>
                     </>}
                     {staticData.procentEconom && <>
@@ -171,14 +222,18 @@ const PageChartCredit = () => {
                             render={diffValue => {
                               let color = diffValue > 0 ? 'success' : 'default';
                               return color === 'success' ? (
-                                <Text type={color}> <ArrowUpOutlined /> {diffValue}</Text>
+                                <Text type={color}> <ArrowUpOutlined /> {diffValue.toFixed(2)}</Text>
                               ) : (
-                                <Text type={color}>{diffValue}</Text>
+                                <Text type={color}>{diffValue.toFixed(2)}</Text>
                               );
                             }}
                           />
                         </Table>
-                        <Title level={5}>Процент экономии</Title>
+                        <Button style={{ marginLeft: 205, marginTop: -6 }} type="link"
+                          onClick={() => showModal(staticData.procentEconom, `Статистика по изменению экономии`,0)}>
+                          Подробнее...
+                        </Button>
+                        <Title level={5}>Изменение экономии</Title>
                       </div>
                     </>}
                   </div>
