@@ -29,7 +29,6 @@ const MenuMain = () => {
         items={staticData}
         style={{
           marginTop: 5,
-          backgroundColor: '#f8f2f2',
         }}
       />
     </>

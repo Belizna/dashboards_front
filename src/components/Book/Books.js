@@ -148,7 +148,7 @@ const Books = ({name_book}) => {
       searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{
-            backgroundColor: '#ffc069',
+            
             padding: 0,
           }}
           searchWords={[searchText]}
@@ -340,7 +340,7 @@ const Books = ({name_book}) => {
         type="primary"
         style={{
           marginTop: 10,
-          backgroundColor:'#5270A7',
+         
         }}
       >
         Добавить книгу

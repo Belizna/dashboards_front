@@ -82,7 +82,7 @@
 .compareProduct {
     width: 1250px;
     height: 550px;
-    background-color: white;
+    
     padding: 30px;
     margin-top: 50px;
 }
@@ -127,7 +127,7 @@
 
 .statisticKolbaska {
     width: 500px;
-    background-color: white;
+    
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
