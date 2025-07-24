@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Typography, Card, Spin, Select, Tabs, Tree, message, Button, Table, Modal, Statistic } from 'antd';
+import { Typography, Card, Spin, Select, Tabs, Tree, message, Button, Table, Modal, Statistic, Collapse } from 'antd';
 import { LoadingOutlined, ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import LineMain from "../../components/ChartsCredit/LinePulse";
 import ColumnCompare from "../../components/ChartsCredit/Column";
@@ -9,14 +9,17 @@ import "./pageMain.css"
 
 const { Title, Text } = Typography;
 const { TabPane } = Tabs
+const { Panel } = Collapse;
 
 const PageMain = ({ year }) => {
 
   const [staticData, setStaticData] = useState(null)
+  const [staticJobs, setStaticJobs] = useState(undefined)
   const [messageApi, contextHolder] = message.useMessage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenCard, setIsModalOpenCard] = useState(false);
   const [isModalData, setIsModalData] = useState(null);
+  const [isModalJobs, setIsModalJobs] = useState(true);
   const [isModalTitle, setIsModalTitle] = useState('');
   const [isModalColumn, setIsModalColumn] = useState(null);
   const [isModalYear, setIsModalYear] = useState(year);
@@ -32,7 +35,7 @@ const PageMain = ({ year }) => {
 
   const fetchStatic = async (years) => {
     await axios.get(`${process.env.REACT_APP_API_URL}/main/static/${years}`)
-      .then(res => setStaticData(res.data))
+      .then((res) => [setStaticData(res.data), setStaticJobs(res.data.jobsMonth)])
   }
   useEffect(() => {
     fetchStatic(year)
@@ -55,6 +58,11 @@ const PageMain = ({ year }) => {
 
   const handleChangeProduct = (value) => {
     setIsProductCompare(value)
+  }
+
+  const handleOkJobsMonth = () => {
+    setIsModalJobs(false)
+    axios.get(`${process.env.REACT_APP_API_URL}/jobs/month/${staticJobs[0]._id}`)
   }
 
   const handleChangeYear1 = (value) => {
@@ -148,6 +156,18 @@ const PageMain = ({ year }) => {
           }
         />
       </div></> : <>
+        {Object.keys(staticJobs).length === 0 ?
+          <></> :
+          <><Modal title="Итоги месяца" open={isModalJobs} onOk={handleOkJobsMonth} onCancel={handleOkJobsMonth}>
+            <Collapse defaultActiveKey={['0']}>
+              {
+                staticJobs[0].children.map(jobs => <Panel header={jobs.name + " " + jobs.value} key={jobs.key}>
+                  <p>{jobs.text}</p>
+                </Panel>)
+              }
+            </Collapse>
+          </Modal></>
+        }
         <Modal title={isModalTitle} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
           <Table columns={isModalColumn} dataSource={isModalData} pagination={false} size="middle" />
         </Modal>
