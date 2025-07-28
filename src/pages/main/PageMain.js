@@ -162,7 +162,10 @@ const PageMain = ({ year }) => {
             <Collapse defaultActiveKey={['0']}>
               {
                 staticJobs[0].children.map(jobs => <Panel header={jobs.name + " " + jobs.value} key={jobs.key}>
-                  <p>{jobs.text}</p>
+                  {jobs.prefix === '>' ? <Text type="success">{jobs.text}</Text> :
+                    jobs.prefix === '<' ?
+                      <Text type="danger">{jobs.text}</Text> :
+                      <Text>{jobs.text}</Text>}
                 </Panel>)
               }
             </Collapse>
