@@ -1,0 +1,8 @@
+.pageComputer {
+    display: flex;
+    justify-content: center;
+}
+
+.tableComputer {
+    width: 1200px;
+}

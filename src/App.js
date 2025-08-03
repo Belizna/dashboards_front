@@ -32,8 +32,8 @@ import PageBeyblade from './pages/collections/PageBeyblades';
 import PageChartsBeyblades from './pages/collections/PageChartsBeyblades';
 import PageBonusDays from './pages/work/PageBonusDays';
 import PagePersonBooks from './pages/person/PagePersonBooks';
+import PageComputer from './pages/computer/pageComputer';
 import PageMaps from './pages/maps/PageMaps';
-
 
 const { Sider, Content } = Layout;
 
@@ -136,6 +136,7 @@ const App = () => {
                 <Route path='/repair/chart/' element={<PageChartsRepair />} exact />
 
                 <Route path='/comics:/comics_collect' element={<PageComics />} exact />
+                <Route path='/computer' element={<PageComputer />} exact />
 
                 <Route path='/study' element={<PageMaps />} exact />
 
