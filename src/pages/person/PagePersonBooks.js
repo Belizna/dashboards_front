@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Select, Typography, Tabs, Button, Form, Input, Space, Card } from 'antd';
 import axios from "axios";
-import { G6, MindMap } from '@ant-design/graphs';
+import {DecompositionTreeGraph } from '@ant-design/graphs';
 import { PlusOutlined, CloseOutlined } from '@ant-design/icons';
 
 import './pagePersonBooks.css'
 
+
 const { Title } = Typography;
 const { TabPane } = Tabs
-const { treeToGraphData } = G6;
 
 const PagePersonBooks = () => {
 
+    const [countSave, setCountSave] = useState(0);
     const [form] = Form.useForm();
     const [formClass] = Form.useForm();
     const [formPerson] = Form.useForm();
@@ -20,7 +21,10 @@ const PagePersonBooks = () => {
     const [classSelector, setClassSelector] = useState();
     const [personSelector, setPersonSelector] = useState();
     const [person, setPerson] = useState();
-    const [ordens, setOrdens] = useState([{ id: 'Необходимо выбрать класс' }]);
+    const [ordens, setOrdens] = useState([{
+        id: 'Необходимо выбрать класс',
+        value: { title: 'Необходимо выбрать класс' }
+    }]);
     const [data, setData] = useState();
 
     useEffect(() => {
@@ -30,41 +34,55 @@ const PagePersonBooks = () => {
                 setOptionsSelector(res.data.personSelectorOptions),
                 setClassSelector(res.data.personSelectorClass),
                 setPersonSelector(res.data.groupPerson),
-                setData(treeToGraphData(ordens[0]))])
-                // eslint-disable-next-line
-    }, [])
+                setData(ordens[0])
+            ])
+        // eslint-disable-next-line
+    }, [countSave])
 
+    const config = {
+        data,
+        layout: {
+            type: 'indented',
+            direction: 'LR',
+            dropCap: false,
+            indent: 250,
+            getHeight: () => {
+                return 60;
+            },
+            getWidth: () => {
+                return 100;
+            },
+        },
+        markerCfg: (cfg) => {
+            const { children } = cfg;
+            return {
+                show: children?.length,
+            };
+        },
+        behaviors: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+    };
     const handleChangeNameOrden = (value) => {
-        setData(treeToGraphData(ordens[value]))
+        setData(ordens[value])
     }
 
     const handleChangeClass = (value) => {
         personSelector.map(pers => pers.id === value ? setPerson(pers.person) : pers)
     }
 
-    const options = {
-        type: 'boxed',
-        autoFit: 'view',
-        data,
-        transforms: (prev) => [
-            ...prev.filter((transform) => transform.type !== 'collapse-expand-react-node'),
-            {
-                ...prev.find((transform) => transform.type === 'collapse-expand-react-node'),
-                enable: true,
-            },
-        ],
-    };
 
     const onFinish = (values) => {
         axios.post(`${process.env.REACT_APP_API_URL}/person/add/class`, values)
+        setCountSave(countSave + 1)
     };
 
     const onFinishPerson = (values) => {
         axios.post(`${process.env.REACT_APP_API_URL}/person/add/person`, values)
+        setCountSave(countSave + 1)
     };
 
     const onFinishBooks = (values) => {
         axios.post(`${process.env.REACT_APP_API_URL}/person/add/books`, values)
+        setCountSave(countSave + 1)
     };
 
     const formItemLayout = {
@@ -121,7 +139,7 @@ const PagePersonBooks = () => {
                                         /></Title>
                                     </div>
                                     <div className="treePerson">
-                                        <MindMap {...options} />
+                                        <DecompositionTreeGraph {...config} />
                                     </div>
                                 </div>
                             </div>

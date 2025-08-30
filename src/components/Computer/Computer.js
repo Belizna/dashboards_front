@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Popconfirm, DatePicker, Table, Typography, Button, Select } from 'antd';
+import { Form, Input, Popconfirm, DatePicker, Table, Typography, Button, Select, Tabs } from 'antd';
 import axios from "axios";
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc'
@@ -40,7 +40,6 @@ const Computer = () => {
       : inputType === 'select_category' ? <Select
         options={category} />
         : <Input />;
-
     return (
       <td {...restProps}>
         {editing ? (
@@ -66,6 +65,13 @@ const Computer = () => {
   };
 
   const isEditing = (record) => record._id === editingKey;
+
+  const add = (record) => {
+    form.setFieldsValue({
+      ...record,
+    });
+    setEditingKey(record._id);
+  };
 
   const handleDelete = async (record) => {
     const newData = data.filter((item) => item._id !== record._id);
@@ -202,12 +208,11 @@ const Computer = () => {
     const newData = {
       _id: Math.random(),
       components_name: '',
-      date_buy: '',
       category: '',
-      components_summ: ''
+      components_summ: '',
     };
     setData([...data, newData])
-    edit(newData)
+    add(newData)
   };
   return (
     <>
@@ -244,7 +249,6 @@ const Computer = () => {
         Добавить комплектующие
       </Button>
     </>
-
   );
 }
 
