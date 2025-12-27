@@ -5,15 +5,15 @@ import { Spin, Image, Progress, Typography, Tabs } from 'antd';
 
 import './pageHorusHeresyCharts.css'
 
-const PageChartsBooksGroup = () => {
+const PageChartsBooksGroup = ({url}) => {
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/books/charts_group_list/`)
+        axios.get(`${process.env.REACT_APP_API_URL}${url}`)
             .then((res) => [setStaticData(res.data.booksListGroup),
             setStaticDataWrite(res.data.booksWriteListGroup),
             setStaticDataAuthor(res.data.booksAuthorWriteListGroup),
             ])
-    }, [])
+    }, [url])
 
     const [staticData, setStaticData] = useState(0)
     const [staticDataWrite, setStaticDataWrite] = useState(0)
