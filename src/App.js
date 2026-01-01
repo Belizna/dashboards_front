@@ -34,6 +34,7 @@ import PageBonusDays from './pages/work/PageBonusDays';
 import PagePersonBooks from './pages/person/PagePersonBooks';
 import PageComputer from './pages/computer/pageComputer';
 import PageMaps from './pages/maps/PageMaps';
+import PagePurpose from './pages/purpose/pagePurpose';
 
 const { Sider, Content } = Layout;
 
@@ -107,6 +108,7 @@ const App = () => {
                 <Route path='/credit_loan' element={<PageLoan />} exact />
                 <Route path='/early_payments' element={<PageEarlyPayments />} exact />
                 <Route path='/chart_credit' element={<PageChartCredit />} exact />
+                <Route path='/purpose' element={<PagePurpose />} exact />
 
                 <Route path="/books/:name_book" element={<PageBooks url={"/books/heresy_horus"}/>} exact />
                 <Route path='/write_books/:name_book' element={<PageWriteBooks url={"/books/write_books"}/>} exact />

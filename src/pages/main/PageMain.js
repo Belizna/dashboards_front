@@ -4,6 +4,7 @@ import { Typography, Card, Spin, Select, Tabs, Tree, message, Button, Table, Mod
 import { LoadingOutlined, ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import LineMain from "../../components/ChartsCredit/LinePulse";
 import ColumnCompare from "../../components/ChartsCredit/Column";
+import Purpose from "../../components/Purpose/Purpose";
 
 import "./pageMain.css"
 
@@ -376,43 +377,6 @@ const PageMain = ({ year }) => {
               </div>
             }
           </TabPane>
-          <TabPane tab="Задачи" key="3">
-            {staticData &&
-
-              <div className="tabMain">
-                <div className="tab">
-                  <div className="mainTree">
-                    <div className="tree">
-
-                      <Text style={{ marginTop: -10, marginBottom: 15 }}>Книги к покупке: <Text type="success">{staticData.books_list_count}</Text> </Text>
-                      <Tree style={{ width: 380 }}
-                        onSelect={onSelect}
-                        showLine
-                        treeData={staticData.books_price}
-                      />
-                    </div>
-                    <div className="tree">
-                      <Text style={{ marginTop: -10, marginBottom: 15 }}>Игры к прохождению: <Text type="success">{staticData.game_over_count}</Text> </Text>
-                      <Tree style={{ width: 380 }}
-                        onSelect={onSelect}
-                        showLine
-                        treeData={staticData.game_over}
-                      />
-                    </div>
-
-                    <div className="tree">
-                      <Text style={{ marginTop: -10, marginBottom: 15 }}>Книги к прочтению: <Text type="success">{staticData.books_write_count}</Text> </Text>
-                      <Tree style={{ width: 380 }}
-                        onSelect={onSelect}
-                        showLine
-                        treeData={staticData.books_write}
-                      />
-                    </div>
-
-                  </div>
-                </div>
-              </div>}
-          </TabPane>
           <TabPane tab="Сравнение" key="4">
             <Tabs defaultActiveKey="1">
               <TabPane tab="Статистика общая" key="1">
@@ -617,6 +581,15 @@ const PageMain = ({ year }) => {
                   </div>}
               </TabPane>
             </Tabs>
+          </TabPane>
+          <TabPane tab="Цели" key="5">
+            <div className="tabPurpose">
+              {
+                staticData && staticData.purposeCollect.map((obj) =>
+                  <Purpose purposeCollect={obj}/>
+                )
+              }
+            </div>
           </TabPane>
         </Tabs>
       </>}
