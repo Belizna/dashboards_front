@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { LoadingOutlined } from '@ant-design/icons';
-import { Form, Spin, Input, Typography, Popconfirm, Space, Select, Card, Tabs, Button, Table } from 'antd';
+import { Form, Image, Spin, Input, Typography, Popconfirm, Space, Select, Card, Tabs, Button, Table } from 'antd';
 import axios from "axios";
 
 import './scratch.css'
@@ -407,19 +407,22 @@ const PageScratch = () => {
                     <div className="poster">
                       {
                         arr.card.map(arrcard => (
-                          <div>
+                          <div className="card_poster">
                             <Card
                               hoverable
-                              style={{ width: 200 }}
                               cover={
-                                <img
-                                  draggable={false}
-                                  alt="example"
+                                <Image
+                                  width={205}
+                                  height={275}
+                                  alt="basic"
                                   src={arrcard.image_key}
                                 />
                               }
                             >
-                              <Meta title={<div style={{ textAlign: 'center' }}>{arrcard.name}</div>} />
+                              <Meta title={<div style={{
+                                textAlign: 'center', whiteSpace: 'normal',
+                                wordBreak: 'break-word', height: 47
+                              }}>{arrcard.name}</div>} />
                             </Card>
                           </div>
                         ))

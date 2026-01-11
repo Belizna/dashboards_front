@@ -3,4 +3,10 @@
     justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: row;
+    align-items: center;
+}
+
+.card_poster {
+    margin: 5px 5px 5px 5px;
+    width: 205px;
 }
