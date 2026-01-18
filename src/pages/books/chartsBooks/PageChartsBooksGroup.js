@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { LoadingOutlined } from '@ant-design/icons';
-import { Spin, Image, Progress, Typography, Tabs } from 'antd';
+import { Spin, Image, Progress, Typography, Tabs, message } from 'antd';
+import { useNavigate } from "react-router-dom";
 
 import './pageHorusHeresyCharts.css'
 
-const PageChartsBooksGroup = ({url}) => {
+const PageChartsBooksGroup = ({ url }) => {
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}${url}`)
@@ -18,10 +19,24 @@ const PageChartsBooksGroup = ({url}) => {
     const [staticData, setStaticData] = useState(0)
     const [staticDataWrite, setStaticDataWrite] = useState(0)
     const [staticDataAuthor, setStaticDataAuthor] = useState(0)
+    const [messageApi, contextHolder] = message.useMessage();
+    const result = url.slice(1, url.indexOf("/", url.indexOf("/") + 1) + 1);
     const { Title, Link, Text } = Typography;
+    const navigate = useNavigate();
+
+    const onSelect = (info) => {
+        navigator.clipboard.writeText(info)
+        messageApi.open({
+            type: 'success',
+            content: `"${info}" copy`
+        })
+    };
+
 
     return (
         <>
+            {contextHolder}
+
             {staticData === 0 ? <><div className="loader">
                 <Spin
                     indicator={
@@ -48,7 +63,11 @@ const PageChartsBooksGroup = ({url}) => {
                                                     width={85} height={117}
                                                     src={obj.keyBooks}
                                                 />
-                                                <Title style={{ marginLeft: 25 }} level={4}>{obj.nameCompilation}</Title>
+                                                <Title style={{ marginLeft: 25, cursor: "pointer" }} level={4}
+                                                    onClick={() => navigate(`/${result}${obj.nameCompilation}`)}
+                                                >
+                                                    {obj.nameCompilation}
+                                                </Title>
                                             </div>
                                             <div className="cardProcent">
                                                 <Text type="secondary">Собрано.. {obj.procent}%</Text>
@@ -60,7 +79,7 @@ const PageChartsBooksGroup = ({url}) => {
                                                 <Text style={{ fontSize: 15 }} strong>Осталось ({obj.countNotBooks}): </Text>
                                                 {
                                                     obj.items.map(obj =>
-                                                        <Link style={{ fontSize: 15 }} target="_blank">
+                                                        <Link style={{ fontSize: 15 }} target="_blank" onClick={() => onSelect(obj)}>
                                                             , {obj}
                                                         </Link >
                                                     )
@@ -85,7 +104,9 @@ const PageChartsBooksGroup = ({url}) => {
                                                     width={85} height={117}
                                                     src={obj.keyBooks}
                                                 />
-                                                <Title style={{ marginLeft: 25 }} level={4}>{obj.nameCompilation}</Title>
+                                                <Title style={{ marginLeft: 25, cursor: "pointer" }} level={4}
+                                                    onClick={() => navigate(`/write_${result}${obj.nameCompilation}`)}
+                                                >{obj.nameCompilation}</Title>
                                             </div>
                                             <div className="cardProcent">
                                                 <Text type="secondary">Прочитано.. {obj.procent}%</Text>
@@ -98,7 +119,7 @@ const PageChartsBooksGroup = ({url}) => {
                                                             <Text style={{ fontSize: 15 }} strong>{arr.staticWrite}</Text>
                                                             {
                                                                 arr.listWrite.map(obj =>
-                                                                    <Link style={{ fontSize: 15 }} target="_blank">
+                                                                    <Link style={{ fontSize: 15 }} target="_blank" onClick={() => onSelect(obj)}>
                                                                         {obj},
                                                                     </Link >
                                                                 )

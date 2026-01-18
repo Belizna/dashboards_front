@@ -115,8 +115,8 @@ const App = () => {
                 <Route path='/write_books/:name_book' element={<PageWriteBooks url={"/books/write_books"}/>} exact />
                 <Route path='/chart_books/:name_book' element={<PageChartsBooks />} exact />
 
-                <Route path="/books_diff/:name_book" element={<PageBooks url={"/books"}/>} exact />
-                <Route path='/write_books_diff/:name_book' element={<PageWriteBooks url={"/books/write_diff_books"}/>} exact />
+                <Route path="/booksdiff/:name_book" element={<PageBooks url={"/books"}/>} exact />
+                <Route path='/write_booksdiff/:name_book' element={<PageWriteBooks url={"/books/write_diff_books"}/>} exact />
 
                 <Route path='/games/:library_name' element={<PageGamesLibrary />} exact />
                 <Route path='/chart_games' element={<PageGamesLibraryCharts />} exact />
