@@ -7,6 +7,7 @@ const LineHistory = ({data}) => {
     xField: 'date',
     yField: 'value',
     seriesField: 'category',
+    isStack: false
   };
   return <Area {...config} />;
 };
