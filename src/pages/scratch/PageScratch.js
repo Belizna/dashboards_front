@@ -51,6 +51,10 @@ const EditableCell = ({
         {
           value: 'Сериалы',
           label: 'Сериалы',
+        },
+        {
+          value: 'Аниме',
+          label: 'Аниме',
         }
       ]} />
       : <Input />;
@@ -307,6 +311,10 @@ const PageScratch = () => {
         {
           text: 'Сериалы',
           value: 'Сериалы',
+        },
+        {
+          text: 'Аниме',
+          value: 'Аниме',
         }
       ],
       onFilter: (value, record) => record.category.includes(value),
@@ -403,7 +411,13 @@ const PageScratch = () => {
             <Tabs defaultActiveKey="1">
               {
                 dataScratch.map(arr => (
+
                   <TabPane tab={arr.category} key={arr.key} >
+                    <div className="footerScratch">
+                      <Typography.Text strong>
+                        Выполнено {arr.done}/{arr.count}
+                      </Typography.Text>
+                    </div>
                     <div className="poster">
                       {
                         arr.card.map(arrcard => (

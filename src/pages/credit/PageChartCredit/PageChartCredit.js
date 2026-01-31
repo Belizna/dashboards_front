@@ -154,6 +154,7 @@ const PageChartCredit = () => {
                         <Table dataSource={staticData.procentDate}
                           pagination={{
                             pageSize: 4,
+                            current: Math.ceil((staticData.procentEconom.length + 1) / 4)
                           }}>
                           <Column title="Месяц 1" dataIndex="dateOld" key="dateOld" />
                           <Column title="Месяц 2" dataIndex="dateNew" key="dateNew" />
@@ -183,6 +184,7 @@ const PageChartCredit = () => {
                         <Table dataSource={staticData.procentSumm}
                           pagination={{
                             pageSize: 4,
+                            current: Math.ceil((staticData.procentEconom.length + 1) / 4)
                           }}>
                           <Column title="Месяц 1" dataIndex="dateOld" key="dateOld" />
                           <Column title="Месяц 2" dataIndex="dateNew" key="dateNew" />
@@ -211,7 +213,8 @@ const PageChartCredit = () => {
                       <div className="pie">
                         <Table dataSource={staticData.procentEconom}
                           pagination={{
-                            pageSize: 5,
+                            pageSize: 4,
+                            current: Math.ceil((staticData.procentEconom.length + 1) / 4)
                           }}>
                           <Column title="Месяц 1" dataIndex="dateOld" key="dateOld" />
                           <Column title="Месяц 2" dataIndex="dateNew" key="dateNew" />

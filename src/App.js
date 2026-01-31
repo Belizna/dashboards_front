@@ -95,6 +95,7 @@ const App = () => {
           <Layout
             style={{
               marginLeft: 270,
+              width: '1000%'
             }}
           >
             <Content
