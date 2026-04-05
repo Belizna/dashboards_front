@@ -9,6 +9,10 @@ const PageCardsImage = ({ collection_card, card }) => {
     { cards: 'Боевая четверка', key: '123' },
     { cards: 'Воины тени', key: '274' },
     { cards: 'Братья по оружию', key: '838' },
+    { cards: 'Большая драка', key: '123' },
+    { cards: 'Мастера иллюзий', key: '123' },
+    { cards: 'Клинки судьбы', key: '123' },
+    { cards: 'Кодекс чести', key: '123' },
     { cards: 'Герои и Злодеи', key: '38' },
     { cards: 'Герои и Злодеи. 2-я часть.', key: '106' },
     { cards: 'Герои и Злодеи. 3-я часть.', key: '166' },
@@ -26,29 +30,29 @@ const PageCardsImage = ({ collection_card, card }) => {
 
   return (
     <>
-    
+
       <div className="cardListImage">
         {
-          collection_card === 'Naruto' ? 
-          
-          card.map((obj) => <div className="cardImage">
-            <Title style={{ marginBottom: -2 }} level={2}>{obj.number_card}</Title>
-            <Image
-              width={218} height={300}
-              src={`https://capsulecorpgear.com/wp-content/uploads/${obj.hashImage_card}`}
-            />
-            <Text strong>{obj.name_card}</Text>
-          </div>
-          )
-          :
-          card.map((obj) => <div className="cardImage">
-          <Title style={{ marginBottom: -2 }} level={2}>{obj.number_card}</Title>
-          <Image
-            width={218} height={300}
-            src={`https://www.laststicker.ru/i/cards/${cards}/${obj.number_card}.jpg`}
-          />
-          <Text strong>{obj.name_card}</Text>
-        </div>)
+          collection_card === 'Naruto' ?
+
+            card.map((obj) => <div className="cardImage">
+              <Title style={{ marginBottom: -2 }} level={2}>{obj.number_card}</Title>
+              <Image
+                width={218} height={300}
+                src={`https://capsulecorpgear.com/wp-content/uploads/${obj.hashImage_card}`}
+              />
+              <Text strong>{obj.name_card}</Text>
+            </div>
+            )
+            :
+            card.map((obj) => <div className="cardImage">
+              <Title style={{ marginBottom: -2 }} level={2}>{obj.number_card}</Title>
+              <Image
+                width={218} height={300}
+                src={`https://www.laststicker.ru/i/cards/${cards}/${obj.number_card}.jpg`}
+              />
+              <Text strong>{obj.name_card}</Text>
+            </div>)
         }
       </div>
     </>

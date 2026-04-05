@@ -46,35 +46,7 @@ const PageCardsGroupCharts = () => {
                                     {
                                         staticData.map(obj => <CardsBlock staticData={obj} />)
                                     }
-                                    <div className="blockCardCollection">
-                                        <div className="cardName">
-                                            <Image
-                                                width={80} height={97}
-                                                src="https://www.laststicker.ru/i/album/9851.jpg"
-                                            />
-                                            <Title style={{ marginLeft: 25 }} level={4}>{staticDataNaruto.nameCollection}</Title>
-                                        </div>
-                                        <div className="cardProcent">
-                                            <Text type="secondary">Собрано.. {staticDataNaruto.procent}%</Text>
-                                            <Progress size={[350, 8]} percent={staticDataNaruto.procent} showInfo={false} />
-                                        </div>
-                                        <div className="cardNumber">
-                                            <Text style={{ fontSize: 15 }} strong>Количество: <Text style={{ fontSize: 15 }} type="success">{staticDataNaruto.countCards}</Text></Text> <br />
-                                            <Text style={{ fontSize: 15 }} strong>Потрачено: <Text style={{ fontSize: 15 }} type="success">{staticDataNaruto.sumCards}р</Text></Text> <br />
-                                            <Text style={{ fontSize: 15 }} strong>Осталось ({staticDataNaruto.countNotCard}): </Text>
-                                            {
-                                                staticDataNaruto.items.map(obj =>
-                                                    <Popover placement="bottomLeft" content={<Image
-                                                        width={218} height={300}
-                                                        src={`https://capsulecorpgear.com/wp-content/uploads/${obj.hash}`}
-                                                    />}>
-                                                        <Link style={{ fontSize: 15 }} target="_blank">
-                                                            ,  {obj.title}
-                                                        </Link >
-                                                    </Popover>)
-                                            }
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </>
                     },

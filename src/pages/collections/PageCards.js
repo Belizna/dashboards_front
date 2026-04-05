@@ -46,7 +46,10 @@ const PageCards = () => {
     ]
 
     if (collection_card === 'Боевая четверка' || collection_card === 'Воины тени' ||
-        collection_card === 'Братья по оружию' || collection_card === 'Transformers Prime'
+        collection_card === 'Братья по оружию' || collection_card === 'Большая драка' ||
+        collection_card === 'Мастера иллюзий' ||
+        collection_card === 'Кодекс чести' ||
+         collection_card === 'Transformers Prime'
         || collection_card === 'Супергонки. 1 серия.' || collection_card === 'Супергонки. 2 серия.') {
         option = options[0]
         filter = filters[0]
