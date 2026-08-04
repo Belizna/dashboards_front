@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined, CheckSquareOutlined, BorderOutlined } from '@ant-design/icons';
 import { Spin, Image, Progress, Typography, Tabs, message } from 'antd';
 import { useNavigate } from "react-router-dom";
 
@@ -159,33 +159,77 @@ const PageChartsBooksGroup = ({ url }) => {
                                         </div>
 
                                         {
-                                            obj.books.map(ob => <div className="blockBookAuthorCollection">
-                                                <div className="cardName">
-                                                    <Image
-                                                        width={85} height={117}
-                                                        src={ob.keyBooks}
-                                                    />
-                                                    <Title style={{ marginLeft: 25 }} level={4}>{ob.nameCompilation}</Title>
-                                                </div>
-                                                <div className="cardNumber">
-                                                    {
-                                                        ob.group.map(arr =>
-                                                            <>
-                                                                <Text style={{ fontSize: 15 }} strong>{arr.staticWrite}</Text>
+                                            <Tabs defaultActiveKey="1" items={[
+                                                {
+                                                    key: '1',
+                                                    label: 'Чтение книг',
+                                                    children: <>
+                                                        {obj.books.map(ob => <div className="blockBookAuthorCollection">
+                                                            <div className="cardName">
+                                                                <Image
+                                                                    width={85} height={117}
+                                                                    src={ob.keyBooks}
+                                                                />
+                                                                <Title style={{ marginLeft: 25 }} level={4}>{ob.nameCompilation}</Title>
+                                                            </div>
+                                                            <div className="cardNumber">
                                                                 {
-                                                                    arr.listWrite.map(obj =>
-                                                                        <Link style={{ fontSize: 15 }} target="_blank">
-                                                                            {obj},
-                                                                        </Link >
+                                                                    ob.writeGroup.map(arr =>
+                                                                        <>
+                                                                            {
+                                                                                arr.presence === 'Прочитано' ? <div className="checkBooks">
+                                                                                    <CheckSquareOutlined style={{ color: "#52c41a" }} />
+                                                                                    <Title level={5} style={{ marginLeft: 5 }}> {arr.title} </Title>
+                                                                                </div> : <div className="checkBooks">
+                                                                                    <BorderOutlined />
+                                                                                    <Title level={5} style={{ marginLeft: 5 }}> {arr.title} </Title>
+                                                                                </div>
+                                                                            }
+                                                                            <br></br>
+                                                                        </>
                                                                     )
                                                                 }
                                                                 <br></br>
-                                                            </>
-                                                        )
-                                                    }
+                                                            </div>
+                                                        </div>)}</>
+                                                },
+                                                {
+                                                    key: '2',
+                                                    label: 'Циклы книг',
+                                                    children: <>
+                                                        {obj.books.map(ob => <div className="blockBookAuthorCollection">
+                                                            <div className="cardName">
+                                                                <Image
+                                                                    width={85} height={117}
+                                                                    src={ob.keyBooks}
+                                                                />
+                                                                <Title style={{ marginLeft: 25 }} level={4}>{ob.nameCompilation}</Title>
+                                                            </div>
+                                                            <div className="cardNumber">
+                                                                {
+                                                                    ob.group.map(arr =>
+                                                                        <>
+                                                                            <Text style={{ fontSize: 15 }} strong>{arr.staticWrite}</Text>
+                                                                            {
+                                                                                arr.listWrite.map(obj =>
+                                                                                    <Link style={{ fontSize: 15 }} target="_blank">
+                                                                                        {obj},
+                                                                                    </Link >
+                                                                                )
+                                                                            }
+                                                                            <br></br>
+                                                                        </>
+                                                                    )
+                                                                }
 
-                                                </div>
-                                            </div>)
+                                                            </div>
+                                                        </div>)}</>
+                                                }
+                                            ]}
+
+                                            />
+
+
                                         }
                                         <br />
                                     </div>

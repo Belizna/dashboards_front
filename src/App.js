@@ -36,6 +36,7 @@ import PageComputer from './pages/computer/pageComputer';
 import PageMaps from './pages/maps/PageMaps';
 import PagePurpose from './pages/purpose/pagePurpose';
 import PageScratch from './pages/scratch/PageScratch';
+import PageAdminsBooks from './pages/books/adminsBooks/PageAdminsBooks';
 
 const { Sider, Content } = Layout;
 
@@ -149,6 +150,8 @@ const App = () => {
                 <Route path='/study' element={<PageMaps />} exact />
 
                 <Route path='/table_scratch' element={<PageScratch />} exact />
+
+                <Route path='/booksdiff_admin' element={<PageAdminsBooks />} exact />
 
                 <Route
                   path="*"

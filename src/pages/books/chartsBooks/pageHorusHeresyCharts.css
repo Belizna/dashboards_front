@@ -16,6 +16,12 @@
     height: 290px;
 }
 
+.checkBooks {
+    display: flex;
+    align-items: baseline;
+    height: 10px;
+}
+
 .pieGroup {
     display: flex;
     flex-wrap: wrap;
