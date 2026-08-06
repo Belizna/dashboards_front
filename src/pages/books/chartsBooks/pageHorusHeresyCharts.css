@@ -64,6 +64,7 @@
     display: flex;
     flex-direction: column;
     margin-left: 25px;
+    margin-bottom: 15px;
 }
 
 .blockAutor {
@@ -79,4 +80,10 @@
     margin: 10px;
     width: 800px;
     box-shadow: 0 1px 0 0;
+}
+
+.titleBooks {
+    display: flex;
+    align-items: baseline;
+    flex-direction: column
 }

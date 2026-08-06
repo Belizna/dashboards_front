@@ -155,6 +155,10 @@ const PageChartsBooksGroup = ({ url }) => {
                                                 <Text style={{ fontSize: 16 }}>Количество романов: {obj.summRomans} </Text>
                                                 <Text style={{ fontSize: 16 }}>Количество повестей: {obj.summBigStory}</Text>
                                                 <Text style={{ fontSize: 16 }}>Количество рассказов: {obj.summStory} </Text>
+                                                {
+                                                    obj.procentAuthor === 100 ? <Text type="success" style={{ fontSize: 16 }}>Прочитано: {obj.procentAuthor}%</Text> :
+                                                        <Text type="warning" style={{ fontSize: 16 }}>Прочитано: {obj.procentAuthor}%</Text>
+                                                }
                                             </div>
                                         </div>
 
@@ -169,10 +173,17 @@ const PageChartsBooksGroup = ({ url }) => {
                                                                 <Image
                                                                     width={85} height={117}
                                                                     src={ob.keyBooks}
+
                                                                 />
-                                                                <Title style={{ marginLeft: 25 }} level={4}>{ob.nameCompilation}</Title>
+                                                                <div className="titleBooks">
+                                                                    <Title style={{ marginLeft: 25 }} level={4}>{ob.nameCompilation}</Title>
+                                                                    {
+                                                                        ob.procentWriteGroup === 100 ? <Text type="success" style={{ fontSize: 16 }}>Прочитано: {ob.procentWriteGroup}%</Text> :
+                                                                            <Text type="warning" style={{ fontSize: 16 }}>Прочитано: {ob.procentWriteGroup}%</Text>
+                                                                    }
+                                                                </div>
                                                             </div>
-                                                            <div className="cardNumber">
+                                                            <div >
                                                                 {
                                                                     ob.writeGroup.map(arr =>
                                                                         <>
