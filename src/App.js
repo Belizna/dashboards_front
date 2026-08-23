@@ -113,12 +113,12 @@ const App = () => {
                 <Route path='/chart_credit' element={<PageChartCredit />} exact />
                 <Route path='/purpose' element={<PagePurpose />} exact />
 
-                <Route path="/books/:name_book" element={<PageBooks url={"/books/heresy_horus"}/>} exact />
-                <Route path='/write_books/:name_book' element={<PageWriteBooks url={"/books/write_books"}/>} exact />
+                <Route path="/books/:name_book" element={<PageBooks url={"/books/heresy_horus"} />} exact />
+                <Route path='/write_books/:name_book' element={<PageWriteBooks url={"/books/write_books"} />} exact />
                 <Route path='/chart_books/:name_book' element={<PageChartsBooks />} exact />
 
-                <Route path="/booksdiff/:name_book" element={<PageBooks url={"/books"}/>} exact />
-                <Route path='/write_booksdiff/:name_book' element={<PageWriteBooks url={"/books/write_diff_books"}/>} exact />
+                <Route path="/booksdiff/:name_book" element={<PageBooks url={"/books"} />} exact />
+                <Route path='/write_booksdiff/:name_book' element={<PageWriteBooks url={"/books/write_diff_books"} />} exact />
 
                 <Route path='/games/:library_name' element={<PageGamesLibrary />} exact />
                 <Route path='/chart_games' element={<PageGamesLibraryCharts />} exact />
@@ -149,7 +149,7 @@ const App = () => {
 
                 <Route path='/study' element={<PageMaps />} exact />
 
-                <Route path='/table_scratch' element={<PageScratch />} exact />
+                <Route path='/table_scratch' element={<PageScratch year={currentYear} />} exact />
 
                 <Route path='/booksdiff_admin' element={<PageAdminsBooks />} exact />
 

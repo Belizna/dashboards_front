@@ -6,6 +6,8 @@ import { Form, Image, Spin, Input, Typography, Popconfirm, Space, Select, Card, 
 import axios from "axios";
 
 import './scratch.css'
+
+const { Title } = Typography;
 const { TabPane } = Tabs
 const { Meta } = Card;
 
@@ -84,18 +86,30 @@ const EditableCell = ({
 };
 
 
-const PageScratch = () => {
+const PageScratch = ({ year }) => {
 
   const [countSave, setCountSave] = useState(0);
+
+  const fetchStatic = async (years) => {
+    await axios.get(`${process.env.REACT_APP_API_URL}/scratch/pulse/${years}`)
+      .then((res) => [setStaticData(res.data.scratch_statistic)])
+  }
+
+  const handleChange = async (value) => {
+    await axios.get(`${process.env.REACT_APP_API_URL}/scratch/pulse/${value}`)
+      .then(res => setStaticData(res.data.scratch_statistic))
+  }
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/scratch`)
       .then((res) => [setData(res.data.scratch), setDataScratch(res.data.scratch_poster)])
-  }, [countSave])
+    fetchStatic(year)
+  }, [countSave, year])
 
   const [form] = Form.useForm();
   const [data, setData] = useState([]);
   const [dataScratch, setDataScratch] = useState(0);
+  const [dataStaticData, setStaticData] = useState(0);
   const [editingKey, setEditingKey] = useState('');
   const isEditing = (record) => record._id === editingKey;
   const [page, setPage] = useState(1);
@@ -235,6 +249,7 @@ const PageScratch = () => {
     }
     setIsEdit(false)
   };
+
   const save = async (_id) => {
     try {
       const row = await form.validateFields();
@@ -261,6 +276,7 @@ const PageScratch = () => {
     }
     setIsEdit(false)
   };
+
   const columns = [
     {
       title: 'Наименование',
@@ -446,6 +462,69 @@ const PageScratch = () => {
                 ))
               }
             </Tabs>
+          </TabPane>
+          <TabPane tab="Статистика" key="4">
+            <>
+              {
+                dataStaticData === 0 ? <><div className="loader">
+                  <Spin
+                    indicator={
+                      <LoadingOutlined
+                        style={{
+                          fontSize: 80,
+                        }}
+                        spin
+                      />
+                    }
+                  />
+                </div></> :
+                  <><Title level={5}>Сводка за <Select
+                    defaultValue={year}
+                    onChange={handleChange}
+                    style={{ width: 85 }}
+                    options={[
+                      { value: '2026', label: '2026 г.' },
+                      { value: '2027', label: '2027 г.' },
+                      { value: '2028', label: '2028 г.' },
+                    ]}
+                  /> </Title>
+
+                    {
+                      dataStaticData.map(arr => (
+                        <div>
+                          <Card title={arr.category_pulse} variant="borderless">
+                            <div className="poster_statistic">
+                              {
+                                arr.scratchPush.map(arrcard => (<div className="card_poster">
+                                  <Card
+                                    hoverable
+                                    cover={
+                                      <Image
+                                        width={205}
+                                        height={275}
+                                        alt="basic"
+                                        src={arrcard.image_key}
+                                      />
+                                    }
+                                  >
+                                    <Meta title={<div style={{
+                                      textAlign: 'center', whiteSpace: 'normal',
+                                      wordBreak: 'break-word', height: 47
+                                    }}>{arrcard.name}</div>} />
+                                  </Card>
+                                </div>)
+                                )
+                              }
+                            </div>
+                          </Card>
+                          <br />
+                        </div>
+                      ))
+                    }
+
+                  </>
+              }
+            </>
           </TabPane>
           <TabPane tab="Таблица" key="3">
             <>

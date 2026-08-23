@@ -233,6 +233,8 @@ const PageMain = ({ year }) => {
                         { value: '2024', label: '2024 г.' },
                         { value: '2025', label: '2025 г.' },
                         { value: '2026', label: '2026 г.' },
+                        { value: '2027', label: '2027 г.' },
+                        { value: '2028', label: '2028 г.' },
                       ]}
                     /> </Title>
                   </div>
@@ -392,6 +394,8 @@ const PageMain = ({ year }) => {
                             { value: '2024', label: '2024 г.' },
                             { value: '2025', label: '2025 г.' },
                             { value: '2026', label: '2026 г.' },
+                            { value: '2027', label: '2027 г.' },
+                            { value: '2028', label: '2028 г.' },
                           ]}
                         /> </Title>
                         {
@@ -455,6 +459,8 @@ const PageMain = ({ year }) => {
                             { value: '2024', label: '2024 г.' },
                             { value: '2025', label: '2025 г.' },
                             { value: '2026', label: '2026 г.' },
+                            { value: '2027', label: '2027 г.' },
+                            { value: '2028', label: '2028 г.' },
                           ]}
                         /> </Title>
                         {
@@ -542,6 +548,8 @@ const PageMain = ({ year }) => {
                               { value: '2024', label: '2024 г.' },
                               { value: '2025', label: '2025 г.' },
                               { value: '2026', label: '2026 г.' },
+                              { value: '2027', label: '2027 г.' },
+                              { value: '2028', label: '2028 г.' },
                             ]}
                           />
                           </Title>
@@ -554,6 +562,8 @@ const PageMain = ({ year }) => {
                               { value: '2024', label: '2024 г.' },
                               { value: '2025', label: '2025 г.' },
                               { value: '2026', label: '2026 г.' },
+                              { value: '2027', label: '2027 г.' },
+                              { value: '2028', label: '2028 г.' },
                             ]}
                           />
                           </Title>
@@ -586,7 +596,7 @@ const PageMain = ({ year }) => {
             <div className="tabPurpose">
               {
                 staticData && staticData.purposeCollect.map((obj) =>
-                  <Purpose purposeCollect={obj}/>
+                  <Purpose purposeCollect={obj} />
                 )
               }
             </div>
