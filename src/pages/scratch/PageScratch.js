@@ -57,6 +57,10 @@ const EditableCell = ({
         {
           value: 'Аниме',
           label: 'Аниме',
+        },
+        {
+          value: 'Комиксы',
+          label: 'Комиксы',
         }
       ]} />
       : <Input />;
@@ -331,7 +335,12 @@ const PageScratch = ({ year }) => {
         {
           text: 'Аниме',
           value: 'Аниме',
+        },
+        {
+          text: 'Комиксы',
+          value: 'Комиксы',
         }
+        
       ],
       onFilter: (value, record) => record.category.includes(value),
     },
