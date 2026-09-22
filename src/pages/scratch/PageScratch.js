@@ -5,6 +5,8 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { Form, Image, Spin, Input, Typography, Popconfirm, Space, Select, Card, Tabs, Button, Table } from 'antd';
 import axios from "axios";
 
+import Roulette from "../../components/Roulette/Roulette";
+
 import './scratch.css'
 
 const { Title } = Typography;
@@ -340,7 +342,7 @@ const PageScratch = ({ year }) => {
           text: 'Комиксы',
           value: 'Комиксы',
         }
-        
+
       ],
       onFilter: (value, record) => record.category.includes(value),
     },
@@ -436,12 +438,12 @@ const PageScratch = ({ year }) => {
             <Tabs defaultActiveKey="1">
               {
                 dataScratch.map(arr => (
-
                   <TabPane tab={arr.category} key={arr.key} >
                     <div className="footerScratch">
                       <Typography.Text strong>
                         Выполнено {arr.done}/{arr.count}
                       </Typography.Text>
+                      <Roulette cards={arr.cardDisabled} category={arr.category} />
                     </div>
                     <div className="poster">
                       {

@@ -1,0 +1,322 @@
+/* =========================================================
+   Основной контейнер
+   ========================================================= */
+
+.roulette {
+    position: relative;
+    width: 100%;
+    padding: 35px 0 10px;
+}
+
+
+/* =========================================================
+   Окно рулетки
+   ========================================================= */
+
+.roulette-window {
+    position: relative;
+
+    width: 100%;
+    height: 390px;
+
+    overflow: hidden;
+
+    border: 1px solid #d9d9d9;
+    border-radius: 16px;
+
+    background: #f5f5f5;
+
+    box-shadow:
+        inset 0 0 20px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
+   Лента
+   ========================================================= */
+
+.roulette-track {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    width: max-content;
+
+    will-change: transform;
+}
+
+
+/*
+ * Именно здесь происходит движение.
+ */
+
+.roulette-track-spinning {
+    transition:
+        transform 6000ms cubic-bezier(
+            0.08,
+            0.65,
+            0.15,
+            1
+        );
+}
+
+
+/* =========================================================
+   Элемент ленты
+   ========================================================= */
+
+.roulette-item {
+    flex: 0 0 215px;
+
+    width: 215px;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   Ant Design Card
+   ========================================================= */
+
+.roulette-card {
+    width: 205px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   Название карточки
+   ========================================================= */
+
+.roulette-card-title {
+    width: 100%;
+    height: 47px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 5px;
+
+    text-align: center;
+
+    white-space: normal;
+    word-break: break-word;
+
+    line-height: 20px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   Центральная линия
+   ========================================================= */
+
+.roulette-center {
+    position: absolute;
+
+    z-index: 30;
+
+    top: 0;
+    bottom: 0;
+
+    left: 50%;
+
+    width: 0;
+
+    pointer-events: none;
+}
+
+
+.roulette-center-line {
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 50%;
+
+    width: 3px;
+
+    transform: translateX(-50%);
+
+    background: #ff4d4f;
+
+    box-shadow:
+        0 0 8px rgba(255, 77, 79, 0.55);
+}
+
+
+/* =========================================================
+   Верхний указатель
+   ========================================================= */
+
+.roulette-pointer {
+    position: absolute;
+
+    z-index: 50;
+
+    top: 7px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+}
+
+
+.roulette-pointer-arrow {
+    font-size: 30px;
+    line-height: 1;
+
+    color: #ff4d4f;
+
+    filter:
+        drop-shadow(
+            0 2px 2px rgba(0, 0, 0, 0.15)
+        );
+}
+
+
+/* =========================================================
+   Градиенты по краям
+   ========================================================= */
+
+.roulette-gradient {
+    position: absolute;
+
+    z-index: 20;
+
+    top: 0;
+    bottom: 0;
+
+    width: 150px;
+
+    pointer-events: none;
+}
+
+
+.roulette-gradient-left {
+    left: 0;
+
+    background:
+        linear-gradient(
+            to right,
+            #f5f5f5 0%,
+            rgba(245, 245, 245, 0.95) 25%,
+            rgba(245, 245, 245, 0.6) 55%,
+            rgba(245, 245, 245, 0) 100%
+        );
+}
+
+
+.roulette-gradient-right {
+    right: 0;
+
+    background:
+        linear-gradient(
+            to left,
+            #f5f5f5 0%,
+            rgba(245, 245, 245, 0.95) 25%,
+            rgba(245, 245, 245, 0.6) 55%,
+            rgba(245, 245, 245, 0) 100%
+        );
+}
+
+
+/* =========================================================
+   Текст "Выбираем..."
+   ========================================================= */
+
+.roulette-status {
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 18px;
+    font-weight: 500;
+
+    color: #666;
+}
+
+
+.roulette-status-icon {
+    display: inline-block;
+
+    animation:
+        roulette-pulse 0.8s infinite alternate;
+}
+
+
+@keyframes roulette-pulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.15);
+    }
+}
+
+
+/* =========================================================
+   Результат
+   ========================================================= */
+
+.roulette-result {
+    margin-top: 25px;
+
+    text-align: center;
+}
+
+
+.roulette-result-title {
+    margin-bottom: 5px;
+
+    font-size: 18px;
+
+    color: #666;
+}
+
+
+.roulette-result-name {
+    margin-bottom: 20px;
+
+    font-size: 28px;
+    font-weight: 600;
+
+    color: #1677ff;
+}
+
+
+/* =========================================================
+   Кнопки результата
+   ========================================================= */
+
+.roulette-result-buttons {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
