@@ -1,0 +1,89 @@
+.card_bookmarks {
+    margin: 5px 5px 5px 5px;
+    width: 205px;
+}
+
+.card_bookmarks_title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.card_bookmarks_author {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.4;
+    margin-bottom: 25px;
+}
+
+.card_bookmarks_cycle {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.4;
+    margin-bottom: 25px;
+}
+
+.bookmarks {
+    width: 100%;
+}
+
+
+/* =========================
+   ВЕРХНЯЯ ПАНЕЛЬ
+   ========================= */
+
+.bookmarks_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 12px 5px 14px 5px;
+
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+
+/* Количество */
+
+.bookmarks_count {
+    font-size: 16px;
+    font-weight: 500;
+
+}
+
+.bookmarks_count strong {
+    font-weight: 700;
+}
+
+
+/* =========================
+   КАРТОЧКИ
+   ========================= */
+
+.bookmarks_cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 20px;
+}

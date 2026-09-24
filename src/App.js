@@ -37,6 +37,7 @@ import PageMaps from './pages/maps/PageMaps';
 import PagePurpose from './pages/purpose/pagePurpose';
 import PageScratch from './pages/scratch/PageScratch';
 import PageAdminsBooks from './pages/books/adminsBooks/PageAdminsBooks';
+import PageBookmarks from './pages/books/bookmarks/PageBookmarks';
 
 const { Sider, Content } = Layout;
 
@@ -118,6 +119,7 @@ const App = () => {
                 <Route path='/chart_books/:name_book' element={<PageChartsBooks />} exact />
 
                 <Route path="/booksdiff/:name_book" element={<PageBooks url={"/books"} />} exact />
+                <Route path="/bookmarks" element={<PageBookmarks />} exact />
                 <Route path='/write_booksdiff/:name_book' element={<PageWriteBooks url={"/books/write_diff_books"} />} exact />
 
                 <Route path='/games/:library_name' element={<PageGamesLibrary />} exact />
