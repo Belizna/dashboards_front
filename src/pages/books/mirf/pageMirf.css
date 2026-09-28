@@ -1,0 +1,11 @@
+.cardCaetegory {
+    margin: 5px 5px 5px 5px;
+}
+
+.groupCardCategory {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-evenly;
+}

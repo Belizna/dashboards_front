@@ -38,6 +38,7 @@ import PagePurpose from './pages/purpose/pagePurpose';
 import PageScratch from './pages/scratch/PageScratch';
 import PageAdminsBooks from './pages/books/adminsBooks/PageAdminsBooks';
 import PageBookmarks from './pages/books/bookmarks/PageBookmarks';
+import PageMirf from './pages/books/mirf/PageMirf';
 
 const { Sider, Content } = Layout;
 
@@ -154,7 +155,7 @@ const App = () => {
                 <Route path='/table_scratch' element={<PageScratch year={currentYear} />} exact />
 
                 <Route path='/booksdiff_admin' element={<PageAdminsBooks />} exact />
-
+                <Route path='/mirf' element={<PageMirf />} exact />
                 <Route
                   path="*"
                   element={<Navigate to="/" replace />}
