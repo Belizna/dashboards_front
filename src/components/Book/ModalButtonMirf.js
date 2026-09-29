@@ -230,6 +230,10 @@ const ModalButtonMirf = ({
                                         {
                                             label: 'Кинг. Книжная полка',
                                             value: 'Кинг. Книжная полка'
+                                        },
+                                        {
+                                            label: 'Хьюго',
+                                            value: 'Хьюго'
                                         }
                                     ]}
                                 />
