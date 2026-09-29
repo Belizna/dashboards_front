@@ -55,9 +55,9 @@ const ModalButtonMirf = ({
             author: book.author,
             compilation: item.compilation,
             category: category.category,
-            is_presence: book.is_presence,
-            is_read: book.is_read,
-            image: book.image,
+            is_presence: book.history.is_presence,
+            is_read: book.history.is_read,
+            image: book.history.image,
         });
 
         setEditModalOpen(true);
