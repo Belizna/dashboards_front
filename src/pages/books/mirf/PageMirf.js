@@ -28,8 +28,8 @@ const PageMirf = ({ year }) => {
   }, [countSave, year])
 
   const [author, setAuthor] = useState([]);
-  const [data, setData] = useState([]);
-  const [dataStatic, setDataStatic] = useState([]);
+  const [data, setData] = useState(0);
+  const [dataStatic, setDataStatic] = useState(0);
 
   const handleCreateMirf = async (values) => {
 
@@ -53,7 +53,7 @@ const PageMirf = ({ year }) => {
 
   return (
     <>
-      {data === 0 ? <><div className="loader">
+      {data === 0 && dataStatic === 0 ? <><div className="loader">
         <Spin
           indicator={
             <LoadingOutlined
