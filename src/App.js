@@ -39,7 +39,6 @@ import PageScratch from './pages/scratch/PageScratch';
 import PageAdminsBooks from './pages/books/adminsBooks/PageAdminsBooks';
 import PageBookmarks from './pages/books/bookmarks/PageBookmarks';
 import PageMirf from './pages/books/mirf/PageMirf';
-import PiggyBank from './components/PiggyBank/PiggyBank';
 import PageExpense from './pages/expense/pageExpense';
 
 const { Sider, Content } = Layout;
@@ -112,7 +111,7 @@ const App = () => {
               <Routes>
                 <Route path='/' element={<PageMain year={currentYear} />} exact />
                 <Route path='/payments' element={<PagePayments />} exact />
-                <Route path='/credit_loan' element={<PiggyBank />} exact />
+                <Route path='/credit_loan' element={<PageLoan />} exact />
                 <Route path='/early_payments' element={<PageEarlyPayments />} exact />
                 <Route path='/chart_credit' element={<PageChartCredit />} exact />
                 <Route path='/purpose' element={<PagePurpose />} exact />

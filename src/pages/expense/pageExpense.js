@@ -85,6 +85,7 @@ const PageExpense = () => {
 
     const [form] = Form.useForm();
     const [data, setData] = useState([]);
+    // eslint-disable-next-line
     const [dataStatic, setDataStatistic] = useState([]);
     const [editingKey, setEditingKey] = useState('');
     const isEditing = (record) => record._id === editingKey;
