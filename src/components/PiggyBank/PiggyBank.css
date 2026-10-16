@@ -1,0 +1,998 @@
+.piggy-bank-wrapper {
+    width: 100%;
+    max-width: 390px;
+    margin: 0 auto;
+    padding: 20px;
+
+    color: #fff;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SCENE
+   ========================================================= */
+
+.piggy-bank-scene {
+    position: relative;
+
+    width: 100%;
+    height: 315px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   SHADOW
+   ========================================================= */
+
+.piggy-bank-shadow {
+    position: absolute;
+
+    width: 225px;
+    height: 34px;
+
+    left: 50%;
+    bottom: 18px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    filter: blur(9px);
+
+    z-index: 1;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+
+/* =========================================================
+   PIG
+   ========================================================= */
+
+.piggy-bank {
+    position: relative;
+
+    width: 285px;
+    height: 285px;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   TAIL
+   ========================================================= */
+
+.piggy-bank-tail {
+    position: absolute;
+
+    width: 45px;
+    height: 65px;
+
+    right: 4px;
+    top: 104px;
+
+    z-index: 1;
+
+    transform: rotate(12deg);
+}
+
+.piggy-bank-tail::before,
+.piggy-bank-tail::after,
+.piggy-bank-tail span {
+    position: absolute;
+
+    content: '';
+
+    display: block;
+
+    border: 10px solid transparent;
+    border-right-color: #ee8fa7;
+
+    border-radius: 50%;
+}
+
+.piggy-bank-tail::before {
+    width: 28px;
+    height: 28px;
+
+    right: 4px;
+    top: 4px;
+
+    transform: rotate(35deg);
+}
+
+.piggy-bank-tail::after {
+    width: 24px;
+    height: 24px;
+
+    right: -3px;
+    top: 25px;
+
+    transform: rotate(-30deg);
+}
+
+.piggy-bank-tail span {
+    width: 18px;
+    height: 18px;
+
+    right: 9px;
+    top: 39px;
+
+    transform: rotate(30deg);
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.piggy-bank-body {
+    position: absolute;
+
+    left: 50%;
+    bottom: 37px;
+
+    width: 235px;
+    height: 205px;
+
+    transform: translateX(-50%);
+
+    border-radius:
+        50%
+        50%
+        43%
+        43%;
+
+    background:
+        radial-gradient(
+            circle at 32% 22%,
+            #ffb4c5 0%,
+            #f6a0b6 25%,
+            #ee8da7 55%,
+            #d96f8d 100%
+        );
+
+    border: 2px solid rgba(255, 255, 255, 0.20);
+
+    box-shadow:
+        inset 0 7px 16px rgba(255, 255, 255, 0.28),
+        inset 0 -16px 25px rgba(155, 48, 79, 0.25),
+        0 18px 38px rgba(0, 0, 0, 0.40);
+
+    overflow: hidden;
+
+    z-index: 3;
+
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+}
+
+
+/* =========================================================
+   GLASS
+   ========================================================= */
+
+.piggy-bank-glass {
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+
+    top: 18px;
+    bottom: 18px;
+
+    border-radius:
+        48%
+        48%
+        42%
+        42%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.11),
+            rgba(255, 255, 255, 0.025) 45%,
+            rgba(255, 255, 255, 0.06)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow:
+        inset 3px 0 10px rgba(255, 255, 255, 0.06),
+        inset -3px 0 10px rgba(130, 35, 60, 0.08);
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+
+/* Большой блик */
+.piggy-bank-highlight {
+    position: absolute;
+
+    width: 26px;
+    height: 95px;
+
+    left: 26px;
+    top: 28px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.35),
+            rgba(255, 255, 255, 0.02)
+        );
+
+    transform: rotate(18deg);
+
+    filter: blur(1px);
+
+    opacity: 0.7;
+}
+
+
+/* =========================================================
+   COINS
+   ========================================================= */
+
+.piggy-bank-coins {
+    position: absolute;
+
+    left: 22px;
+    right: 22px;
+
+    top: 38px;
+    bottom: 20px;
+
+    overflow: hidden;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* Одна монета */
+.piggy-bank-coin {
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform:
+        translateX(-50%)
+        rotate(var(--coin-rotation))
+        scale(var(--coin-scale));
+
+    transform-origin: center bottom;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+/* Активная монета */
+.piggy-bank-coin--active {
+    opacity: 1;
+
+    animation:
+        piggy-coin-appear
+        0.55s
+        cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* Скрытая монета */
+.piggy-bank-coin--hidden {
+    opacity: 0;
+
+    transform:
+        translateX(-50%)
+        translateY(-25px)
+        rotate(var(--coin-rotation))
+        scale(0.3);
+}
+
+
+/* Монета */
+.piggy-bank-coin-inner {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    border-radius: 50%;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    color: #8b5a00;
+
+    background:
+        radial-gradient(
+            circle at 32% 28%,
+            #fff5a8 0%,
+            #ffd95a 28%,
+            #f5b82e 65%,
+            #d99510 100%
+        );
+
+    border:
+        2px solid #e4a51d;
+
+    box-shadow:
+        inset 2px 2px 3px rgba(255, 255, 255, 0.55),
+        inset -2px -2px 4px rgba(135, 76, 0, 0.35),
+        0 2px 4px rgba(80, 35, 0, 0.35);
+}
+
+
+/* =========================================================
+   SLOT
+   ========================================================= */
+
+.piggy-bank-slot {
+    position: absolute;
+
+    width: 76px;
+    height: 11px;
+
+    left: 50%;
+    top: 12px;
+
+    transform: translateX(-50%);
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #63273a,
+            #4d1b2d
+        );
+
+    border:
+        2px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        inset 0 2px 3px rgba(0, 0, 0, 0.45),
+        0 2px 4px rgba(0, 0, 0, 0.25);
+
+    z-index: 9;
+}
+
+
+/* =========================================================
+   LEGS
+   ========================================================= */
+
+.piggy-bank-leg {
+    position: absolute;
+
+    width: 45px;
+    height: 43px;
+
+    bottom: -15px;
+
+    border-radius:
+        30%
+        30%
+        40%
+        40%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5a2b7,
+            #df7895
+        );
+
+    border:
+        2px solid rgba(180, 68, 100, 0.35);
+
+    box-shadow:
+        inset 0 4px 7px rgba(255, 255, 255, 0.18),
+        0 4px 8px rgba(0, 0, 0, 0.20);
+
+    z-index: 2;
+}
+
+.piggy-bank-leg::after {
+    content: '';
+
+    position: absolute;
+
+    left: 7px;
+    right: 7px;
+    bottom: 5px;
+
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: rgba(130, 46, 70, 0.25);
+}
+
+.piggy-bank-leg--left {
+    left: 42px;
+
+    transform: rotate(5deg);
+}
+
+.piggy-bank-leg--right {
+    right: 42px;
+
+    transform: rotate(-5deg);
+}
+
+
+/* =========================================================
+   FACE
+   ========================================================= */
+
+.piggy-bank-face {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 7;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   EARS
+   ========================================================= */
+
+.piggy-bank-ear {
+    position: absolute;
+
+    width: 50px;
+    height: 48px;
+
+    top: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f6a7ba,
+            #df7896
+        );
+
+    border:
+        2px solid rgba(179, 65, 99, 0.30);
+
+    box-shadow:
+        inset 4px 4px 8px rgba(255, 255, 255, 0.18),
+        0 5px 9px rgba(0, 0, 0, 0.12);
+
+    z-index: 1;
+}
+
+.piggy-bank-ear::after {
+    content: '';
+
+    position: absolute;
+
+    width: 25px;
+    height: 24px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(190, 70, 103, 0.25);
+}
+
+.piggy-bank-ear--left {
+    left: 20px;
+
+    border-radius:
+        65%
+        35%
+        55%
+        45%;
+
+    transform: rotate(-28deg);
+}
+
+.piggy-bank-ear--right {
+    right: 20px;
+
+    border-radius:
+        35%
+        65%
+        45%
+        55%;
+
+    transform: rotate(28deg);
+}
+
+
+/* =========================================================
+   EYES
+   ========================================================= */
+
+.piggy-bank-eye {
+    position: absolute;
+
+    width: 13px;
+    height: 16px;
+
+    top: 83px;
+
+    border-radius: 50%;
+
+    background: #32151f;
+
+    box-shadow:
+        inset 2px 2px 2px rgba(255, 255, 255, 0.25),
+        0 1px 2px rgba(0, 0, 0, 0.25);
+
+    z-index: 3;
+}
+
+.piggy-bank-eye::after {
+    content: '';
+
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    top: 3px;
+    left: 3px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: 0.8;
+}
+
+.piggy-bank-eye--left {
+    left: 75px;
+}
+
+.piggy-bank-eye--right {
+    right: 75px;
+}
+
+
+/* =========================================================
+   SNOUT
+   ========================================================= */
+
+.piggy-bank-snout {
+    position: absolute;
+
+    left: 50%;
+    top: 98px;
+
+    width: 82px;
+    height: 55px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #ffb4c6,
+            #ee8fa8 65%,
+            #d97491
+        );
+
+    border:
+        2px solid rgba(174, 61, 94, 0.28);
+
+    box-shadow:
+        inset 3px 4px 8px rgba(255, 255, 255, 0.18),
+        inset -3px -4px 7px rgba(151, 50, 78, 0.20),
+        0 4px 7px rgba(0, 0, 0, 0.12);
+
+    z-index: 4;
+}
+
+.piggy-bank-snout span {
+    position: absolute;
+
+    width: 14px;
+    height: 10px;
+
+    top: 20px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #8b4058,
+            #5d273a
+        );
+
+    box-shadow:
+        inset 1px 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.piggy-bank-snout span:first-child {
+    left: 20px;
+}
+
+.piggy-bank-snout span:last-child {
+    right: 20px;
+}
+
+
+/* =========================================================
+   INFO
+   ========================================================= */
+
+.piggy-bank-info {
+    position: relative;
+
+    text-align: center;
+
+    margin-top: 4px;
+}
+
+
+/* Сумма */
+.piggy-bank-amount {
+    font-size: 25px;
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    letter-spacing: -0.4px;
+
+    color: #fff;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Цель */
+.piggy-bank-target {
+    margin-top: 5px;
+
+    font-size: 14px;
+
+    color: rgba(255, 255, 255, 0.58);
+}
+
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+.piggy-bank-progress {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 16px;
+}
+
+.piggy-bank-progress-track {
+    position: relative;
+
+    flex: 1;
+
+    height: 9px;
+
+    overflow: hidden;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.09);
+
+    box-shadow:
+        inset 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.piggy-bank-progress-value {
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d96f8d,
+            #f18eaa,
+            #ffb0c4
+        );
+
+    box-shadow:
+        0 0 10px rgba(241, 142, 170, 0.35);
+
+    transition:
+        width 0.55s
+        cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.piggy-bank-percentage {
+    min-width: 48px;
+
+    text-align: right;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    color: #f6a4ba;
+}
+
+
+/* =========================================================
+   COIN ANIMATION
+   ========================================================= */
+
+@keyframes piggy-coin-appear {
+    0% {
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(-40px)
+            rotate(-20deg)
+            scale(0.25);
+    }
+
+    55% {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(5px)
+            rotate(8deg)
+            scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            rotate(var(--coin-rotation))
+            scale(var(--coin-scale));
+    }
+}
+
+
+/* =========================================================
+   ADDING
+   ========================================================= */
+
+.piggy-bank-wrapper--adding
+.piggy-bank-wrapper {
+    animation:
+        piggy-bank-add
+        0.55s
+        ease;
+}
+
+@keyframes piggy-bank-add {
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        transform: scale(1.015);
+    }
+
+    70% {
+        transform: scale(0.995);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   REMOVING
+   ========================================================= */
+
+.piggy-bank-wrapper--removing
+.piggy-bank-wrapper {
+    animation:
+        piggy-bank-remove
+        0.55s
+        ease;
+}
+
+@keyframes piggy-bank-remove {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-3px);
+    }
+
+    40% {
+        transform: translateX(3px);
+    }
+
+    60% {
+        transform: translateX(-2px);
+    }
+
+    80% {
+        transform: translateX(2px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/* =========================================================
+   100%
+   ========================================================= */
+
+.piggy-bank-wrapper--celebrate
+.piggy-bank-body {
+    animation:
+        piggy-bank-celebrate
+        1.1s
+        cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.piggy-bank-wrapper--celebrate
+.piggy-bank-shadow {
+    animation:
+        piggy-shadow-celebrate
+        1.1s
+        ease;
+}
+
+@keyframes piggy-bank-celebrate {
+    0% {
+        transform:
+            translateX(-50%)
+            rotate(0deg)
+            scale(1);
+    }
+
+    20% {
+        transform:
+            translateX(-50%)
+            rotate(-4deg)
+            scale(1.04);
+    }
+
+    40% {
+        transform:
+            translateX(-50%)
+            rotate(4deg)
+            scale(1.04);
+    }
+
+    60% {
+        transform:
+            translateX(-50%)
+            rotate(-2deg)
+            scale(1.02);
+    }
+
+    80% {
+        transform:
+            translateX(-50%)
+            rotate(2deg)
+            scale(1.01);
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            rotate(0deg)
+            scale(1);
+    }
+}
+
+@keyframes piggy-shadow-celebrate {
+    0% {
+        transform:
+            translateX(-50%)
+            scaleX(1);
+    }
+
+    30% {
+        transform:
+            translateX(-50%)
+            scaleX(0.9);
+    }
+
+    60% {
+        transform:
+            translateX(-50%)
+            scaleX(0.9);
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            scaleX(1);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 480px) {
+    .piggy-bank-wrapper {
+        padding: 12px;
+    }
+
+    .piggy-bank-scene {
+        height: 295px;
+    }
+
+    .piggy-bank {
+        transform: scale(0.94);
+    }
+
+    .piggy-bank-amount {
+        font-size: 23px;
+    }
+}
+
+@media (max-width: 360px) {
+    .piggy-bank-scene {
+        height: 275px;
+    }
+
+    .piggy-bank {
+        transform: scale(0.86);
+    }
+
+    .piggy-bank-progress {
+        gap: 8px;
+    }
+
+    .piggy-bank-percentage {
+        min-width: 44px;
+    }
+}

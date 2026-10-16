@@ -1,7 +1,7 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { Form, FloatButton, Input, Popconfirm, Table,Space, Typography, Button} from 'antd';
+import { Form, FloatButton, Input, Select, Popconfirm, Table, Space, Typography, Button } from 'antd';
 import axios from "axios";
 
 
@@ -15,7 +15,17 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
-  const inputNode =  <Input />;
+  const inputNode = inputType === 'select' ? <Select
+    options={[
+      {
+        value: 'Да',
+        label: 'Да',
+      },
+      {
+        value: 'Нет',
+        label: 'Нет',
+      },
+    ]} /> : <Input />;
   return (
     <td {...restProps}>
       {editing ? (
@@ -43,9 +53,9 @@ const EditableCell = ({
 const BooksFilter = () => {
   const [countSave, setCountSave] = useState(0);
 
-  useEffect(()  => {
+  useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/booksFilter/`)
-    .then((res) => setData(res.data.booksFilter))
+      .then((res) => setData(res.data.booksFilter))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countSave])
 
@@ -139,7 +149,7 @@ const BooksFilter = () => {
       searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{
-            
+
             padding: 0,
           }}
           searchWords={[searchText]}
@@ -167,25 +177,24 @@ const BooksFilter = () => {
   };
 
   const cancel = (_id) => {
-    try{
-      if(typeof _id === 'number')
-      {
+    try {
+      if (typeof _id === 'number') {
         const newData = data.filter((item) => item._id !== _id);
         setData(newData);
         setEditingKey('');
       }
       else setEditingKey('');
-  }
-  catch(errInfo) {
-    console.log('Cancel error:', errInfo);
-  }
+    }
+    catch (errInfo) {
+      console.log('Cancel error:', errInfo);
+    }
   };
 
   const save = async (_id) => {
     try {
       const row = await form.validateFields();
       const newData = [...data];
-      const index = newData.findIndex((item) => _id === item._id );
+      const index = newData.findIndex((item) => _id === item._id);
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, {
@@ -194,9 +203,9 @@ const BooksFilter = () => {
         });
         setData(newData);
         setEditingKey('');
-        typeof _id === 'number' ?  await axios.post(`${process.env.REACT_APP_API_URL}/booksFilter/add/`,row) 
-        : await axios.patch(`${process.env.REACT_APP_API_URL}/booksFilter/edit/${_id}`,row) 
-        setCountSave(countSave+1)
+        typeof _id === 'number' ? await axios.post(`${process.env.REACT_APP_API_URL}/booksFilter/add/`, row)
+          : await axios.patch(`${process.env.REACT_APP_API_URL}/booksFilter/edit/${_id}`, row)
+        setCountSave(countSave + 1)
       } else {
         newData.push(row);
         setData(newData);
@@ -210,14 +219,20 @@ const BooksFilter = () => {
     {
       title: 'Цикл',
       dataIndex: 'compilation',
-      width: '40%',
+      width: '35%',
       editable: true,
       ...getColumnSearchProps('compilation')
     },
     {
       title: 'Фото',
       dataIndex: 'key',
-      width: '40%',
+      width: '35%',
+      editable: true,
+    },
+    {
+      title: 'Отображение',
+      dataIndex: 'active',
+      width: '10%',
       editable: true,
     },
     {
@@ -243,14 +258,14 @@ const BooksFilter = () => {
           </span>
         ) : (
           <>
-          <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{marginRight: 8}}>
-            Edit
-          </Typography.Link>
-          <Popconfirm title="Уверен в удалении?" onConfirm={() => handleDelete(record)}>
-          <a>Delete</a>
-        </Popconfirm>
-        </>
-        /* eslint-enable */
+            <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)} style={{ marginRight: 8 }}>
+              Edit
+            </Typography.Link>
+            <Popconfirm title="Уверен в удалении?" onConfirm={() => handleDelete(record)}>
+              <a>Delete</a>
+            </Popconfirm>
+          </>
+          /* eslint-enable */
         );
       },
     },
@@ -263,7 +278,7 @@ const BooksFilter = () => {
       ...col,
       onCell: (record) => ({
         record,
-        inputType: col.dataIndex === 'presence' ? 'select' : 'text',
+        inputType: col.dataIndex === 'active' ? 'select' : 'text',
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -272,51 +287,52 @@ const BooksFilter = () => {
   });
 
   const handleAdd = async () => {
-    setPage(Math.ceil((data.length + 1)/15))
+    setPage(Math.ceil((data.length + 1) / 15))
     const newData = {
       _id: Math.random(),
       compilation: '',
-      key: ''
+      key: '',
+      active: 'Да'
     };
     setData([...data, newData])
     edit(newData)
   };
   return (
     <>
-    <Form form={form} component={false}>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        bordered
-        dataSource={data}
-        columns={mergedColumns}
-        pagination={{
-          current: page,
-          pageSize: pageSize,
-          onChange: (page, pageSize) => {
-            setPage(page)
-            setPageSize(pageSize)
-          },
-        }}
-        style={{ marginTop: 35, width: 1100 }}
-      />
-    </Form>
-    <Button
+      <Form form={form} component={false}>
+        <Table
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          bordered
+          dataSource={data}
+          columns={mergedColumns}
+          pagination={{
+            current: page,
+            pageSize: pageSize,
+            onChange: (page, pageSize) => {
+              setPage(page)
+              setPageSize(pageSize)
+            },
+          }}
+          style={{ marginTop: 35, width: 1100 }}
+        />
+      </Form>
+      <Button
         onClick={handleAdd}
         type="primary"
         style={{
           marginTop: 10,
-         
+
         }}
       >
         Добавить цикл
       </Button>
       <FloatButton.BackTop />
     </>
-      
+
   );
 }
 
