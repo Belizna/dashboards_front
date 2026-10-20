@@ -82,7 +82,7 @@ const PageMirf = ({ year }) => {
                   children: (
                     <Tabs
                       items={[
-                        {/*
+                        {
                         {
                           key: 'purchase',
                           label: 'Покупка',
@@ -133,7 +133,7 @@ const PageMirf = ({ year }) => {
                             </div>
                           )
                         },
-                      */},
+                      },
                         {
                           key: 'reading',
                           label: 'Прочтение',
